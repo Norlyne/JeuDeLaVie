@@ -129,6 +129,7 @@
     <ClCompile Include="cell.cpp" />
     <ClCompile Include="Grille.cpp" />
     <ClCompile Include="Jeu.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="POO_Projet_jeu.cpp" />
   </ItemGroup>
   <ItemGroup>
