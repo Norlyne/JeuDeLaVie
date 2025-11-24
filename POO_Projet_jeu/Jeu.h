@@ -1,22 +1,5 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <fstream>
-#include "Grille.h"
-#include "cell.h"
-
-class Jeu{
-private:
-	Grille *grille;
-public:
-	// constructeur
-	Jeu() : public Grille() {
-		grille = new Grille();
-	}
-	// method
-	void initializeGrid();
-	int countvoisin(cell& c);
-
-
+class Jeu
+{
 };
 

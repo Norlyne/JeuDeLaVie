@@ -3,7 +3,7 @@
 class cell
 {
 protected:
-	bool state; // peut etre pas besoin puisqu'on ne crÃ©e qu'un seul objet
+	bool state; // peut etre pas besoin puisqu'on ne crée qu'un seul objet
 	int cellSize;
 
 public:
