@@ -4,19 +4,22 @@ class cell
 protected:
 	int x;
 	int y;
-
+	bool state;
 
 public:
 	//Constructor
 	cell();
+	cell(int x, int y, bool state);
 
 	//getters
 	int getx();
 	int gety();
+	bool get_state();
 
 	//setters
-	void setx();
-	void sety();
+	void setx(int x);
+	void sety(int y);
+	void set_state(bool state);
 
 	//methodes
 	virtual void set_color() = 0;
@@ -26,18 +29,12 @@ public:
 
 class dead_cell : cell {
 private:
-	bool state;
+
 
 
 public:
 	//Constructor
 	dead_cell();
-
-	//getter
-	bool get_state();
-
-	//setters
-	void set_state(bool state);
 
 	//methodes
 	void set_color() override {
@@ -48,21 +45,14 @@ public:
 
 class live_cell : cell {
 private:
-	bool state;
 
 
 public:
 	//Constructor
 	live_cell();
 
-	//getters
-	bool get_state();
-
-	//setters
-	void set_state(bool state);
-
 	//methodes
-	void color() override {
+	void set_color() override {
 
 	}
 };
