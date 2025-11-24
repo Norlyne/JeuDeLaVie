@@ -3,18 +3,25 @@ using namespace std;
 
 // method 
 void Jeu::initializeGrid() {
-	string filename;
+	string name;
 	cout << "Entrez le nom du fichier a ouvrir : (exemple: ficher.txt)" << endl;
-	cin >> filename;
+	cin >> name;
 	ifstream filenam;
-	filenam.open(filename, ios::in);  // on ouvre le fichier en lecture
+	filenam.open(name, ios::in);  // on ouvre le fichier en lecture
 	if (filenam) { // si l'ouverture a réussi
 		char caractere;
 		while (filenam.get(caractere)) // on lit le fichier tant qu'on ne dépasse pas la fin
 		{
 			int entier1, entier2;
+			string ligne;
 			filenam >> entier1 >> entier2;
 			grille = new Grille(entier1, entier2);
+			getline(filenam, ligne);
+			for (int i = 0; i < entier1; i++) {
+				for (int y = 0; y < entier2; y++) {
+					if ( filenam >> )
+				}
+			}
 
 
 			filenam.close();
