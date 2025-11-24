@@ -9,13 +9,15 @@ cell::cell(bool state) {
 	this->state = state;
 }
 
-dead_cell::dead_cell(sf::RenderWindow& window, int x, int y) {
+dead_cell::dead_cell(sf::RenderWindow& window, int x, int y, int cellSize) {
 	this->state = false;
+	this->cellSize = cellSize;
 	dessiner(window, x, y);
 }
 
-live_cell::live_cell(sf::RenderWindow& window, int x, int y) {
+live_cell::live_cell(sf::RenderWindow& window, int x, int y, int cellSize) {
 	this->state = true;
+	this->cellSize = cellSize;
 	dessiner(window, x, y);
 }
 

@@ -30,7 +30,7 @@ class dead_cell : public cell {
 public:
 	//Constructor
 	dead_cell();
-	dead_cell(sf::RenderWindow& window, int x, int y);
+	dead_cell(sf::RenderWindow& window, int x, int y, int cellSize);
 	
 
 	//methodes
@@ -47,7 +47,7 @@ class live_cell : public cell {
 public:
 	//Constructor
 	live_cell();
-	live_cell(sf::RenderWindow& window, int x, int y);
+	live_cell(sf::RenderWindow& window, int x, int y, int cellSize);
 
 	//methodes
 	void dessiner(sf::RenderWindow& window, int x, int y) override {
