@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 class cell
 {
 protected:
@@ -12,9 +13,11 @@ public:
 
 	//getters
 	bool get_state();
+	int get_cellSize();
 
 	//setters
 	void set_state(bool state);
+	void set_cellSize(int cellSize);
 
 	//methodes
 	virtual void dessiner(sf::RenderWindow& window, int x, int y) = 0;
