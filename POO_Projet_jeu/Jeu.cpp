@@ -35,18 +35,18 @@ void Jeu::reglebase() {
 			if (grid[x][y]->get_state() == 1) {
 				// cellule vivante
 				if (n < 2 || n > 3) {
-					next[x][y]->set_state(0);// meurt
+					next[x][y] = new dead_cell();// meurt
 				}
 				else {
-					next[x][y]->set_state(1); // survit
+					next[x][y] = new live_cell(); // survi
 				}
 			}
 			else {
 				// cellule morte
-				if (n == 3) next[x][y]->set_state(1); // naissance
-				else next[x][y]->set_state(0);
+				if (n == 3) next[x][y] = new live_cell(); // naissance
+				else next[x][y] = new dead_cell();
 			}
 		}
+		grid.swap(next); // met à jour la grille courante
 	}
-	grid.swap(next); // met à jour la grille courante
-}
+};
