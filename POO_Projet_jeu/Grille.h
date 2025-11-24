@@ -41,5 +41,10 @@ public:
 	void set_height(int h);
 	void set_width(int w);
 
+	std::vector<std::vector <cell*>> get_grid() {
+		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
+		return grid;
+	}
+
 };
 

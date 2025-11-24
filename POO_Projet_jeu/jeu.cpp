@@ -6,24 +6,47 @@ void Jeu::initializeGrid() {
 	string filename;
 	cout << "Entrez le nom du fichier a ouvrir : (exemple: ficher.txt)" << endl;
 	cin >> filename;
-	ifstream filename;
-	filename.open(filename, ios::in);  // on ouvre le fichier en lecture
-	if (filename) { // si l'ouverture a réussi
+	ifstream filenam;
+	filenam.open(filename, ios::in);  // on ouvre le fichier en lecture
+	if (filenam) { // si l'ouverture a réussi
 		char caractere;
-		while (filename.get(caractere)) // on lit le fichier tant qu'on ne dépasse pas la fin
+		while (filenam.get(caractere)) // on lit le fichier tant qu'on ne dépasse pas la fin
 		{
-			filename.close();
+			int entier1, entier2;
+			filenam >> entier1 >> entier2;
+			grille = new Grille(entier1, entier2);
+
+
+			filenam.close();
 		}
 	}
 	else {
 		cerr << "Erreur : fichier introuvable !" << endl;
 	}
-	////////////////////////////////////////////////////////////////////////
+};
+
+void Jeu::reglebase() {
+	// copie temporaire
+	vector<vector<cell*>> grid = grille->get_grid();
+	vector<vector<cell*>> next = grid;
 	for (int x = 0; x < grille->get_widht(); ++x) {
 		for (int y = 0; y < grille->get_height(); ++y) {
-			if (grid[x][y] == 0) {// remplace par le numéro de fichier
-				//= new live_cell()
+			int n = countvoisin(x, y);
+			if (grid[x][y]->get_state() == 1) {
+				// cellule vivante
+				if (n < 2 || n > 3) {
+					next[x][y] = new dead_cell();// meurt
+				}
+				else {
+					next[x][y] = new live_cell(); // survit
+				}
+			}
+			else {
+				// cellule morte
+				if (n == 3) next[x][y] = new live_cell(); // naissance
+				else next[x][y] = new dead_cell();
 			}
 		}
 	}
+	grid.swap(next); // met à jour la grille courante
 };
