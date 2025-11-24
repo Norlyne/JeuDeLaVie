@@ -3,7 +3,9 @@
 #include "cell.h"
 
 int  main() {
-	Grille g()
-
+	Grille g;
+	Jeu jdv(g);
+	jdv.initializeGrid();
+	jdv.reglebase();
 	return 0;
 }

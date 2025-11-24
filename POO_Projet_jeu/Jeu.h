@@ -14,9 +14,15 @@ public:
 	Jeu(){
 		grille = new Grille();
 	}
+
+	Jeu(Grille& g) {
+		grille = &g;
+	}
+
 	// method
 	void initializeGrid();
-	int countvoisin(cell& c);
+	int countvoisin(int x, int y);
+	void reglebase();
 
 
 };

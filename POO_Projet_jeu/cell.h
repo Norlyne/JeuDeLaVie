@@ -1,6 +1,7 @@
 //QSifojSPOFIjsIPuiPDfh
 #pragma once
 #include <SFML/Graphics.hpp>
+
 class cell
 {
 protected:

@@ -24,7 +24,7 @@ live_cell::live_cell(sf::RenderWindow& window, int x, int y, int cellSize) {
 //getters
 bool cell::get_state() { return this->state; }
 int cell::get_cellSize() { return this->cellSize; }
- 
+
 //setters
 void cell::set_state(bool state) { this->state = state; }
 void cell::set_cellSize(int cellSize) { this->cellSize = cellSize; }
