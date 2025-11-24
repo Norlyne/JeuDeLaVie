@@ -20,7 +20,7 @@ public:
 	}
 
 	Grille(int w, int h) {
-        gridWidth = w;
+		gridWidth = w;
 		gridHeight = h;
 		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
 

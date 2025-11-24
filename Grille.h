@@ -3,50 +3,43 @@
 #include <vector>
 #include <ctime>
 #include <cstdlib>
-// #include "cell.h"
+#include <iostream>
+#include "cell.h"
 
 class Grille {
 private:
-	int cellSize = 9;
     int gridWidth = 100;
 	int gridHeight = 100;
 public:
 	// constructor
 	Grille() {
-		cellSize = 10;
 		gridWidth = 100;
 		gridHeight = 100;
+		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
+
 	}
 
 	Grille(int w, int h) {
-		cellSize = 10;
 		gridWidth = w;
 		gridHeight = h;
-	}
+		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
 
-	Grille(int s, int w, int h) {
-		cellSize = s;
-		gridWidth = w;
-		gridHeight = h;
 	}
 
 	Grille(Grille& g) {
-		cellSize = g.cellSize;
 		gridWidth = g.gridWidth;
 		gridHeight = g.gridHeight;
+		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
+
 	}
 
 	// getter
-	int get_size();
 	int get_height();
 	int get_widht();
 
 	//setter
-	void set_size(int s);
 	void set_height(int h);
 	void set_width(int w);
 
-	// method
-	void initializeGrid();
 };
 

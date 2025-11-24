@@ -1,69 +1,59 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 class cell
 {
 protected:
-	int x;
-	int y;
-
+	bool state; // peut etre pas besoin puisqu'on ne crée qu'un seul objet
+	int cellSize;
 
 public:
 	//Constructor
 	cell();
+	cell(bool state);
 
 	//getters
-	int getx();
-	int gety();
+	bool get_state();
+	int get_cellSize();
 
 	//setters
-	void setx();
-	void sety();
+	void set_state(bool state);
+	void set_cellSize(int cellSize);
 
 	//methodes
-	virtual void set_color() = 0;
+	virtual void dessiner(sf::RenderWindow& window, int x, int y) = 0;
 };
 
 
 
-class dead_cell : cell {
-private:
-	bool state;
-
-
+class dead_cell : public cell {
 public:
 	//Constructor
 	dead_cell();
-
-	//getter
-	bool get_state();
-
-	//setters
-	void set_state(bool state);
+	dead_cell(sf::RenderWindow& window, int x, int y);
+	
 
 	//methodes
-	void set_color() override {
-
+	void dessiner(sf::RenderWindow& window, int x, int y) override {
+		sf::RectangleShape cell(sf::Vector2f(this->cellSize - 1.0f, this->cellSize - 1.0f));
+		cell.setPosition(x * this->cellSize, y * this->cellSize);
+		cell.setFillColor(sf::Color(0, 0, 0));
+		window.draw(cell);
 	}
 };
 
 
-class live_cell : cell {
-private:
-	bool state;
-
-
+class live_cell : public cell {
 public:
 	//Constructor
 	live_cell();
-
-	//getters
-	bool get_state();
-
-	//setters
-	void set_state(bool state);
+	live_cell(sf::RenderWindow& window, int x, int y);
 
 	//methodes
-	void color() override {
-
+	void dessiner(sf::RenderWindow& window, int x, int y) override {
+		sf::RectangleShape cell(sf::Vector2f(this->cellSize - 1.0f, this->cellSize - 1.0f));
+		cell.setPosition(x * this->cellSize, y * this->cellSize);
+		cell.setFillColor(sf::Color(255, 255, 255));
+		window.draw(cell);
 	}
 };
 
