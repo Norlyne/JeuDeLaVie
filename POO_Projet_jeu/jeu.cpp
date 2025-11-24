@@ -38,7 +38,7 @@ void Jeu::reglebase() {
 					next[x][y] = new dead_cell();// meurt
 				}
 				else {
-					next[x][y] = new live_cell(); // survit
+					next[x][y] = new live_cell(); // survi
 				}
 			}
 			else {
@@ -47,6 +47,6 @@ void Jeu::reglebase() {
 				else next[x][y] = new dead_cell();
 			}
 		}
+		grid.swap(next); // met à jour la grille courante
 	}
-	grid.swap(next); // met à jour la grille courante
 };
