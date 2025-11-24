@@ -19,7 +19,9 @@ void Jeu::initializeGrid() {
 			getline(filenam, ligne);
 			for (int i = 0; i < entier1; i++) {
 				for (int y = 0; y < entier2; y++) {
-					if ( filenam >> )
+					if (filenam >> caractere) {
+						///
+					}
 				}
 			}
 
@@ -35,7 +37,6 @@ void Jeu::initializeGrid() {
 int Jeu::countvoisin(int x, int y) {
 	int count = 0;
 	vector<vector<cell*>> grid = grille->get_grid();
-	int count = 0;
 	for (int dx = -1; dx <= 1; ++dx) {
 		for (int dy = -1; dy <= 1; ++dy) {
 			if (dx == 0 && dy == 0) continue;
@@ -50,6 +51,16 @@ int Jeu::countvoisin(int x, int y) {
 		}
 	}
 	return count;
+};
+
+void Jeu::initializerandom() {
+	std::srand(std::time(0));
+	vector<vector<cell*>> grid = grille->get_grid();
+	for (int x = 0; x < grille->get_widht(); ++x) {
+		for (int y = 0; y < grille->get_height(); ++y) {
+			grid[x][y]->set_state(std::rand() % 2);  // Randomly initialize cells as alive or dead
+		}
+	}
 };
 
 void Jeu::reglebase() {

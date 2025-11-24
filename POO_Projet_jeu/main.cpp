@@ -5,7 +5,7 @@
 int  main() {
 	Grille g;
 	Jeu jdv(g);
-	jdv.initializeGrid();
+	jdv.initializerandom();
 	jdv.reglebase();
 	return 0;
 }

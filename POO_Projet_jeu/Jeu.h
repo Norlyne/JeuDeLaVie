@@ -22,6 +22,7 @@ public:
 	// method
 	void initializeGrid();
 	int countvoisin(int x, int y);
+	void initializerandom();
 	void reglebase();
 
 
