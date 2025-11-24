@@ -8,9 +8,9 @@ void Jeu::initializeGrid() {
 	cin >> filename;
 	ifstream filenam;
 	filenam.open(filename, ios::in);  // on ouvre le fichier en lecture
-	if (filenam) { // si l'ouverture a réussi
+	if (filenam) { // si l'ouverture a rÃ©ussi
 		char caractere;
-		while (filenam.get(caractere)) // on lit le fichier tant qu'on ne dépasse pas la fin
+		while (filenam.get(caractere)) // on lit le fichier tant qu'on ne dÃ©passe pas la fin
 		{
 			int entier1, entier2;
 			filenam >> entier1 >> entier2;
@@ -47,6 +47,6 @@ void Jeu::reglebase() {
 				else next[x][y] = new dead_cell();
 			}
 		}
-		grid.swap(next); // met à jour la grille courante
+		grid.swap(next); // met Ã  jour la grille courante
 	}
 };

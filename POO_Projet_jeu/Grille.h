@@ -8,7 +8,7 @@
 
 class Grille {
 private:
-	int gridWidth = 100;
+    int gridWidth = 100;
 	int gridHeight = 100;
 public:
 	// constructor
@@ -47,3 +47,4 @@ public:
 	}
 
 };
+
