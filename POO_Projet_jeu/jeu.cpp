@@ -25,6 +25,26 @@ void Jeu::initializeGrid() {
 	}
 };
 
+int Jeu::countvoisin(int x, int y) {
+	int count = 0;
+	vector<vector<cell*>> grid = grille->get_grid();
+	int count = 0;
+	for (int dx = -1; dx <= 1; ++dx) {
+		for (int dy = -1; dy <= 1; ++dy) {
+			if (dx == 0 && dy == 0) continue;
+			int nx = x + dx;
+			int ny = y + dy;
+			// gestion des bords: ignore les voisins hors grille
+			if (nx >= 0 && nx < grille->get_widht() && ny >= 0 && ny < grille->get_height()) {
+				if (grid[nx][ny]->get_state() == 1) {
+					count++;
+				}
+			}
+		}
+	}
+	return count;
+};
+
 void Jeu::reglebase() {
 	// copie temporaire
 	vector<vector<cell*>> grid = grille->get_grid();
@@ -38,7 +58,7 @@ void Jeu::reglebase() {
 					next[x][y] = new dead_cell();// meurt
 				}
 				else {
-					next[x][y] = new live_cell(); // survi
+					next[x][y] = new live_cell(); // survit
 				}
 			}
 			else {
@@ -47,6 +67,6 @@ void Jeu::reglebase() {
 				else next[x][y] = new dead_cell();
 			}
 		}
-		grid.swap(next); // met à jour la grille courante
 	}
+	grid.swap(next); // met à jour la grille courante
 };
