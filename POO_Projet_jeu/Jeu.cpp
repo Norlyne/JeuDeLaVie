@@ -20,12 +20,10 @@
 // 
 //
 
-grille jeu::regle_base(grille &grid) {
-    // copie temporaire
-    grille next = grid;
+grille jeu::regle_base(grille &grid, grille &next) {
     for (int x = 0; x < grid.get_width(); ++x) {
         for (int y = 0; y < grid.get_height(); ++y) {
-            int n = next.compt_voisin(x, y);
+            int n = grid.compt_voisin(x, y);
             if (grid.get_grille(x, y)->is_alive()) {
                 // cellule vivante
                 if (n < 2 || n > 3) {
