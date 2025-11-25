@@ -10,7 +10,7 @@ private:
 
 
 public:
-	void regle_base(grille current_grid, grille new_grid);
+	void regle_base(grille& grid);
 };
 
 	
