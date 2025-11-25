@@ -1,50 +1,33 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <vector>
-#include <ctime>
-#include <cstdlib>
 #include <iostream>
-#include "cell.h"
+#include "cellule.h"
 
-class Grille {
+class grille
+{
 private:
-    int gridWidth = 100;
-	int gridHeight = 100;
+    int width;
+    int height;
+    std::vector<std::vector<cellule*>> grid;
+
 public:
-	// constructor
-	Grille() {
-		gridWidth = 100;
-		gridHeight = 100;
-		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
+    //Constructors
+    grille();
+    grille(int width, int height);
+    ~grille();  // destructeur pour delete les cellules
 
-	}
+    //getters
+    int get_width();
+    int get_height();
+    cellule* get_grille(int x, int y);
 
-	Grille(int w, int h) {
-		gridWidth = w;
-		gridHeight = h;
-		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
+    //setters
+    void set_width(int width);
+    void set_height(int height);
+    void set_grille(int x, int y, bool state);
 
-	}
-
-	Grille(Grille& g) {
-		gridWidth = g.gridWidth;
-		gridHeight = g.gridHeight;
-		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
-
-	}
-
-	// getter
-	int get_height();
-	int get_widht();
-
-	//setter
-	void set_height(int h);
-	void set_width(int w);
-
-	std::vector<std::vector <cell*>> get_grid() {
-		std::vector<std::vector <cell*>> grid(gridWidth, std::vector<cell*>(gridHeight));
-		return grid;
-	}
-
+    //Methodes
+    void random_init();
+    void fichier_init();
+    int compt_voisin(int x, int y);
 };
-
