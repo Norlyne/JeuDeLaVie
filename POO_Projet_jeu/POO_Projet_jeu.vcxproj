@@ -126,16 +126,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cell.cpp" />
-    <ClCompile Include="Grille.cpp" />
-    <ClCompile Include="Jeu.cpp" />
+    <ClCompile Include="cellule.cpp" />
+    <ClCompile Include="grille.cpp" />
+    <ClCompile Include="jeu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="POO_Projet_jeu.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cell.h" />
-    <ClInclude Include="Grille.h" />
-    <ClInclude Include="Jeu.h" />
+    <ClInclude Include="cellule.h" />
+    <ClInclude Include="grille.h" />
+    <ClInclude Include="jeu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
