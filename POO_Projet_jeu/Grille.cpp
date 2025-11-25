@@ -58,7 +58,7 @@ cellule* grille::get_grille(int x, int y) { return this->grid[x][y]; }
 void grille::set_width(int width) { this->width = width; }
 void grille::set_height(int height) { this->height = height; }
 void grille::set_grille(int x, int y, bool state) {
-    if (grid[x][y]) delete grid[x][y]; // supprime l'ancienne cellule
+    grid[x][y] = nullptr; // supprime l'ancienne cellule
     if (state) {
         grid[x][y] = new cellule_vivante();
     }

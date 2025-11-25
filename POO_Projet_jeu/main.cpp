@@ -30,7 +30,7 @@ int main()
         jeu.regle_base(grille1, g);
         std::cout << "---------------------------------------------------------------------------------------" << std::endl;
         //g = grille1;
-        for (int dx = 0; dx < g.get_width(); dx++) {
+        /*for (int dx = 0; dx < g.get_width(); dx++) {
             for (int dy = 0; dy < g.get_height(); dy++) {
                 if (g.get_grille(dx, dy)->is_alive()) {
                     grille1.set_grille(dx, dy, true);
@@ -39,13 +39,13 @@ int main()
                     grille1.set_grille(dx, dy, false);
                 }
             }
-        }
+        }*/
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    sf::RenderWindow window(sf::VideoMode(grille1.get_width() * 10, grille1.get_height() * 10), "Jeu de la vie");
-
+    sf::RenderWindow window(sf::VideoMode(grille1.get_width() * 100, grille1.get_height() * 50), "Jeu de la vie");
+    window.clear(sf::Color(214, 214, 214));
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -54,7 +54,7 @@ int main()
         }
         jeu.regle_base(grille1, g);
         jeu.dessin_rectangle(window, g);
-        sf::sleep(sf::milliseconds(100));
+        sf::sleep(sf::milliseconds(2000));
     }
 
     return 0;

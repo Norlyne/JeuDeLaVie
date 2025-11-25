@@ -24,7 +24,17 @@ void jeu::regle_base(grille &grid, grille &next) {
             }
         }
     }
-    //grid.swap(next); // met à jour la grille courante
+    /// swap 
+    for (int dx = 0; dx < next.get_width(); dx++) {
+        for (int dy = 0; dy < next.get_height(); dy++) {
+            if (next.get_grille(dx, dy)->is_alive()) {
+                grid.set_grille(dx, dy, true);
+            }
+            else {
+                grid.set_grille(dx, dy, false);
+            }
+        }
+    }
 }
 
 void jeu::dessin_rectangle(sf::RenderWindow& window, grille grid) {
