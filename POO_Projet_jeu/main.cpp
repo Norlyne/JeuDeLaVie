@@ -2,6 +2,7 @@
 #include <iostream>
 #include "cellule.h"
 #include "grille.h"
+#include "jeu.h"
 
 int main()
 {
@@ -9,13 +10,30 @@ int main()
 
     grille grille1;
     grille1.fichier_init();
+    //sf::RenderWindow window(sf::VideoMode(gridWidth * cellSize, gridHeight * cellSize), "Jeu de la vie");
 
-    for (int dx = 0; dx < grille1.get_width(); dx++) {
-        for (int dy = 0; dy < grille1.get_height(); dy++) {
-            cellule* c = grille1.get_grille(dx, dy);
-            if (c && c->is_alive()) std::cout << "1";
+    //for (int dx = 0; dx < grille1.get_width(); dx++) {
+    //    for (int dy = 0; dy < grille1.get_height(); dy++) {
+    //        cellule* c = grille1.get_grille(dx, dy);
+    //        if (c && c->is_alive()) std::cout << "1";
+    //        else std::cout << "0";
+    //    }
+    //    std::cout << "\n";  
+    //}
+
+    jeu jeu;
+    grille g;
+    g = jeu.regle_base(grille1);
+    std::cout << g.get_width() << std::endl;
+    std::cout << g.get_grille(1, 1) << std::endl;
+
+    for (int dx = 0; dx < g.get_width(); dx++) {
+        for (int dy = 0; dy < g.get_height(); dy++) {
+            cellule* d = g.get_grille(dx, dy); // problème ici
+            if (d && d->is_alive()) std::cout << "1";
             else std::cout << "0";
         }
-        std::cout << "\n";  // <- correction ici
+        std::cout << "\n";  
     }
-}
+    return 0;
+};

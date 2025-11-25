@@ -32,6 +32,7 @@ grille::grille(int width, int height) {
 grille::grille(grille& g) {
     this->width= g.width;
     this->height = g.height;
+    grid.resize(width, std::vector<cellule*>(height, nullptr)); // initialise les pointeurs à nullptr
     for (int dx = 0; dx < width; dx++) {
         for (int dy = 0; dy < height; dy++) {
             grid[dx][dy] = g.get_grille(dx, dy);

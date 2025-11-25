@@ -20,7 +20,7 @@
 // 
 //
 
-void jeu::regle_base(grille &grid) {
+grille jeu::regle_base(grille &grid) {
     // copie temporaire
     grille next = grid;
     for (int x = 0; x < grid.get_width(); ++x) {
@@ -46,5 +46,6 @@ void jeu::regle_base(grille &grid) {
             }
         }
     }
-    grid.swap(next); // met à jour la grille courante
+    return next;
+    //grid.swap(next); // met à jour la grille courante
 }

@@ -6,11 +6,8 @@
 class jeu
 {
 private:
-
-
-
 public:
-	void regle_base(grille& grid);
+	grille regle_base(grille& grid);
 };
 
 	
