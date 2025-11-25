@@ -26,3 +26,19 @@ void jeu::regle_base(grille &grid, grille &next) {
     }
     //grid.swap(next); // met à jour la grille courante
 }
+
+void jeu::dessin_rectangle(sf::RenderWindow& window, grille grid) {
+    int x, y;
+
+    window.clear();
+    sf::RectangleShape cell(sf::Vector2f(10 - 1.0f, 10 - 1.0f));
+    for (x = 0; x < grid.get_width(); ++x) {
+        for (y = 0; y < grid.get_height(); ++y) {
+            if (grid.get_grille(x,y)->is_alive()) {
+                cell.setPosition(x * 10, y * 10);
+                window.draw(cell);
+            }
+        }
+    }
+    window.display();
+};

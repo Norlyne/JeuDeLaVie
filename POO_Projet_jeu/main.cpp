@@ -53,9 +53,7 @@ int main()
                 window.close();
         }
         jeu.regle_base(grille1, g);
-        //fonction désiner le cas
-
-
+        jeu.dessin_rectangle(window, g);
         sf::sleep(sf::milliseconds(100));
     }
 
