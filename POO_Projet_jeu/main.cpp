@@ -53,15 +53,7 @@ int main()
                 window.close();
         }
         jeu.regle_base(grille1, g);
-        //fonction désiner le case
-        for (int dx = 0; dx < g.get_width(); dx++) {
-            for (int dy = 0; dy < g.get_height(); dy++) {
-                cellule* d = g.get_grille(dx, dy);
-                if (d && d->is_alive()) std::cout << "#";
-                else std::cout << ".";
-            }
-            std::cout << "\n";
-        }
+        //fonction désiner le cas
 
 
         sf::sleep(sf::milliseconds(100));
