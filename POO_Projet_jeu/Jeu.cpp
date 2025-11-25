@@ -1,4 +1,4 @@
-//#include "jeu.h"
+#include "jeu.h"
 //
 //void jeu::regle_base(grille current_grid, grille new_grid) {
 //    int nb_voisin;
@@ -17,4 +17,34 @@
 //        }
 //    }
 //}
+// 
 //
+
+void jeu::regle_base(grille &grid) {
+    // copie temporaire
+    grille next = grid;
+    for (int x = 0; x < next.get_width(); ++x) {
+        for (int y = 0; y < next.get_height(); ++y) {
+            int n = next.compt_voisin(x, y);
+            if (grid.get_grille(x, y)->is_alive()) {
+                // cellule vivante
+                if (n < 2 || n > 3) {
+                    next.set_grille( x, y, false); // meurt
+                }
+                else {
+                    next.set_grille(x, y, true); // survit
+                }
+            }
+            else {
+                // cellule morte
+                if (n == 3) {
+                    next.set_grille(x, y, true); // naissance
+                }
+                else {
+                    next.set_grille(x, y, false);
+                }
+            }
+        }
+    }
+    grid.swap(next); // met à jour la grille courante
+}
