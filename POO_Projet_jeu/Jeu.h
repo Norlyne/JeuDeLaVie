@@ -7,7 +7,7 @@ class jeu
 {
 private:
 public:
-	grille regle_base(grille& grid, grille &next);
+	void regle_base(grille& grid, grille &next);
 };
 
 	

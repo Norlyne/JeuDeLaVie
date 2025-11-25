@@ -20,7 +20,7 @@
 // 
 //
 
-grille jeu::regle_base(grille &grid, grille &next) {
+void jeu::regle_base(grille &grid, grille &next) {
     for (int x = 0; x < grid.get_width(); ++x) {
         for (int y = 0; y < grid.get_height(); ++y) {
             int n = grid.compt_voisin(x, y);
@@ -44,6 +44,5 @@ grille jeu::regle_base(grille &grid, grille &next) {
             }
         }
     }
-    return next;
     //grid.swap(next); // met à jour la grille courante
 }
