@@ -1,16 +1,16 @@
-//#pragma once
-//#include "cellule.h"
-//#include "grille.h"
-//
-//
-//class jeu
-//{
-//private:
-//
-//
-//
-//public:
-//	void regle_base(grille current_grid, grille new_grid);
-//};
-//
+#pragma once
+#include "cellule.h"
+#include "grille.h"
+
+
+class jeu
+{
+private:
+
+
+
+public:
+	void regle_base(grille current_grid, grille new_grid);
+};
+
 	
