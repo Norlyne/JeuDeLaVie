@@ -57,13 +57,16 @@ cellule* grille::get_grille(int x, int y) { return this->grid[x][y]; }
 //Setters
 void grille::set_width(int width) { this->width = width; }
 void grille::set_height(int height) { this->height = height; }
-void grille::set_grille(int x, int y, bool state) {
+void grille::set_grille(int x, int y, int state) {
     grid[x][y] = nullptr; // supprime l'ancienne cellule
-    if (state) {
+    if (state == 1) {
         grid[x][y] = new cellule_vivante();
     }
-    else {
+    else if (state == 0) {
         grid[x][y] = new cellule_morte();
+    }
+    else {
+        grid[x][y] = new cellule_obstacle();
     }
 }
 
@@ -71,25 +74,26 @@ void grille::set_grille(int x, int y, bool state) {
 void grille::random_init() {
     for (int dx = 0; dx < this->width; dx++) {
         for (int dy = 0; dy < this->height; dy++) {
-            if (rand() % 10 >= 6) {
-                if (grid[dx][dy]) delete grid[dx][dy];
+            int random = rand() % 100;
+            if (random  >= 60) {
+                if (grid[dx][dy]) delete grid[dx][dy]; 
                 grid[dx][dy] = new cellule_vivante();
             }
-            else if (rand() % 10 >= 2 && rand() % 10 < 6) {
+            else if (random >= 1 && random < 60) {
                 if (grid[dx][dy]) delete grid[dx][dy];
                 grid[dx][dy] = new cellule_morte();
             }
             else {
                 if (grid[dx][dy]) delete grid[dx][dy];
-                grid[dx][dy] = new cellule_morte();
+                grid[dx][dy] = new cellule_obstacle();
             }
         }
     }
 }
 
 
-void grille::fichier_init() {
-    ifstream fichier("depart.txt", ios::in);
+void grille::fichier_init(string filename) {
+    ifstream fichier(filename, ios::in);
 
     if (fichier)
     {
@@ -127,7 +131,7 @@ int grille::compt_voisin(int x, int y) {
             int ny = y + dy;
             // gestion des bords: ignore les voisins hors grille
             if (nx >= 0 && nx < this->width && ny >= 0 && ny < this->height) {
-                if (grid[nx][ny]->is_alive()) {
+                if (grid[nx][ny]->is_alive() == 1) {
                     count++;
                 }
             }
@@ -149,9 +153,9 @@ int grille::compt_voisin_thorique(int x, int y) {
             if (nx > (this->width - 1)) { nx = 0; }
             if (ny > (this->height - 1)) { ny = 0; }
 
-            if (grid[nx][ny]->is_alive()) {
+            if (grid[nx][ny]->is_alive() == 1) {
                 count++;
-            }
+            }   
         }
     }
     return count;

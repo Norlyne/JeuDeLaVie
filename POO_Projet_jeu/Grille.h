@@ -29,11 +29,11 @@ public:
     //setters
     void set_width(int width);
     void set_height(int height);
-    void set_grille(int x, int y, bool state);
+    void set_grille(int x, int y, int state);
 
     //Methodes
     void random_init();
-    void fichier_init();
+    void fichier_init(string filename);
     int compt_voisin(int x, int y);
     int compt_voisin_thorique(int x, int y);
 };
