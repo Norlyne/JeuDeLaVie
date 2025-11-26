@@ -72,7 +72,7 @@ public:
     void regle_base(grille& grid, grille& next) override {
         for (int x = 0; x < grid.get_width(); ++x) {
             for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin(x, y);
+                int n = grid.compt_voisin_thorique(x, y);
                 if (grid.get_grille(x, y)->is_alive()) {
                     next.set_grille(x, y, false); // meurt
                 }
