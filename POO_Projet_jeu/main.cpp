@@ -16,7 +16,7 @@ int main()
     grille grille1;
     string rep;
 
-    int m = 1;
+    string mode = "1";
 
     cout << "Avez-vous un fichier ? (o/n) " << endl;
     cin >> rep;
@@ -38,7 +38,6 @@ int main()
             cout << "Soutaitez-vous des obstacles dans la grille ? (o/n) " << endl;
             cin >> obs;
             if (obs == "o") {
-                string mode;
                 cout << "Quel mode de jeu souhaitez-vous ?" << endl;
                 cout << "Voici une liste de mode disponible : " << endl;
                 cout << "1." << "normal" << endl;
@@ -47,13 +46,9 @@ int main()
                 cin >> mode;
                 grille1.random_init_obs();
                 g.random_init_obs();
-                if (mode == "1") { m = 1; }
-                else if (mode == "2") { m = 2; }
-                else if (mode == "3") { m = 3; }
-                else { cout << "Erreur : mauvaise reponse" << endl; }
+                if (mode != "1" || mode != "2" || mode != "3") { cout << "Erreur : mauvaise reponse" << endl; }
             }
             else if (obs == "n") {
-                string mode;
                 cout << "Quel mode de jeu souhaitez-vous ?" << endl;
                 cout << "Voici une liste de mode disponible : " << endl;
                 cout << "1." << "normal" << endl;
@@ -62,14 +57,15 @@ int main()
                 cin >> mode;
                 grille1.random_init();
                 g.random_init();
-                if (mode == "1") { m = 1; }
-                else if (mode == "2") { m = 2; }
-                else if (mode == "3") { m = 3; }
-                else { cout << "Erreur : mauvaise reponse" << endl; }
+                if (mode != "1" || mode != "2" || mode != "3") { cout << "Erreur : mauvaise reponse" << endl; }
             }
             else {
                 cout << "Erreur : mauvaise reponse" << endl;
             }
+        }
+        else if (ale == "1") {
+            grille1.fichier_init("Gliders.txt");
+            g.fichier_init("Gliders.txt");
         }
         else {
             cout << "Erreur : mauvaise reponse" << endl;
@@ -116,17 +112,17 @@ int main()
             }
         }
         if (!etat) {
-            if (m == 1) {
+            if (mode == "1") {
                 jeu2.regle_base(grille1, g);
                 jeu2.dessin_rectangle(window, g);
                 sleep(milliseconds(50));
             }
-            else if (m == 2) {
+            else if (mode == "2") {
                 jeu3.regle_base(grille1, g);
                 jeu3.dessin_rectangle(window, g);
                 sleep(milliseconds(50));
             }
-            else if (m == 3) {
+            else if (mode == "3") {
                 jeu4.regle_base(grille1, g);
                 jeu4.dessin_rectangle(window, g);
                 sleep(milliseconds(50));
