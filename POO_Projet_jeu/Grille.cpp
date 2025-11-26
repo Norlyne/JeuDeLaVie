@@ -92,8 +92,8 @@ void grille::random_init() {
 }
 
 
-void grille::fichier_init() {
-    ifstream fichier("depart.txt", ios::in);
+void grille::fichier_init(string filename) {
+    ifstream fichier(filename, ios::in);
 
     if (fichier)
     {
