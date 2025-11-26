@@ -30,7 +30,7 @@ grille::grille(int width, int height) {
 }
 
 grille::grille(grille& g) {
-    this->width= g.width;
+    this->width = g.width;
     this->height = g.height;
     grid.resize(width, std::vector<cellule*>(height, nullptr)); // initialise les pointeurs à nullptr
     for (int dx = 0; dx < width; dx++) {
@@ -131,3 +131,24 @@ int grille::compt_voisin(int x, int y) {
     }
     return count;
 };
+
+int grille::compt_voisin_thorique(int x, int y) {
+    int count = 0;
+    for (int dx = -1; dx <= 1; ++dx) {
+        for (int dy = -1; dy <= 1; ++dy) {
+            if (dx == 0 && dy == 0) continue;
+            int nx = x + dx;
+            int ny = y + dy;
+            // gestion des bords: ignore les voisins hors grille
+            if (nx < 0) { nx = this->width; }
+            if (ny < 0) { ny = this->height; }
+            if (nx > this->width) { nx = 0; }
+            if (ny > this->height) { ny = 0; }
+
+            if (grid[nx][ny]->is_alive()) {
+                count++;
+            }   
+        }
+    }
+    return count;
+}
