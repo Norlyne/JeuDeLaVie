@@ -10,6 +10,7 @@ int main()
 
     ModeNormal jeu2;
     ModeLifeIsShort jeu3;
+    ModeDayAndLight jeu4;
     grille g;
     grille grille1;
     grille1.random_init();
@@ -52,8 +53,8 @@ int main()
             }
         }
         if (!etat) {
-            jeu3.regle_base(grille1, g);
-            jeu3.dessin_rectangle(window, g);
+            jeu4.regle_base(grille1, g);
+            jeu4.dessin_rectangle(window, g);
             sleep(milliseconds(50));
         }
     }
