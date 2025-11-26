@@ -69,3 +69,22 @@ public:
 		window.draw(cell);
 	}
 };
+
+class cellule_obstacle : public cellule {
+public:
+	//Constructor
+	cellule_obstacle();
+	cellule_obstacle(int cellsize);
+	~cellule_obstacle();
+
+
+	//methodes
+	bool is_alive() override { return false; }
+
+	void dessiner(sf::RenderWindow& window, int x, int y) override {
+		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
+		cell.setPosition(x * this->cellsize, y * this->cellsize);
+		cell.setFillColor(sf::Color(128, 128, 128));
+		window.draw(cell);
+	}
+};

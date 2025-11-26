@@ -10,8 +10,12 @@ cellule_morte::cellule_morte(int cellsize) { this->cellsize = cellsize; }
 cellule_vivante::cellule_vivante() { this->cellsize = 10; }
 cellule_vivante::cellule_vivante(int cellsize) { this->cellsize = cellsize; }
 
+cellule_obstacle::cellule_obstacle() { this->cellsize = 10; }
+cellule_obstacle::cellule_obstacle(int cellsize) { this->cellsize = cellsize; }
+
 cellule_morte::~cellule_morte() {}
 cellule_vivante::~cellule_vivante() {}
+cellule_obstacle::~cellule_obstacle() {}
 
 
 //getters
