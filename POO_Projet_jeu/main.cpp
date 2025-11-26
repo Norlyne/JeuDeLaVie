@@ -30,11 +30,28 @@ int main()
         cout << "1." << "Glidres" << endl;
         cin >> ale;
         if (ale == "a") {
+            string obs;
             cout << "Soutaitez-vous des obstacles dans la grille ? (o/n) " << endl;
+            cin >> obs;
+            if (obs == "o") {
+                string mode;
+                cout << "Quel mode de jeu souhaitez-vous ?" << endl;
+                cout << "Voici une liste de mode disponible : " << endl;
+                cout << "1." << "normal" << endl;
+                cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
+                cout << "3." << "Day and light" << endl;
+                cin >> mode;
+                grille1.random_init();
+                g.random_init();
+            }
             grille1.random_init();
             g.random_init();
         }
 
+
+    }
+    else {
+        cout << "Erreur : mauvaise reponse" << endl;
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
