@@ -26,7 +26,7 @@ public:
                         next.set_grille(x, y, 1); // survit
                     }
                 }
-                else {
+                else if (grid.get_grille(x, y)->is_alive() == 0){
                     // cellule morte
                     if (n == 3) {
                         next.set_grille(x, y, 1); // naissance
@@ -34,6 +34,9 @@ public:
                     else {
                         next.set_grille(x, y, 0);
                     }
+                }
+                else {
+                    next.set_grille(x, y, 2);
                 }
             }
         }
@@ -43,8 +46,11 @@ public:
                 if (next.get_grille(dx, dy)->is_alive() == 1) {
                     grid.set_grille(dx, dy, 1);
                 }
-                else {
+                else if (next.get_grille(dx, dy)->is_alive() == 0) {
                     grid.set_grille(dx, dy, 0);
+                }
+                else {
+                    grid.set_grille(dx, dy, 2);
                 }
             }
         }
@@ -59,6 +65,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
+                    cell.setFillColor(sf::Color(255, 255, 255));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -81,7 +88,7 @@ public:
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     next.set_grille(x, y, 0); // meurt
                 }
-                else {
+                else if (grid.get_grille(x, y)->is_alive() == 0) {
                     // cellule morte
                     if (n == 2) {
                         next.set_grille(x, y, 1); // naissance
@@ -89,6 +96,9 @@ public:
                     else {
                         next.set_grille(x, y, 0);
                     }
+                }
+                else {
+                    next.set_grille(x, y, 2);
                 }
             }
         }
@@ -98,8 +108,11 @@ public:
                 if (next.get_grille(dx, dy)->is_alive() == 1) {
                     grid.set_grille(dx, dy, 1);
                 }
-                else {
+                else if (next.get_grille(dx, dy)->is_alive() == 0) {
                     grid.set_grille(dx, dy, 0);
+                }
+                else {
+                    grid.set_grille(dx, dy, 2);
                 }
             }
         }
