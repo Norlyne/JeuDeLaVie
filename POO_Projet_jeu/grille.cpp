@@ -140,10 +140,10 @@ int grille::compt_voisin_thorique(int x, int y) {
             int nx = x + dx;
             int ny = y + dy;
             // gestion des bords: ignore les voisins hors grille
-            if (nx < 0) { nx = this->width; }
-            if (ny < 0) { ny = this->height; }
-            if (nx > this->width) { nx = 0; }
-            if (ny > this->height) { ny = 0; }
+            if (nx < 0) { nx = this->width - 1; }
+            if (ny < 0) { ny = this->height - 1; }
+            if (nx > (this->width - 1)) { nx = 0; }
+            if (ny > (this->height - 1)) { ny = 0; }
 
             if (grid[nx][ny]->is_alive()) {
                 count++;
