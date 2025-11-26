@@ -71,8 +71,8 @@ void grille::set_grille(int x, int y, bool state) {
 void grille::random_init() {
     for (int dx = 0; dx < this->width; dx++) {
         for (int dy = 0; dy < this->height; dy++) {
-            if (rand() % 10  >= 6) {
-                if (grid[dx][dy]) delete grid[dx][dy]; 
+            if (rand() % 10 >= 6) {
+                if (grid[dx][dy]) delete grid[dx][dy];
                 grid[dx][dy] = new cellule_vivante();
             }
             else if (rand() % 10 >= 2 && rand() % 10 < 6) {
@@ -151,7 +151,7 @@ int grille::compt_voisin_thorique(int x, int y) {
 
             if (grid[nx][ny]->is_alive()) {
                 count++;
-            }   
+            }
         }
     }
     return count;
