@@ -29,7 +29,7 @@ public:
     //setters
     void set_width(int width);
     void set_height(int height);
-    void set_grille(int x, int y, bool state);
+    void set_grille(int x, int y, int state);
 
     //Methodes
     void random_init();
