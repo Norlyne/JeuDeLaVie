@@ -4,10 +4,10 @@
 
 
 class jeu {
-private:
-public:
-	virtual void regle_base(grille& grid, grille &next) = 0;
-	virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
+    private:
+    public:
+	    virtual void regle_base(grille& grid, grille &next) = 0;
+	    virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
 };
 
 
