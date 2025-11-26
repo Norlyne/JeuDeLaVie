@@ -124,7 +124,7 @@ public:
     void regle_base(grille& grid, grille& next) override {
         for (int x = 0; x < grid.get_width(); ++x) {
             for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin(x, y);
+                int n = grid.compt_voisin_thorique(x, y);
                 if (grid.get_grille(x, y)->is_alive()) {
                     //une cellule vivante survit à l'étape suivante si elle est entourée de 3, 4, 6, 7 ou 8 cellules vivantes.
                     if (n == 3 || n == 4 || n == 6 || n == 7 || n == 8) {
