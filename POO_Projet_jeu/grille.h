@@ -32,4 +32,5 @@ public:
     void random_init();
     void fichier_init();
     int compt_voisin(int x, int y);
+    int compt_voisin_thorique(int x, int y);
 };
