@@ -37,28 +37,24 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(grille1.get_width() * 10, grille1.get_height() * 10), "Jeu de la vie");
     window.clear(sf::Color(214, 214, 214));
+    bool etat = false;
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            //if (event.type == sf::Event::Closed)
-                //window.close();
-             // fenêtre fermée
-            switch (event.type)
-            {
-            case sf::Event::Closed:
+            if (event.type == sf::Event::Closed)
                 window.close();
-                break;
-
-                // touche pressée
-            case sf::Event::KeyPressed:
-                sf::sleep(sf::milliseconds(3000));
-                break;
+            if (event.type == sf::Event::KeyPressed)
+            {
+                if (event.key.code == sf::Keyboard::Space){
+                    etat = !etat;
+                }
             }
         }
-        jeu.regle_base(grille1, g);
-        jeu.dessin_rectangle(window, g);
-        sf::sleep(sf::milliseconds(50));
+        if (!etat) {
+            jeu.regle_base(grille1, g);
+            jeu.dessin_rectangle(window, g);
+            sf::sleep(sf::milliseconds(50));
+        }
     }
-
     return 0;
 };
