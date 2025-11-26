@@ -26,7 +26,7 @@ public:
 	void set_cellsize(int cellsize);
 
 	//methodes
-	virtual bool is_alive() = 0;
+	virtual int is_alive() = 0;
 	virtual void dessiner(sf::RenderWindow& window, int x, int y) = 0;
 };
 
@@ -41,7 +41,7 @@ public:
 
 
 	//methodes
-	bool is_alive() override { return false; }
+	int is_alive() override { return 0; }
 
 	void dessiner(sf::RenderWindow& window, int x, int y) override {
 		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
@@ -60,7 +60,7 @@ public:
 	~cellule_vivante();
 
 	//methodes
-	bool is_alive() override { return true; }
+	int is_alive() override { return 1; }
 
 	void dessiner(sf::RenderWindow& window, int x, int y) override {
 		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
@@ -79,7 +79,7 @@ public:
 
 
 	//methodes
-	bool is_alive() override { return false; }
+	int is_alive() override { return 2; }
 
 	void dessiner(sf::RenderWindow& window, int x, int y) override {
 		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
