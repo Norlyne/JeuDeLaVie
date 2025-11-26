@@ -11,14 +11,14 @@ int main()
     jeu jeu;
     grille g;
     grille grille1;
-    grille1.fichier_init();
-    g.fichier_init();
+    grille1.random_init();
+    g.random_init();
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    for (int i = 0; i < 5; i++) {
+    /*for (int i = 0; i < 5; i++) {
         for (int dx = 0; dx < g.get_width(); dx++) {
             for (int dy = 0; dy < g.get_height(); dy++) {
                 cellule* d = g.get_grille(dx, dy);
@@ -29,32 +29,35 @@ int main()
         }
         jeu.regle_base(grille1, g);
         std::cout << "---------------------------------------------------------------------------------------" << std::endl;
-        //g = grille1;
-        /*for (int dx = 0; dx < g.get_width(); dx++) {
-            for (int dy = 0; dy < g.get_height(); dy++) {
-                if (g.get_grille(dx, dy)->is_alive()) {
-                    grille1.set_grille(dx, dy, true);
-                }
-                else {
-                    grille1.set_grille(dx, dy, false);
-                }
-            }
-        }*/
-    }
+        
+    }*/
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    sf::RenderWindow window(sf::VideoMode(grille1.get_width() * 100, grille1.get_height() * 50), "Jeu de la vie");
+
+    sf::RenderWindow window(sf::VideoMode(grille1.get_width() * 10, grille1.get_height() * 10), "Jeu de la vie");
     window.clear(sf::Color(214, 214, 214));
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
+            //if (event.type == sf::Event::Closed)
+                //window.close();
+             // fenêtre fermée
+            switch (event.type)
+            {
+            case sf::Event::Closed:
                 window.close();
+                break;
+
+                // touche pressée
+            case sf::Event::KeyPressed:
+                sf::sleep(sf::milliseconds(3000));
+                break;
+            }
         }
         jeu.regle_base(grille1, g);
         jeu.dessin_rectangle(window, g);
-        sf::sleep(sf::milliseconds(2000));
+        sf::sleep(sf::milliseconds(50));
     }
 
     return 0;
