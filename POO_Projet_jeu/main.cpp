@@ -46,7 +46,7 @@ int main()
                 cin >> mode;
                 grille1.random_init_obs();
                 g.random_init_obs();
-                if (mode != "1" || mode != "2" || mode != "3") { cout << "Erreur : mauvaise reponse" << endl; }
+                if (mode != "1" && mode != "2" && mode != "3") { cout << "Erreur : mauvaise reponse" << endl; }
             }
             else if (obs == "n") {
                 cout << "Quel mode de jeu souhaitez-vous ?" << endl;
@@ -57,7 +57,7 @@ int main()
                 cin >> mode;
                 grille1.random_init();
                 g.random_init();
-                if (mode != "1" || mode != "2" || mode != "3") { cout << "Erreur : mauvaise reponse" << endl; }
+                if (mode != "1" && mode != "2" && mode != "3") { cout << "Erreur : mauvaise reponse" << endl; }
             }
             else {
                 cout << "Erreur : mauvaise reponse" << endl;
