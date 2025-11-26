@@ -5,6 +5,9 @@
 #include <ctime>
 #include <cstdlib>
 
+using namespace std;
+using namespace sf;
+
 class cellule
 {
 protected:
@@ -41,9 +44,9 @@ public:
 	bool is_alive() override { return false; }
 
 	void dessiner(sf::RenderWindow& window, int x, int y) override {
-		sf::RectangleShape cell(sf::Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
+		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
 		cell.setPosition(x * this->cellsize, y * this->cellsize);
-		cell.setFillColor(sf::Color(0, 0, 0));
+		cell.setFillColor(Color(0, 0, 0));
 		window.draw(cell);
 	}
 };
@@ -60,9 +63,9 @@ public:
 	bool is_alive() override { return true; }
 
 	void dessiner(sf::RenderWindow& window, int x, int y) override {
-		sf::RectangleShape cell(sf::Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
+		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
 		cell.setPosition(x * this->cellsize, y * this->cellsize);
-		cell.setFillColor(sf::Color(255, 255, 255));
+		cell.setFillColor(Color(255, 255, 255));
 		window.draw(cell);
 	}
 };

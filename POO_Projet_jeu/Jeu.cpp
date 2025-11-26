@@ -1,6 +1,6 @@
 #include "jeu.h"
-
-void jeu::regle_base(grille &grid, grille &next) {
+/*
+void ::regle_base(grille &grid, grille &next) {
     for (int x = 0; x < grid.get_width(); ++x) {
         for (int y = 0; y < grid.get_height(); ++y) {
             int n = grid.compt_voisin(x, y);
@@ -41,7 +41,7 @@ void jeu::dessin_rectangle(sf::RenderWindow& window, grille grid) {
     int x, y;
 
     window.clear();
-    sf::RectangleShape cell(sf::Vector2f(10 - 1.0f, 10 - 1.0f));
+    RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
     for (x = 0; x < grid.get_width(); ++x) {
         for (y = 0; y < grid.get_height(); ++y) {
             if (grid.get_grille(x,y)->is_alive()) {
@@ -51,4 +51,4 @@ void jeu::dessin_rectangle(sf::RenderWindow& window, grille grid) {
         }
     }
     window.display();
-};
+};*/
