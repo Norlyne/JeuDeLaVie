@@ -68,7 +68,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(255, 255, 255));
+                    cell.setFillColor(Color(rand() % 1+x, rand()%255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -134,7 +134,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(100, 250, 50));
+                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -208,7 +208,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(250, 250, 50));
+                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -218,7 +218,7 @@ public:
                 }
                 else  {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(0, 0, 128));
+                    cell.setFillColor(sf::Color(0, 0, 0));
                     window.draw(cell);
                 }
                 
