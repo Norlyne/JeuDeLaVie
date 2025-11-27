@@ -75,8 +75,24 @@ void grille::random_init() {
     for (int dx = 0; dx < this->width; dx++) {
         for (int dy = 0; dy < this->height; dy++) {
             int random = rand() % 100;
-            if (random  >= 60) {
+            if (random  >= 50) {
                 if (grid[dx][dy]) delete grid[dx][dy]; 
+                grid[dx][dy] = new cellule_vivante();
+            }
+            else if (random < 50) {
+                if (grid[dx][dy]) delete grid[dx][dy];
+                grid[dx][dy] = new cellule_morte();
+            }
+        }
+    }
+}
+
+void grille::random_init_obs() {
+    for (int dx = 0; dx < this->width; dx++) {
+        for (int dy = 0; dy < this->height; dy++) {
+            int random = rand() % 100;
+            if (random >= 60) {
+                if (grid[dx][dy]) delete grid[dx][dy];
                 grid[dx][dy] = new cellule_vivante();
             }
             else if (random >= 1 && random < 60) {

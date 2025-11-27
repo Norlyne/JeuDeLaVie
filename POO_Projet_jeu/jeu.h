@@ -4,13 +4,15 @@
 
 
 class jeu {
-private:
-public:
-    virtual void regle_base(grille& grid, grille& next) = 0;
-    virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
-    void création_dossier();
+    private:
+    public:
+	    virtual void regle_base(grille& grid, grille &next) = 0;
+	    virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
 };
 
+#pragma region Mode
+
+     #pragma region ModeNormal
 
 class ModeNormal : public jeu {
 public:
@@ -66,7 +68,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(255, 255, 255));
+                    cell.setFillColor(Color(rand() % 1+x, rand()%255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -79,6 +81,10 @@ public:
         window.display();
     }
 };
+
+#pragma endregion
+
+     #pragma region ModeLifeIsShort
 
 class ModeLifeIsShort : public jeu {
 public:
@@ -128,7 +134,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(100, 250, 50));
+                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -142,7 +148,10 @@ public:
         window.display();
     }
 };
+	
+#pragma endregion
 
+     #pragma region ModeDayAndLight
 
 class ModeDayAndLight : public jeu {
 public:
@@ -199,12 +208,17 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(250, 250, 50));
+                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
+                    cell.setFillColor(sf::Color(137, 81, 41));
+                    window.draw(cell);
+                }
+                else  {
+                    cell.setPosition(x * 10, y * 10);
+                    cell.setFillColor(sf::Color(0, 0, 0));
                     window.draw(cell);
                 }
                 
@@ -214,3 +228,7 @@ public:
         window.display();
     }
 };
+
+#pragma endregion
+
+#pragma endregion
