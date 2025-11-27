@@ -130,12 +130,14 @@
     <ClCompile Include="grille.cpp" />
     <ClCompile Include="jeu.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="patternes.cpp" />
     <ClCompile Include="POO_Projet_jeu.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cellule.h" />
     <ClInclude Include="grille.h" />
     <ClInclude Include="jeu.h" />
+    <ClInclude Include="patternes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
