@@ -3,6 +3,7 @@
 #include "cellule.h"
 #include "grille.h"
 #include "jeu.h"
+#include "patternes.h"
 
 int main()
 {
@@ -17,6 +18,12 @@ int main()
 
     grille g;
     grille grille1;
+
+    pattern pattern;
+
+
+
+
     string rep;
 
     string mode = "1";
@@ -118,6 +125,9 @@ int main()
             {
                 if (event.key.code == Keyboard::Space)
                     etat = !etat;
+
+                if (event.key.code == Keyboard::Num1)
+                    pattern.
             }
         }
         if (!etat) {

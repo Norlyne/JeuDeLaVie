@@ -25,10 +25,11 @@ public:
 
 
 	//methodes
-	void selection_pattern();
-	void coordonnees_souris();
-	void poser_pattern();
+	void selection_point(int numero);
 	void poser_point();
+
+	void coordonnees_souris();
+	
 };
 
 

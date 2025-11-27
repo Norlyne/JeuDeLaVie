@@ -8,7 +8,7 @@ pattern::pattern() {
 	this->numero = 1;
 }
 
-pattern::pattern(int x, int y) {
+pattern::pattern(int x, int y, int numero) {
 	this->x = x;
 	this->y = y;
 	this->numero = 1;
@@ -28,10 +28,8 @@ void pattern::set_numero(int numero) { this->numero = numero; }
 
 
 //methodes
-void selection_pattern(int numero_pattern) {
-	if (event.key.code == Keyboard::Space)
-		etat = !etat;
-
+void pattern::selection_point(int numero) {
+	this->numero = numero;
 }
 
 
