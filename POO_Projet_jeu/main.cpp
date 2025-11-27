@@ -13,6 +13,7 @@ int main()
     ModeDayAndLight jeu4;
     labyrinthiques jeu5;
     ExplosionsAndChaos jeu6;
+    MotifsRepliquants jeu7;
 
     grille g;
     grille grille1;
@@ -46,11 +47,12 @@ int main()
                 cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
                 cout << "3." << "Day and light" << endl;
                 cout << "4." << "Labyrinthiques" << endl;
-                cout << "5." << "ExplosionsAndChaos" << endl;
+                cout << "5." << "Explosions And Chaos" << endl;
+                cout << "6." << "Motifs Repliquants" << endl;
                 cin >> mode;
                 grille1.random_init_obs();
                 g.random_init_obs();
-                if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5") { cout << "Erreur : mauvaise reponse" << endl; }
+                if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6") { cout << "Erreur : mauvaise reponse" << endl; }
             }
             else if (obs == "n") {
                 cout << "Quel mode de jeu souhaitez-vous ?" << endl;
@@ -59,11 +61,12 @@ int main()
                 cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
                 cout << "3." << "Day and light" << endl;
                 cout << "4." << "Labyrinthiques" << endl;
-                cout << "5." << "ExplosionsAndChaos" << endl;
+                cout << "5." << "Explosions And Chaos" << endl;
+                cout << "6." << "Motifs Repliquants" << endl;
                 cin >> mode;
                 grille1.random_init();
                 g.random_init();
-                if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5") { cout << "Erreur : mauvaise reponse" << endl; }
+                if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6") { cout << "Erreur : mauvaise reponse" << endl; }
             }
             else {
                 cout << "Erreur : mauvaise reponse" << endl;
@@ -141,6 +144,11 @@ int main()
             else if (mode == "5") {
                 jeu6.regle_base(grille1, g);
                 jeu6.dessin_rectangle(window, g);
+                sleep(milliseconds(50));
+            }
+            else if (mode == "6") {
+                jeu7.regle_base(grille1, g);
+                jeu7.dessin_rectangle(window, g);
                 sleep(milliseconds(50));
             }
 
