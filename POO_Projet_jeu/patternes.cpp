@@ -1,5 +1,6 @@
 #include "patternes.h"
 
+
 //constructor
 pattern::pattern() {
 	this->x = 0;
@@ -28,9 +29,8 @@ void pattern::set_numero(int numero) { this->numero = numero; }
 
 //methodes
 void selection_pattern(int numero_pattern) {
-	if (numero_pattern == 1) {
-		petit_pattern = new 
-	}
+	if (event.key.code == Keyboard::Space)
+		etat = !etat;
 
 }
 

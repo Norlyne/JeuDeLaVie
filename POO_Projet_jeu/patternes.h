@@ -27,16 +27,8 @@ public:
 	//methodes
 	void selection_pattern();
 	void coordonnees_souris();
-	virtual void poser_pattern();
+	void poser_pattern();
+	void poser_point();
 };
 
 
-class glider : public pattern {
-
-	glider();
-	glider(int x, int y);
-
-	void poser_pattern() override{
-
-	}
-};
