@@ -10,6 +10,9 @@ class jeu {
 	    virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
 };
 
+#pragma region Mode
+
+     #pragma region ModeNormal
 
 class ModeNormal : public jeu {
 public:
@@ -79,6 +82,10 @@ public:
     }
 };
 
+#pragma endregion
+
+     #pragma region ModeLifeIsShort
+
 class ModeLifeIsShort : public jeu {
 public:
     void regle_base(grille& grid, grille& next) override {
@@ -142,6 +149,9 @@ public:
     }
 };
 	
+#pragma endregion
+
+     #pragma region ModeDayAndLight
 
 class ModeDayAndLight : public jeu {
 public:
@@ -218,3 +228,7 @@ public:
         window.display();
     }
 };
+
+#pragma endregion
+
+#pragma endregion
