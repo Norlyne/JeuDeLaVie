@@ -10,6 +10,9 @@ class jeu {
 	    virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
 };
 
+#pragma region Mode
+
+     #pragma region ModeNormal
 
 class ModeNormal : public jeu {
 public:
@@ -79,6 +82,10 @@ public:
     }
 };
 
+#pragma endregion
+
+     #pragma region ModeLifeIsShort
+
 class ModeLifeIsShort : public jeu {
 public:
     void regle_base(grille& grid, grille& next) override {
@@ -142,6 +149,9 @@ public:
     }
 };
 	
+#pragma endregion
+
+     #pragma region ModeDayAndLight
 
 class ModeDayAndLight : public jeu {
 public:
@@ -203,7 +213,12 @@ public:
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
+                    cell.setFillColor(sf::Color(137, 81, 41));
+                    window.draw(cell);
+                }
+                else  {
+                    cell.setPosition(x * 10, y * 10);
+                    cell.setFillColor(sf::Color(0, 0, 128));
                     window.draw(cell);
                 }
                 
@@ -213,3 +228,7 @@ public:
         window.display();
     }
 };
+
+#pragma endregion
+
+#pragma endregion
