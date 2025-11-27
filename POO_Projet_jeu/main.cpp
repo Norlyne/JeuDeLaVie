@@ -17,72 +17,10 @@ int main()
 
     grille g;
     grille grille1;
-    string rep;
 
     string mode = "1";
 
-    cout << "Avez-vous un fichier ? (o/n) " << endl;
-    cin >> rep;
-    if (rep == "o") {
-        string fic;
-        cout << "Quel est sont nom ? (.txt)" << endl;
-        cin >> fic;
-        grille1.fichier_init(fic);
-        g.fichier_init(fic);
-    }
-    else if (rep == "n") {
-        string ale;
-        cout << "Soutaitez-vous un grille alleatoire ou une grilles avec des blikers ? (a/1)" << endl;
-        cout << "Voici une liste de blinkers disponible : " << endl;
-        cout << "1." << "Glidres" << endl;
-        cin >> ale;
-        if (ale == "a") {
-            string obs;
-            cout << "Soutaitez-vous des obstacles dans la grille ? (o/n) " << endl;
-            cin >> obs;
-            if (obs == "o") {
-                cout << "Quel mode de jeu souhaitez-vous ?" << endl;
-                cout << "Voici une liste de mode disponible : " << endl;
-                cout << "1." << "normal" << endl;
-                cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
-                cout << "3." << "Day and light" << endl;
-                cout << "4." << "Labyrinthiques" << endl;
-                cout << "5." << "Explosions And Chaos" << endl;
-                cout << "6." << "Motifs Repliquants" << endl;
-                cin >> mode;
-                grille1.random_init_obs();
-                g.random_init_obs();
-                if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6") { cout << "Erreur : mauvaise reponse" << endl; }
-            }
-            else if (obs == "n") {
-                cout << "Quel mode de jeu souhaitez-vous ?" << endl;
-                cout << "Voici une liste de mode disponible : " << endl;
-                cout << "1." << "normal" << endl;
-                cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
-                cout << "3." << "Day and light" << endl;
-                cout << "4." << "Labyrinthiques" << endl;
-                cout << "5." << "Explosions And Chaos" << endl;
-                cout << "6." << "Motifs Repliquants" << endl;
-                cin >> mode;
-                grille1.random_init();
-                g.random_init();
-                if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6") { cout << "Erreur : mauvaise reponse" << endl; }
-            }
-            else {
-                cout << "Erreur : mauvaise reponse" << endl;
-            }
-        }
-        else if (ale == "1") {
-            grille1.fichier_init("Gliders.txt");
-            g.fichier_init("Gliders.txt");
-        }
-        else {
-            cout << "Erreur : mauvaise reponse" << endl;
-        }
-    }
-    else {
-        cout << "Erreur : mauvaise reponse" << endl;
-    }
+    jeu2.demarer(g, grille1);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
