@@ -45,7 +45,7 @@ public:
 
 	void dessiner(sf::RenderWindow& window, int x, int y) override {
 		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
-		cell.setPosition(x * this->cellsize, y * this->cellsize);
+		cell.setPosition(x * float(this->cellsize), y * float(this->cellsize));
 		cell.setFillColor(Color(0, 0, 0));
 		window.draw(cell);
 	}
