@@ -58,16 +58,19 @@ cellule* grille::get_grille(int x, int y) { return this->grid[x][y]; }
 void grille::set_width(int width) { this->width = width; }
 void grille::set_height(int height) { this->height = height; }
 void grille::set_grille(int x, int y, int state) {
-    grid[x][y] = nullptr; // supprime l'ancienne cellule
-    if (state == 1) {
-        grid[x][y] = new cellule_vivante();
+    if (x >= 0 && x < this->width && y >= 0 && y < this->width) {
+        grid[x][y] = nullptr; // supprime l'ancienne cellule
+        if (state == 1) {
+            grid[x][y] = new cellule_vivante();
+        }
+        else if (state == 0) {
+            grid[x][y] = new cellule_morte();
+        }
+        else {
+            grid[x][y] = new cellule_obstacle();
+        }
     }
-    else if (state == 0) {
-        grid[x][y] = new cellule_morte();
-    }
-    else {
-        grid[x][y] = new cellule_obstacle();
-    }
+    
 }
 
 //Methodes
