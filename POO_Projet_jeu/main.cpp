@@ -15,6 +15,7 @@ int main()
     ExplosionsAndChaos jeu6;
     MotifsRepliquants jeu7;
     HighLife jeu8;
+    Corial jeu9;
 
     grille g;
     grille grille1;
@@ -123,6 +124,11 @@ int main()
             else if (mode == "7") {
                 jeu8.regle_base(grille1, g);
                 jeu8.dessin_rectangle(window, g);
+                sleep(milliseconds(50));
+            }
+            else if (mode == "8") {
+                jeu9.regle_base(grille1, g);
+                jeu9.dessin_rectangle(window, g);
                 sleep(milliseconds(50));
             }
         }
