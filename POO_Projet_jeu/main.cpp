@@ -75,7 +75,7 @@ int main()
                     pattern.random(grille1, g, window);
                 }
 
-                if (event.key.code == Keyboard::Z) {
+                if (event.key.code == Keyboard::R) {
                     pattern.reset(grille1, g, window);
                 }
             }
