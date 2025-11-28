@@ -78,6 +78,33 @@ void pattern::poser_pattern(int x, int y, grille& grid, grille& grid2, sf::Rende
 	if (this->numero == 3) { poser_glider(x, y, grid, grid2, window); }
 }
 
+void pattern::ramdom(string mode, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	if (mode == "1") {
+		grid.random_init();
+		grid2.random_init();
+	}
+	else if (mode == "2") {
+		grid.random_init();
+		grid2.random_init();
+	}
+	else if (mode == "3") {
+		grid.random_init();
+		grid2.random_init();
+	}
+	else if (mode == "4") {
+		grid.random_init();
+		grid2.random_init();
+	}
+	else if (mode == "5") {
+		grid.random_init();
+		grid2.random_init();
+	}
+	else if (mode == "6") {
+		grid.random_init();
+		grid2.random_init();
+	}
+}
+
 
 
 

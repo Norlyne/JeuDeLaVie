@@ -68,6 +68,9 @@ int main()
 
                 if (event.key.code == Keyboard::Num3)
                     pattern.set_numero(3);
+
+                if (event.key.code == Keyboard::A) {
+                }
             }
 
             if (event.type == sf::Event::MouseButtonPressed)
