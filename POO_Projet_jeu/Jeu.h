@@ -24,6 +24,7 @@ class jeu {
                 cout << "1." << "Glidres" << endl;
                 cout << "2." << "vide" << endl;
                 cout << "3." << "lab ( teste du mode labirinthe ) " << endl;
+                cout << "4." << "expetchaos ( teste avec exp et chaos)" << endl;
                 cout << "Soutaitez-vous un grille alleatoire ou une grilles avec des blikers ? (a/1)" << endl;
                 cin >> ale;
                 if (ale == "a") {
@@ -76,6 +77,11 @@ class jeu {
                     mode = "4";
                     grille1.fichier_init("lab.txt");
                     g.fichier_init("lab.txt");
+                }
+                else if (ale == "4") {
+                    mode = "5";
+                    grille1.fichier_init("expetchaos.txt");
+                    g.fichier_init("expetchaos.txt");
                 }
                 else {
                     cout << "Erreur : mauvaise reponse" << endl;
@@ -217,7 +223,8 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    //cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 1 + x, rand() % 1 + x, rand() % 255));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -291,7 +298,8 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    //cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 255, rand() % 1 + x, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
