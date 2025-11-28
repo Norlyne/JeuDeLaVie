@@ -3,7 +3,7 @@
 #include "cellule.h"
 #include "grille.h"
 #include "jeu.h"
-
+#include "patternes.h"
 int main()
 {
     srand(time(0));
@@ -18,9 +18,12 @@ int main()
     grille g;
     grille grille1;
 
-    string mode = "1";
+    pattern pattern;
+    sf::Vector2i pixelPos;
 
-    jeu2.demarer(g, grille1);
+    string mode = "3";
+
+    jeu2.demarer(g, grille1, mode);
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
@@ -56,6 +59,29 @@ int main()
             {
                 if (event.key.code == Keyboard::Space)
                     etat = !etat;
+
+                if (event.key.code == Keyboard::Num1)
+                    pattern.set_numero(1);
+
+                if (event.key.code == Keyboard::Num2)
+                    pattern.set_numero(2);
+
+                if (event.key.code == Keyboard::Num3)
+                    pattern.set_numero(3);
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed)
+            {
+                if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    cout << "appuis" << endl;
+                    pixelPos = sf::Mouse::getPosition(window);
+                    cout << pixelPos.x << "   " << pixelPos.y << endl;
+                    pattern.poser_pattern(pixelPos.x, pixelPos.y, g, grille1, window);
+                    cout << g.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
+                    cout << grille1.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
+                    
+                }
             }
         }
         if (!etat) {

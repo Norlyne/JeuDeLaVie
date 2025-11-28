@@ -24,7 +24,7 @@ void ::regle_base(grille &grid, grille &next) {
             }
         }
     }
-    /// swap 
+    /// swap
     for (int dx = 0; dx < next.get_width(); dx++) {
         for (int dy = 0; dy < next.get_height(); dy++) {
             if (next.get_grille(dx, dy)->is_alive()) {
