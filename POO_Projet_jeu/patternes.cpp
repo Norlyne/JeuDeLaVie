@@ -1,4 +1,5 @@
 #include "patternes.h"
+#include "grille.h"
 
 
 //constructor
@@ -27,9 +28,54 @@ void pattern::set_y(int y) { this->y = y; }
 void pattern::set_numero(int numero) { this->numero = numero; }
 
 
-//methodes
-void pattern::selection_point(int numero) {
-	this->numero = numero;
+void pattern::poser_point(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	int x2 = x / 10;
+	int y2 = y / 10;
+	cout << numero << "   " << x2 << "   " << y2 << endl;
+
+	grid.set_grille(x2, y2, 1);
+	grid2.set_grille(x2, y2, 1);
+}
+
+
+void pattern::poser_carre(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	int x2 = x / 10;
+	int y2 = y / 10;
+	cout << numero << "   " << x2 << "   " << y2 << endl;
+
+	grid.set_grille(x2, y2, 1);
+	grid.set_grille(x2, y2+1, 1);
+	grid.set_grille(x2+1, y2, 1);
+	grid.set_grille(x2+1, y2+1, 1);
+
+	grid2.set_grille(x2, y2, 1);
+	grid2.set_grille(x2, y2+1, 1);
+	grid2.set_grille(x2+1, y2, 1);
+	grid2.set_grille(x2+1, y2+1, 1);
+}
+
+void pattern::poser_glider(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	int x2 = x / 10;
+	int y2 = y / 10;
+	cout << "glider" << numero << "   " << x2 << "   " << y2 << endl;
+
+	grid.set_grille(x2, y2+1, 1);
+	grid.set_grille(x2+1, y2, 1);
+	grid.set_grille(x2, y2-1, 1);
+	grid.set_grille(x2-1, y2-1, 1);
+	grid.set_grille(x2+1, y2-1, 1);
+
+	grid2.set_grille(x2, y2 + 1, 1);
+	grid2.set_grille(x2 + 1, y2, 1);
+	grid2.set_grille(x2, y2 - 1, 1);
+	grid2.set_grille(x2 - 1, y2 - 1, 1);
+	grid2.set_grille(x2 + 1, y2 - 1, 1);
+}
+
+void pattern::poser_pattern(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	if (this->numero == 1) { poser_point(x, y, grid, grid2, window); }
+	if (this->numero == 2) { poser_carre(x, y, grid, grid2, window); }
+	if (this->numero == 3) { poser_glider(x, y, grid, grid2, window); }
 }
 
 
@@ -40,6 +86,3 @@ void pattern::selection_point(int numero) {
 
 
 
-glider::glider() {
-
-}

@@ -6,9 +6,8 @@
 class jeu {
     private:
     public:
-        string demarer(grille& grille1, grille& g) {
+        string demarer(grille& grille1, grille& g, string& mode) {
             string rep;
-            string mode;
             cout << "Avez-vous un fichier ? (o/n) " << endl;
             cin >> rep;
             if (rep == "o") {

@@ -1,4 +1,7 @@
 #pragma once
+#include "grille.h"
+
+
 class pattern
 {
 private:
@@ -25,8 +28,14 @@ public:
 
 
 	//methodes
-	void selection_point(int numero);
-	void poser_point();
+	void selection_pattern(int numero);
+
+	void poser_point(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
+	void poser_carre(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
+	void poser_glider(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
+
+
+	void poser_pattern(int x, int y, grille &grid, grille &grid2, RenderWindow &window);
 
 	void coordonnees_souris();
 	
