@@ -40,6 +40,7 @@ public:
 	void poser_pattern(int x, int y, grille &grid, grille &grid2, RenderWindow &window);
 	
 	void random(grille& grid, grille& grid2, sf::RenderWindow& window);
+	void reset(grille& grid, grille& grid2, sf::RenderWindow& window);
 };
 
 
