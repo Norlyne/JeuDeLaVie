@@ -24,7 +24,6 @@ class jeu {
                 cout << "1." << "Glidres" << endl;
                 cout << "2." << "vide" << endl;
                 cout << "3." << "lab ( teste du mode labirinthe ) " << endl;
-                cout << "4." << "expetchaos ( teste avec exp et chaos)" << endl;
                 cout << "Soutaitez-vous un grille alleatoire ou une grilles avec des blikers ? (a/1)" << endl;
                 cin >> ale;
                 if (ale == "a") {
@@ -40,14 +39,11 @@ class jeu {
                         cout << "5." << "Explosions And Chaos" << endl;
                         cout << "6." << "Motifs Repliquants" << endl;
                         cout << "7." << "HighLife" << endl;
-                        cout << "8." << "Corail" << endl;
                         cout << "Quel mode de jeu souhaitez-vous ?" << endl;
                         cin >> mode;
                         grille1.random_init_obs();
                         g.random_init_obs();
-                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7" && mode != "8") {
-                            cout << "Erreur : mauvaise reponse" << endl; 
-                        }
+                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7") { cout << "Erreur : mauvaise reponse" << endl; }
                     }
                     else if (obs == "n") {
                         cout << "Voici une liste de mode disponible : " << endl;
@@ -58,14 +54,11 @@ class jeu {
                         cout << "5." << "Explosions And Chaos" << endl;
                         cout << "6." << "Motifs Repliquants" << endl;
                         cout << "7." << "HighLife" << endl;
-                        cout << "8." << "Corail" << endl;
                         cout << "Quel mode de jeu souhaitez-vous ?" << endl;
                         cin >> mode;
                         grille1.random_init();
                         g.random_init();
-                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7" && mode != "8") {
-                            cout << "Erreur : mauvaise reponse" << endl; 
-                        }
+                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7") { cout << "Erreur : mauvaise reponse" << endl; }
                     }
                     else {
                         cout << "Erreur : mauvaise reponse" << endl;
@@ -83,11 +76,6 @@ class jeu {
                     mode = "4";
                     grille1.fichier_init("lab.txt");
                     g.fichier_init("lab.txt");
-                }
-                else if (ale == "4") {
-                    mode = "5";
-                    grille1.fichier_init("expetchaos.txt");
-                    g.fichier_init("expetchaos.txt");
                 }
                 else {
                     cout << "Erreur : mauvaise reponse" << endl;
@@ -163,7 +151,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(Color(rand() % 145 +x, rand()%255, rand() % 1 + y));
+                    cell.setFillColor(Color(rand() % 1+x, rand()%255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -229,8 +217,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    //cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 1 + x, rand() % 255));
+                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -304,8 +291,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition(x * 10, y * 10);
-                    //cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
-                    cell.setFillColor(Color(rand() % 255, rand() % 1 + x, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -611,77 +597,5 @@ public:
 
 #pragma endregion
 
-     #pragma region Corail
-
-
-class Corial : public jeu {
-public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    // cellule vivante
-                    if (n >= 4 || n <= 8) {
-                        next.set_grille(x, y, 1); // survit
-                    }
-                    else {
-                        next.set_grille(x, y, 0); 
-                    }
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    // cellule morte
-                    if (n == 3) {
-                        next.set_grille(x, y, 1); // naissance
-                    }
-                    else {
-                        next.set_grille(x, y, 0);
-                    }
-                }
-                else {
-                    next.set_grille(x, y, 2);
-                }
-            }
-        }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
-                }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
-                }
-                else {
-                    grid.set_grille(dx, dy, 2);
-                }
-            }
-        }
-    }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(Color(rand() % 145 + x, rand() % 255, rand() % 1 + y));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition(x * 10, y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-            }
-        }
-        window.display();
-    }
-};
-
-#pragma endregion
 
 #pragma endregion
