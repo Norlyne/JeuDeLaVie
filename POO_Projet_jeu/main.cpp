@@ -74,6 +74,10 @@ int main()
                 if (event.key.code == Keyboard::A) {
                     pattern.random(grille1, g, window);
                 }
+
+                if (event.key.code == Keyboard::Z) {
+                    pattern.reset(grille1, g, window);
+                }
             }
 
             if (event.type == sf::Event::MouseButtonPressed)
