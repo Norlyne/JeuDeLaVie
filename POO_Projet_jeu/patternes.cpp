@@ -37,7 +37,7 @@ void pattern::poser_point(int x, int y, grille& grid, grille& grid2, sf::RenderW
 }
 
 
-void pattern::poser_carre(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+void pattern::poser_stable1(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
 	int x2 = x / 10;
 	int y2 = y / 10;
 	cout << numero << "   " << x2 << "   " << y2 << endl;
@@ -48,10 +48,23 @@ void pattern::poser_carre(int x, int y, grille& grid, grille& grid2, sf::RenderW
 	grid2.set_grille(x2+1, y2+1, 1);
 }
 
+void pattern::poser_stable2(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	int x2 = x / 10;
+	int y2 = y / 10;
+	cout << numero << "   " << x2 << "   " << y2 << endl;
+
+	grid2.set_grille(x2, y2 + 1, 1);
+	grid2.set_grille(x2 + 1, y2 + 1, 1);
+	grid2.set_grille(x2, y2 - 1, 1);
+	grid2.set_grille(x2 + 1, y2 - 1, 1);
+	grid2.set_grille(x2 - 1, y2, 1);
+	grid2.set_grille(x2 + 2, y2, 1);
+}
+
 void pattern::poser_glider(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
 	int x2 = x / 10;
 	int y2 = y / 10;
-	cout << "glider" << numero << "   " << x2 << "   " << y2 << endl;
+	cout << numero << "   " << x2 << "   " << y2 << endl;
 
 	grid2.set_grille(x2, y2 + 1, 1);
 	grid2.set_grille(x2 + 1, y2, 1);
@@ -60,10 +73,36 @@ void pattern::poser_glider(int x, int y, grille& grid, grille& grid2, sf::Render
 	grid2.set_grille(x2 + 1, y2 - 1, 1);
 }
 
+void pattern::poser_oscillateur1(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	int x2 = x / 10;
+	int y2 = y / 10;
+	cout << numero << "   " << x2 << "   " << y2 << endl;
+
+	grid2.set_grille(x2, y2, 1);
+	grid2.set_grille(x2 + 1, y2, 1);
+	grid2.set_grille(x2 - 1, y2, 1);
+}
+
+void pattern::poser_oscillateur2(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
+	int x2 = x / 10;
+	int y2 = y / 10;
+	cout << numero << "   " << x2 << "   " << y2 << endl;
+
+	grid2.set_grille(x2, y2, 1);
+	grid2.set_grille(x2, y2 + 1, 1);
+	grid2.set_grille(x2 + 1, y2, 1);
+	grid2.set_grille(x2 + 1, y2 + 1, 1);
+	grid2.set_grille(x2 - 1, y2, 1);
+	grid2.set_grille(x2 + 2, y2 + 1, 1);
+}
+
 void pattern::poser_pattern(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
 	if (this->numero == 1) { poser_point(x, y, grid, grid2, window); }
-	if (this->numero == 2) { poser_carre(x, y, grid, grid2, window); }
-	if (this->numero == 3) { poser_glider(x, y, grid, grid2, window); }
+	if (this->numero == 2) { poser_stable1(x, y, grid, grid2, window); }
+	if (this->numero == 3) { poser_stable2(x, y, grid, grid2, window); }
+	if (this->numero == 4) { poser_glider(x, y, grid, grid2, window); }
+	if (this->numero == 5) { poser_oscillateur1(x, y, grid, grid2, window); }
+	if (this->numero == 6) { poser_oscillateur2(x, y, grid, grid2, window); }
 }
 
 void pattern::random(grille& grid, grille& grid2, sf::RenderWindow& window) {

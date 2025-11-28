@@ -31,9 +31,11 @@ public:
 	void selection_pattern(int numero);
 
 	void poser_point(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
-	void poser_carre(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
+	void poser_stable1(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
+	void poser_stable2(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
 	void poser_glider(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
-
+	void poser_oscillateur1(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
+	void poser_oscillateur2(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window);
 
 	void poser_pattern(int x, int y, grille &grid, grille &grid2, RenderWindow &window);
 	

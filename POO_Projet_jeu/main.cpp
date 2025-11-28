@@ -70,6 +70,16 @@ int main()
                 if (event.key.code == Keyboard::Num3)
                     pattern.set_numero(3);
 
+                if (event.key.code == Keyboard::Num4)
+                    pattern.set_numero(4);
+
+                if (event.key.code == Keyboard::Num5)
+                    pattern.set_numero(5);
+
+                if (event.key.code == Keyboard::Num6)
+                    pattern.set_numero(6);
+
+
                 if (event.key.code == Keyboard::A) {
                     pattern.random(grille1, g, window);
                 }
@@ -93,7 +103,7 @@ int main()
             if (mode == "1") {
                 jeu2.regle_base(grille1, g);
                 jeu2.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(100));
             }
             else if (mode == "2") {
                 jeu3.regle_base(grille1, g);
