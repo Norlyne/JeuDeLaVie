@@ -33,7 +33,6 @@ void pattern::poser_point(int x, int y, grille& grid, grille& grid2, sf::RenderW
 	int y2 = y / 10;
 	cout << numero << "   " << x2 << "   " << y2 << endl;
 
-	grid.set_grille(x2, y2, 1);
 	grid2.set_grille(x2, y2, 1);
 }
 
@@ -42,11 +41,6 @@ void pattern::poser_carre(int x, int y, grille& grid, grille& grid2, sf::RenderW
 	int x2 = x / 10;
 	int y2 = y / 10;
 	cout << numero << "   " << x2 << "   " << y2 << endl;
-
-	grid.set_grille(x2, y2, 1);
-	grid.set_grille(x2, y2+1, 1);
-	grid.set_grille(x2+1, y2, 1);
-	grid.set_grille(x2+1, y2+1, 1);
 
 	grid2.set_grille(x2, y2, 1);
 	grid2.set_grille(x2, y2+1, 1);
@@ -58,12 +52,6 @@ void pattern::poser_glider(int x, int y, grille& grid, grille& grid2, sf::Render
 	int x2 = x / 10;
 	int y2 = y / 10;
 	cout << "glider" << numero << "   " << x2 << "   " << y2 << endl;
-
-	grid.set_grille(x2, y2+1, 1);
-	grid.set_grille(x2+1, y2, 1);
-	grid.set_grille(x2, y2-1, 1);
-	grid.set_grille(x2-1, y2-1, 1);
-	grid.set_grille(x2+1, y2-1, 1);
 
 	grid2.set_grille(x2, y2 + 1, 1);
 	grid2.set_grille(x2 + 1, y2, 1);

@@ -32,13 +32,33 @@ grille::grille(int width, int height) {
 grille::grille(grille& g) {
     this->width = g.width;
     this->height = g.height;
-    grid.resize(width, std::vector<cellule*>(height, nullptr)); // initialise les pointeurs à nullptr
-    for (int dx = 0; dx < width; dx++) {
-        for (int dy = 0; dy < height; dy++) {
-            grid[dx][dy] = g.get_grille(dx, dy);
+    grid.resize(width, std::vector<cellule*>(height, nullptr));
+
+    for (int x = 0; x < width; x++) {
+        for (int y = 0; y < height; y++) {
+            cellule* c = g.grid[x][y];
+            if (c->is_alive() == 2) {
+                grid[x][y] = new cellule_obstacle();
+            }
+            else if (c->is_alive() == 1) {
+                grid[x][y] = new cellule_vivante();
+            }
+            else {
+                grid[x][y] = new cellule_morte();
+            }
         }
     }
 }
+//grille::grille(grille& g) {
+//    this->width = g.width;
+//    this->height = g.height;
+//    grid.resize(width, std::vector<cellule*>(height, nullptr)); // initialise les pointeurs à nullptr
+//    for (int dx = 0; dx < width; dx++) {
+//        for (int dy = 0; dy < height; dy++) {
+//            grid[dx][dy] = g.get_grille(dx, dy);
+//        }
+//    }
+//}
 // Destructeur
 grille::~grille() {
     for (int dx = 0; dx < width; dx++) {
@@ -58,8 +78,14 @@ cellule* grille::get_grille(int x, int y) { return this->grid[x][y]; }
 void grille::set_width(int width) { this->width = width; }
 void grille::set_height(int height) { this->height = height; }
 void grille::set_grille(int x, int y, int state) {
-    if (x >= 0 && x < this->width && y >= 0 && y < this->width) {
-        grid[x][y] = nullptr; // supprime l'ancienne cellule
+    if (x >= 0 && x < this->width && y >= 0 && y < this->height) {
+        // Supprimer l'ancienne cellule si elle existe
+        if (grid[x][y] != nullptr) {
+            delete grid[x][y];
+            grid[x][y] = nullptr;
+        }
+
+        // Créer la nouvelle cellule selon l'état
         if (state == 1) {
             grid[x][y] = new cellule_vivante();
         }
@@ -70,8 +96,22 @@ void grille::set_grille(int x, int y, int state) {
             grid[x][y] = new cellule_obstacle();
         }
     }
-    
 }
+//void grille::set_grille(int x, int y, int state) {
+//    if (x >= 0 && x < this->width && y >= 0 && y < this->height) {
+//        grid[x][y] = nullptr; // supprime l'ancienne cellule
+//        if (state == 1) {
+//            grid[x][y] = new cellule_vivante();
+//        }
+//        else if (state == 0) {
+//            grid[x][y] = new cellule_morte();
+//        }
+//        else {
+//            grid[x][y] = new cellule_obstacle();
+//        }
+//    }
+//    
+//}
 
 //Methodes
 void grille::random_init() {
