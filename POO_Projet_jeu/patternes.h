@@ -36,8 +36,6 @@ public:
 
 
 	void poser_pattern(int x, int y, grille &grid, grille &grid2, RenderWindow &window);
-
-	void coordonnees_souris();
 	
 };
 

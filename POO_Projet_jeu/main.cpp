@@ -21,7 +21,7 @@ int main()
     pattern pattern;
     sf::Vector2i pixelPos;
 
-    string mode = "3";
+    string mode = "1";
 
     jeu2.demarer(g, grille1, mode);
 
