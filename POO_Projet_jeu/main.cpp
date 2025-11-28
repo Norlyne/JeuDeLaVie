@@ -88,6 +88,22 @@ int main()
                 if (event.key.code == Keyboard::R) {
                     pattern.reset(grille1, g, window);
                 }
+
+                if (event.key.code == Keyboard::S) {
+                    mode = "2";
+                }
+
+                if (event.key.code == Keyboard::D) {
+                    mode = "3";
+                }
+
+                if (event.key.code == Keyboard::L) {
+                    mode = "4";
+                }
+
+                if (event.key.code == Keyboard::E) {
+                    mode = "5";
+                }
             }
 
             if (event.type == sf::Event::MouseButtonPressed)
