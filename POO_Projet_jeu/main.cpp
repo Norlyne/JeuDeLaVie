@@ -14,6 +14,7 @@ int main()
     labyrinthiques jeu5;
     ExplosionsAndChaos jeu6;
     MotifsRepliquants jeu7;
+    HighLife jeu8;
 
     grille g;
     grille grille1;
@@ -70,6 +71,7 @@ int main()
                     pattern.set_numero(3);
 
                 if (event.key.code == Keyboard::A) {
+                    pattern.random(grille1, g, window);
                 }
             }
 
@@ -118,7 +120,11 @@ int main()
                 jeu7.dessin_rectangle(window, g);
                 sleep(milliseconds(50));
             }
-
+            else if (mode == "7") {
+                jeu8.regle_base(grille1, g);
+                jeu8.dessin_rectangle(window, g);
+                sleep(milliseconds(50));
+            }
         }
     }
     return 0;
