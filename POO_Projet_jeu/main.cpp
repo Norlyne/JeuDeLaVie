@@ -15,7 +15,7 @@ int main()
     ExplosionsAndChaos jeu6;
     MotifsRepliquants jeu7;
     HighLife jeu8;
-    Corial jeu9;
+    Corail jeu9;
 
     grille g;
     grille grille1;
