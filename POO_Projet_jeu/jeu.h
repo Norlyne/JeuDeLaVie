@@ -21,6 +21,7 @@ class jeu {
                 string ale;
                 cout << "Voici une liste de blinkers disponible : " << endl;
                 cout << "1." << "Glidres" << endl;
+                cout << "2." << "vide" << endl;
                 cout << "Soutaitez-vous un grille alleatoire ou une grilles avec des blikers ? (a/1)" << endl;
                 cin >> ale;
                 if (ale == "a") {
@@ -62,6 +63,10 @@ class jeu {
                 else if (ale == "1") {
                     grille1.fichier_init("Gliders.txt");
                     g.fichier_init("Gliders.txt");
+                }
+                else if (ale == "2") {
+                    grille1.fichier_init("vide.txt");
+                    g.fichier_init("vide.txt");
                 }
                 else {
                     cout << "Erreur : mauvaise reponse" << endl;
