@@ -169,7 +169,7 @@ public:
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition(x * 10, y * 10);
+                    cell.setPosition((float)x * 10, (float)y * 10);
                     cell.setFillColor(sf::Color(128, 128, 128));
                     window.draw(cell);
                 }

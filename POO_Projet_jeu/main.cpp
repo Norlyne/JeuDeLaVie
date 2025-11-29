@@ -6,7 +6,7 @@
 #include "patternes.h"
 int main()
 {
-    srand(time(0));
+    //srand(time(0));
 
     ModeNormal jeu2;
     ModeLifeIsShort jeu3;
@@ -103,6 +103,18 @@ int main()
 
                 if (event.key.code == Keyboard::E) {
                     mode = "5";
+                }
+
+                if (event.key.code == Keyboard::M) {
+                    mode = "6";
+                }
+
+                if (event.key.code == Keyboard::H) {
+                    mode = "7";
+                }
+
+                if (event.key.code == Keyboard::C) {
+                    mode = "8";
                 }
             }
 
