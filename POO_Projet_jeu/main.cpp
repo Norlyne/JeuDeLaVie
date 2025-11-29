@@ -5,6 +5,9 @@
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
+#include <direct.h>
+#include <fstream>
+
 int main()
 {
     //srand(time(0));
@@ -26,33 +29,52 @@ int main()
 
     string mode = "1";
 
-    jeu2.demarer(g, grille1, mode);
-    jeu2.touche();
+    string nom_Dossier = "";
+    string nomFichier = "";
 
+    jeu2.demarer(g, grille1, mode, nom_Dossier);
+  
+
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
     /*for (int i = 0; i < 5; i++) {
+
+        nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
+        std::ofstream fichier(nomFichier, ios::out);
+
         for (int dx = 0; dx < g.get_width(); dx++) {
             for (int dy = 0; dy < g.get_height(); dy++) {
                 cellule* d = g.get_grille(dx, dy);
-                if (d && d->is_alive() == 1) cout << "#";
-                else cout << ".";
+                if (d && d->is_alive() == 1) {
+                    cout << "#";
+                    fichier << 1 << " ";
+                }
+                else {
+                    cout << ".";
+                    fichier << 0 << " ";
+                }
             }
             cout << "\n";
+            fichier << endl;
         }
-        jeu.regle_base(grille1, g);
+        jeu2.regle_base(grille1, g);
         cout << "---------------------------------------------------------------------------------------" << endl;
+        fichier.close();
+        sleep(milliseconds(1000));
+
         
     }*/
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    jeu2.touche();
     // Chargement de la police à partir d'un fichier
-    Font MyFont;
+    /*Font MyFont;
     string s = "Hello";
-    String Text( s, MyFont, 50);
+    String Text( s, MyFont, 50);*/
 
     // Ou, si vous souhaitez le faire après la construction :
     /*sf::String Text;
@@ -141,6 +163,7 @@ int main()
                     pixelPos = sf::Mouse::getPosition(window);
                     cout << pixelPos.x << "   " << pixelPos.y << endl;
                     pattern.poser_pattern(pixelPos.x, pixelPos.y, g, grille1, window);
+                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);
                     cout << g.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
                     cout << grille1.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
                     

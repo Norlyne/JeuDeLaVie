@@ -5,8 +5,22 @@
 #include <ctime>
 #include <cstdlib>
 
+//#include "jeu.h"
+
+class grille;
+class ModeNormal;
+class ModeLifeIsShort;
+class ModeDayAndLight;
+class labyrinthiques;
+class ExplosionsAndChaos;
+class MotifsRepliquants;
+class HighLife;
+class Corail;
+
+
 using namespace std;
 using namespace sf;
+
 
 class cellule
 {
@@ -27,7 +41,7 @@ public:
 
 	//methodes
 	virtual int is_alive() = 0;
-	virtual void dessiner(sf::RenderWindow& window, int x, int y) = 0;
+	void dessin_instantané(string mode, RenderWindow& window, grille grid, ModeNormal ModeNormal, ModeLifeIsShort ModeLifeIsShort, ModeDayAndLight ModeDayAndLight, labyrinthiques labyrinthiques, ExplosionsAndChaos ExplosionsAndChaos, MotifsRepliquants MotifsRepliquants, HighLife HighLife, Corail Corail);
 };
 
 
@@ -43,12 +57,7 @@ public:
 	//methodes
 	int is_alive() override { return 0; }
 
-	void dessiner(sf::RenderWindow& window, int x, int y) override {
-		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
-		cell.setPosition(x * (float)this->cellsize, y * (float)this->cellsize);
-		cell.setFillColor(Color(0, 0, 0));
-		window.draw(cell);
-	}
+	
 };
 
 
@@ -62,12 +71,7 @@ public:
 	//methodes
 	int is_alive() override { return 1; }
 
-	void dessiner(sf::RenderWindow& window, int x, int y) override {
-		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
-		cell.setPosition(x * (float)this->cellsize, y * (float)this->cellsize);
-		cell.setFillColor(Color(255, 255, 255));
-		window.draw(cell);
-	}
+	
 };
 
 class cellule_obstacle : public cellule {
@@ -81,10 +85,5 @@ public:
 	//methodes
 	int is_alive() override { return 2; }
 
-	void dessiner(sf::RenderWindow& window, int x, int y) override {
-		RectangleShape cell(Vector2f(this->cellsize - 1.0f, this->cellsize - 1.0f));
-		cell.setPosition(x * (float)this->cellsize, y * (float)this->cellsize);
-		cell.setFillColor(sf::Color(128, 128, 128));
-		window.draw(cell);
-	}
+	
 };
