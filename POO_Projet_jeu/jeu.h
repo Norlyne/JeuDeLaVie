@@ -197,7 +197,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1+x, rand()%255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 15+x, rand()%255 + 140, rand() % 15 + y));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -263,7 +263,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -337,7 +337,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + y));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -483,7 +483,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + y));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -556,7 +556,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 +140, rand() % 15 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -627,7 +627,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + x));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
@@ -699,7 +699,7 @@ public:
             for (y = 0; y < grid.get_height(); ++y) {
                 if (grid.get_grille(x, y)->is_alive() == 1) {
                     cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, rand() % 255, rand() % 1 + x));
+                    cell.setFillColor(Color(rand() % 55 + x, rand() % 255 + 145 , rand() % 55 + y));
                     window.draw(cell);
                 }
                 else if (grid.get_grille(x, y)->is_alive() == 2) {
