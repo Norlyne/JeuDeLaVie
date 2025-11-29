@@ -1,12 +1,13 @@
 #include <ctime>
 #include <iostream>
+#include <fontsub.h>
 #include "cellule.h"
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
 int main()
 {
-    srand(time(0));
+    //srand(time(0));
 
     ModeNormal jeu2;
     ModeLifeIsShort jeu3;
@@ -26,6 +27,7 @@ int main()
     string mode = "1";
 
     jeu2.demarer(g, grille1, mode);
+    jeu2.touche();
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
@@ -47,7 +49,16 @@ int main()
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Chargement de la police à partir d'un fichier
+    Font MyFont;
+    string s = "Hello";
+    String Text( s, MyFont, 50);
 
+    // Ou, si vous souhaitez le faire après la construction :
+    /*sf::String Text;
+    Text.SetText("Hello");
+    Text.SetFont(MyFont);
+    Text.SetSize(50);*/
 
     RenderWindow window(VideoMode(grille1.get_width() * 10, grille1.get_height() * 10), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
@@ -89,6 +100,10 @@ int main()
                     pattern.reset(grille1, g, window);
                 }
 
+                if (event.key.code == Keyboard::N) {
+                    mode = "1";
+                }
+
                 if (event.key.code == Keyboard::S) {
                     mode = "2";
                 }
@@ -104,11 +119,23 @@ int main()
                 if (event.key.code == Keyboard::E) {
                     mode = "5";
                 }
+
+                if (event.key.code == Keyboard::M) {
+                    mode = "6";
+                }
+
+                if (event.key.code == Keyboard::H) {
+                    mode = "7";
+                }
+
+                if (event.key.code == Keyboard::C) {
+                    mode = "8";
+                }
             }
 
-            if (event.type == sf::Event::MouseButtonPressed)
+            if (event.type == Event::MouseButtonPressed)
             {
-                if (event.mouseButton.button == sf::Mouse::Left)
+                if (event.mouseButton.button == Mouse::Left)
                 {
                     cout << "appuis" << endl;
                     pixelPos = sf::Mouse::getPosition(window);
