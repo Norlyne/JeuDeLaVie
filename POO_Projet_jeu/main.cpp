@@ -5,6 +5,9 @@
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
+
+
+
 int main()
 {
     //srand(time(0));
@@ -49,16 +52,7 @@ int main()
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Chargement de la police à partir d'un fichier
-    Font MyFont;
-    string s = "Hello";
-    String Text( s, MyFont, 50);
-
-    // Ou, si vous souhaitez le faire après la construction :
-    /*sf::String Text;
-    Text.SetText("Hello");
-    Text.SetFont(MyFont);
-    Text.SetSize(50);*/
+    
 
     RenderWindow window(VideoMode(grille1.get_width() * 10, grille1.get_height() * 10), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
