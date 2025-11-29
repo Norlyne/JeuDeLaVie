@@ -101,6 +101,32 @@ class jeu {
             return mode;
         };
 
+        void touche() {
+            cout << "-----------------------------------------------" << endl;
+            cout << "                Options & Mode                    " << endl;
+            cout << "-----------------------------------------------" << endl;
+            cout << " Espace : Pause" << endl;
+            cout << " A : Grille aleatoire" << endl;
+            cout << " R : Reset" << endl;
+            cout << "-----------------------------------------------" << endl;
+            cout << " N : Mode Normal" << endl;
+            cout << " S : Mode Life is short" << endl;
+            cout << " D : Mode Day and light" << endl;
+            cout << " L : Mode Labyrinthiques" << endl;
+            cout << " E : Mode Explosions and chaos" << endl;
+            cout << " M : Mode Motifs repliquants" << endl;
+            cout << " H : Mode High life" << endl;
+            cout << " C : Mode Corail" << endl;
+            cout << "-----------------------------------------------" << endl;
+            cout << "               Poser des Patternes             " << endl;
+            cout << "-----------------------------------------------" << endl;
+            cout << " 1+Click gauche : une cellule " << endl;
+            cout << " 2+Click gauche : un carre " << endl;
+            cout << " 3+Click gauche : un glider " << endl;
+            cout << " 4+Click gauche : un ocsillateur 1" << endl;
+            cout << " 5+Click gauche : un ocsillateur 2" << endl;
+        }
+
 	    virtual void regle_base(grille& grid, grille &next) = 0;
 	    virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
 };

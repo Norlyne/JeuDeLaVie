@@ -26,6 +26,7 @@ int main()
     string mode = "1";
 
     jeu2.demarer(g, grille1, mode);
+    jeu2.touche();
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
@@ -87,6 +88,10 @@ int main()
 
                 if (event.key.code == Keyboard::R) {
                     pattern.reset(grille1, g, window);
+                }
+
+                if (event.key.code == Keyboard::N) {
+                    mode = "1";
                 }
 
                 if (event.key.code == Keyboard::S) {
