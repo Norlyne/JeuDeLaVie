@@ -1,24 +1,30 @@
 #pragma once
 #include "cellule.h"
 #include "grille.h"
+#include <direct.h>
+#include <filesystem>
 
 #pragma region Jeu
 
 class jeu {
     private:
     public:
-        string demarer(grille& grille1, grille& g, string& mode) {
+        string demarer(grille& grille1, grille& g, string& mode, string& nom_Dossier) {
             string rep;
             cout << "Avez-vous un fichier ? (o/n) " << endl;
             cin >> rep;
             if (rep == "o") {
                 string fic;
                 cout << "Quel est sont nom ? (.txt)" << endl;
-                cin >> fic;
+                cin >> fic; 
+                nom_Dossier = fic.substr(0, fic.length() - 4) + "_out";
+                _mkdir(nom_Dossier.c_str());
                 grille1.fichier_init(fic);
                 g.fichier_init(fic);
             }
             else if (rep == "n") {
+                nom_Dossier = "None";
+                _mkdir(nom_Dossier.c_str());
                 string ale;
                 cout << "Voici une liste de blinkers disponible : " << endl;
                 cout << "1." << "Glidres" << endl;
