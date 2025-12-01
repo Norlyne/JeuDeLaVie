@@ -1,3 +1,4 @@
+//commentaire
 #include "patternes.h"
 #include "grille.h"
 #include "cellule.h"
