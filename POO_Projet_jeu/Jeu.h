@@ -8,8 +8,20 @@
 #pragma region Jeu
 
 class jeu {
-    private:
+protected:
+    const int attente[6] = { 2000, 1000, 500, 200, 100, 50 };
+    static int indexe;
     public:
+        //Constructeurs
+        jeu();
+
+        //getters
+        int get_attente();
+        int get_indexe();
+
+        //setters
+        void set_indexe(bool variation);
+
         string demarer(grille& grille1, grille& g, string& mode, string& nom_Dossier) {
             string rep;
             cout << "Avez-vous un fichier ? (o/n) " << endl;

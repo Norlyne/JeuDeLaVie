@@ -7,6 +7,7 @@
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
+int jeu::indexe = 0;
 int main()
 {
     srand(time(0));
@@ -86,14 +87,19 @@ int main()
     Text.SetFont(MyFont);
     Text.SetSize(50);*/
 
-    RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0,0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
+    RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0, 0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
     bool etat = false;
+
     while (window.isOpen()) {
+
         Event event;
+
         while (window.pollEvent(event)) {
+
             if (event.type == Event::Closed)
                 window.close();
+
             if (event.type == Event::KeyPressed)
             {
                 if (event.key.code == Keyboard::Space)
@@ -101,7 +107,7 @@ int main()
 
                 if (event.key.code == Keyboard::Num1) {
                     delete pat;
-                    pat = new point(0, 0, g.get_grille(0,0));
+                    pat = new point(0, 0, g.get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num2) {
@@ -138,7 +144,6 @@ int main()
                     delete pat;
                     pat = new obstacle(0, 0, g.get_grille(0, 0));
                 }
-
 
                 if (event.key.code == Keyboard::A) {
                     pat->random(grille1, g, window);
@@ -183,6 +188,14 @@ int main()
                 if (event.key.code == Keyboard::C) {
                     mode = "8";
                 }
+
+                if (event.key.code == sf::Keyboard::Left) {
+                    jeu2.set_indexe(false);
+                }
+
+                if (event.key.code == sf::Keyboard::Right) {
+                    jeu2.set_indexe(true);
+                }
             }
 
             if (event.type == Event::MouseButtonPressed)
@@ -193,52 +206,55 @@ int main()
                     pat->set_x2(pixelPos.x / grille1.get_grille(0, 0)->get_cellsize());
                     pat->set_y2(pixelPos.y / grille1.get_grille(0, 0)->get_cellsize());
                     pat->poser(pixelPos.x, pixelPos.y, g, grille1, window);
-                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);                    
+                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1,
+                        jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);
                 }
             }
+
         }
+
         if (!etat) {
             if (mode == "1") {
                 jeu2.regle_base(grille1, g);
                 jeu2.dessin_rectangle(window, g);
-                sleep(milliseconds(100));
+                sleep(milliseconds(jeu2.get_attente()));
             }
             else if (mode == "2") {
                 jeu3.regle_base(grille1, g);
                 jeu3.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(jeu3.get_attente()));
             }
             else if (mode == "3") {
                 jeu4.regle_base(grille1, g);
                 jeu4.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(jeu4.get_attente()));
             }
             else if (mode == "4") {
                 jeu5.regle_base(grille1, g);
                 jeu5.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(jeu5.get_attente()));
             }
             else if (mode == "5") {
                 jeu6.regle_base(grille1, g);
                 jeu6.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(jeu6.get_attente()));
             }
             else if (mode == "6") {
                 jeu7.regle_base(grille1, g);
                 jeu7.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(jeu7.get_attente()));
             }
             else if (mode == "7") {
                 jeu8.regle_base(grille1, g);
                 jeu8.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(jeu8.get_attente()));
             }
             else if (mode == "8") {
                 jeu9.regle_base(grille1, g);
                 jeu9.dessin_rectangle(window, g);
-                sleep(milliseconds(50));
+                sleep(milliseconds(jeu9.get_attente()));
             }
         }
     }
     return 0;
-};
+}

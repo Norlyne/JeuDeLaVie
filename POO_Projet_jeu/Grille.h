@@ -22,9 +22,6 @@ public:
     int get_width();
     int get_height();
     cellule* get_grille(int x, int y);
-    // get nd cellule actuell
-    // get nb celleule morte actuelle
-    // get nb obstacle
 
     //setters
     void set_width(int width);

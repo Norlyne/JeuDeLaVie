@@ -1,6 +1,29 @@
 //commentaire
 #include "jeu.h"
 
+        //Constructeurs
+jeu::jeu() {
+    this->indexe = 1;
+}
+
+//getters
+int jeu::get_attente() { return this->attente[this->indexe]; }
+int jeu::get_indexe() { return this->indexe; }
+
+//setters
+void jeu::set_indexe(bool variation) {
+    if (variation) {
+        if (this->indexe == (sizeof(attente) / sizeof(attente[0]))) {}
+        else { this->indexe++; }
+
+    }
+    else {
+        if (this->indexe == 0) {}
+        else { this->indexe--; }
+    }
+}
+
+//methodes
 void jeu::dessin_rectangle(RenderWindow& window, grille grid) {
     int x, y;
 

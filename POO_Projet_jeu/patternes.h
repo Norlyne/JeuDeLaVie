@@ -3,12 +3,7 @@
 #include "grille.h"
 
 
-class pattern
-{
-private:
-	
-
-
+class pattern{
 protected:
 	int x;
 	int y;
