@@ -88,6 +88,8 @@ int main()
     Text.SetFont(MyFont);
     Text.SetSize(50);*/
 
+    jeu2.touche();
+
     RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0, 0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
     bool etat = false;
