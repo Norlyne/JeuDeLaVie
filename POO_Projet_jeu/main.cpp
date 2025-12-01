@@ -21,7 +21,9 @@ int main()
     grille g;
     grille grille1;
 
-    pattern pattern;
+    pattern* pat;
+    pat = new point;
+    
     sf::Vector2i pixelPos;
 
     string mode = "1";
@@ -91,41 +93,57 @@ int main()
                 if (event.key.code == Keyboard::Space)
                     etat = !etat;
 
-                if (event.key.code == Keyboard::Num1)
-                    pattern.set_numero(1);
+                if (event.key.code == Keyboard::Num1) {
+                    delete pat;
+                    pat = new point(0, 0, g.get_grille(0,0));
+                }
 
-                if (event.key.code == Keyboard::Num2)
-                    pattern.set_numero(2);
+                if (event.key.code == Keyboard::Num2) {
+                    delete pat;
+                    pat = new stable1(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num3)
-                    pattern.set_numero(3);
+                if (event.key.code == Keyboard::Num3) {
+                    delete pat;
+                    pat = new stable2(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num4)
-                    pattern.set_numero(4);
+                if (event.key.code == Keyboard::Num4) {
+                    delete pat;
+                    pat = new glider(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num5)
-                    pattern.set_numero(5);
+                if (event.key.code == Keyboard::Num5) {
+                    delete pat;
+                    pat = new oscilateur1(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num6)
-                    pattern.set_numero(6);
+                if (event.key.code == Keyboard::Num6) {
+                    delete pat;
+                    pat = new oscilateur2(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num6)
-                    pattern.set_numero(7);
+                if (event.key.code == Keyboard::Num7) {
+                    delete pat;
+                    pat = new canon_glider(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num0)
-                    pattern.set_numero(0);
+                if (event.key.code == Keyboard::Num0) {
+                    delete pat;
+                    pat = new obstacle(0, 0, g.get_grille(0, 0));
+                }
 
 
                 if (event.key.code == Keyboard::A) {
-                    pattern.random(grille1, g, window);
+                    pat->random(grille1, g, window);
                 }
 
                 if (event.key.code == Keyboard::O) {
-                    pattern.random_obs(grille1, g, window);
+                    pat->random_obs(grille1, g, window);
                 }
 
                 if (event.key.code == Keyboard::R) {
-                    pattern.reset(grille1, g, window);
+                    pat->reset(grille1, g, window);
                 }
 
                 if (event.key.code == Keyboard::N) {
@@ -166,7 +184,9 @@ int main()
                 if (event.mouseButton.button == Mouse::Left)
                 {
                     pixelPos = sf::Mouse::getPosition(window);
-                    pattern.poser_pattern(pixelPos.x, pixelPos.y, g, grille1, window);
+                    pat->set_x2(pixelPos.x / 10);
+                    pat->set_y2(pixelPos.y / 10);
+                    pat->poser(pixelPos.x, pixelPos.y, g, grille1, window);
                     g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);                    
                 }
             }

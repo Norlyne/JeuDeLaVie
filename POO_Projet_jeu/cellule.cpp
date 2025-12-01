@@ -30,6 +30,11 @@ int cellule::get_cellsize() { return this->cellsize; }
 void cellule::set_cellsize(int cellsize) { this->cellsize = cellsize; }
 
 //methodes
+
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
 void cellule::dessin_instantané(string mode, RenderWindow& window, grille grid, ModeNormal ModeNormal, ModeLifeIsShort ModeLifeIsShort, ModeDayAndLight ModeDayAndLight, labyrinthiques labyrinthiques, ExplosionsAndChaos ExplosionsAndChaos, MotifsRepliquants MotifsRepliquants, HighLife HighLife, Corail Corail) {
 	if (mode == "1") { ModeNormal.dessin_rectangle(window, grid); }
 	if (mode == "2") { ModeLifeIsShort.dessin_rectangle(window, grid); }
@@ -40,3 +45,7 @@ void cellule::dessin_instantané(string mode, RenderWindow& window, grille grid, 
 	if (mode == "7") { HighLife.dessin_rectangle(window, grid); }
 	if (mode == "8") { Corail.dessin_rectangle(window, grid); }
 }
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
+////////////////////////////////////////////////////
