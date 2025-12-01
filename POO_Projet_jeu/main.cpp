@@ -5,9 +5,6 @@
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
-#include <direct.h>
-#include <fstream>
-
 int main()
 {
     //srand(time(0));
@@ -70,7 +67,6 @@ int main()
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    jeu2.touche();
     // Chargement de la police à partir d'un fichier
     /*Font MyFont;
     string s = "Hello";
