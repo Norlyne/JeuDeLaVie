@@ -1,3 +1,4 @@
+//commentaire
 #include "grille.h"
 #include <cstdlib>  // pour std::rand
 #include <fstream>

@@ -1,3 +1,4 @@
+//commentaire
 #include "jeu.h"
 
 void jeu::dessin_rectangle(RenderWindow& window, grille grid) {
