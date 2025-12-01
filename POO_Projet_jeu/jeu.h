@@ -18,13 +18,13 @@ class jeu {
                 cout << "Quel est sont nom ? (.txt)" << endl;
                 cin >> fic; 
                 nom_Dossier = fic.substr(0, fic.length() - 4) + "_out";
-                _mkdir(nom_Dossier.c_str());
+                int retour = _mkdir(nom_Dossier.c_str());
                 grille1.fichier_init(fic);
                 g.fichier_init(fic);
             }
             else if (rep == "n") {
                 nom_Dossier = "None";
-                _mkdir(nom_Dossier.c_str());
+                int retour = _mkdir(nom_Dossier.c_str());
                 string ale;
                 cout << "Voici une liste de blinkers disponible : " << endl;
                 cout << "1." << "Glidres" << endl;
@@ -134,7 +134,7 @@ class jeu {
         }
 
 	    virtual void regle_base(grille& grid, grille &next) = 0;
-	    virtual void dessin_rectangle(RenderWindow& window, grille grid) = 0;
+	    void dessin_rectangle(RenderWindow& window, grille grid);
 };
 
 #pragma endregion
@@ -187,28 +187,6 @@ public:
             }
         }
     }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 15+x, rand()%255 + 140, rand() % 15 + y));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-            }
-        }
-        window.display();
-    }
 };
 
 #pragma endregion
@@ -252,29 +230,6 @@ public:
                 }
             }
         }
-    }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + x));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-
-            }
-        }
-        window.display();
     }
 };
 	
@@ -327,35 +282,6 @@ public:
             }
         }
     }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + y));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(137, 81, 41));
-                    window.draw(cell);
-                }
-                else  {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(0, 0, 0));
-                    window.draw(cell);
-                }
-                
-
-            }
-        }
-        window.display();
-    }
 };
 
 #pragma endregion
@@ -406,28 +332,6 @@ public:
             }
         }
     }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 1 + x, 255, rand() % 1 + x));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-            }
-        }
-        window.display();
-    }
 };
 
 #pragma endregion
@@ -472,28 +376,6 @@ public:
                 }
             }
         }
-    }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + y));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-            }
-        }
-        window.display();
     }
 };
 
@@ -546,28 +428,6 @@ public:
             }
         }
     }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 +140, rand() % 15 + x));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-            }
-        }
-        window.display();
-    }
 };
 #pragma endregion
 
@@ -616,28 +476,6 @@ public:
                 }
             }
         }
-    }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 15 + x, rand() % 255 + 140, rand() % 15 + x));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-            }
-        }
-        window.display();
     }
 };
 
@@ -688,28 +526,6 @@ public:
                 }
             }
         }
-    }
-
-    void dessin_rectangle(RenderWindow& window, grille grid) override {
-        int x, y;
-
-        window.clear();
-        RectangleShape cell(Vector2f(10 - 1.0f, 10 - 1.0f));
-        for (x = 0; x < grid.get_width(); ++x) {
-            for (y = 0; y < grid.get_height(); ++y) {
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(Color(rand() % 55 + x, rand() % 255 + 145 , rand() % 55 + y));
-                    window.draw(cell);
-                }
-                else if (grid.get_grille(x, y)->is_alive() == 2) {
-                    cell.setPosition((float)x * 10, (float)y * 10);
-                    cell.setFillColor(sf::Color(128, 128, 128));
-                    window.draw(cell);
-                }
-            }
-        }
-        window.display();
     }
 };
 #pragma endregion
