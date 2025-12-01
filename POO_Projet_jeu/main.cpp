@@ -7,7 +7,7 @@
 #include "patternes.h"
 int main()
 {
-    //srand(time(0));
+    srand(time(0));
 
     ModeNormal jeu2;
     ModeLifeIsShort jeu3;
@@ -112,6 +112,10 @@ int main()
 
                 if (event.key.code == Keyboard::A) {
                     pattern.random(grille1, g, window);
+                }
+
+                if (event.key.code == Keyboard::O) {
+                    pattern.random_obs(grille1, g, window);
                 }
 
                 if (event.key.code == Keyboard::R) {

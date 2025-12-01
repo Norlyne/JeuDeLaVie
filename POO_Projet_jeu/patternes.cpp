@@ -110,10 +110,18 @@ void pattern::random(grille& grid, grille& grid2, sf::RenderWindow& window) {
 		grid2.random_init();
 }
 
+void pattern::random_obs(grille& grid, grille& grid2, sf::RenderWindow& window) {
+	grid.random_init_obs();
+	grid2.random_init_obs();
+}
+
 void pattern::reset(grille& grid, grille& grid2, sf::RenderWindow& window) {
 	grid.fichier_init("vide.txt");
 	grid2.fichier_init("vide.txt");
 }
+
+
+
 
 
 
