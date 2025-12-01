@@ -80,7 +80,7 @@ int main()
     Text.SetFont(MyFont);
     Text.SetSize(50);*/
 
-    RenderWindow window(VideoMode(grille1.get_width() * 10, grille1.get_height() * 10), "Jeu de la vie");
+    RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0,0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
     bool etat = false;
     while (window.isOpen()) {
@@ -184,8 +184,8 @@ int main()
                 if (event.mouseButton.button == Mouse::Left)
                 {
                     pixelPos = sf::Mouse::getPosition(window);
-                    pat->set_x2(pixelPos.x / 10);
-                    pat->set_y2(pixelPos.y / 10);
+                    pat->set_x2(pixelPos.x / grille1.get_grille(0, 0)->get_cellsize());
+                    pat->set_y2(pixelPos.y / grille1.get_grille(0, 0)->get_cellsize());
                     pat->poser(pixelPos.x, pixelPos.y, g, grille1, window);
                     g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);                    
                 }
