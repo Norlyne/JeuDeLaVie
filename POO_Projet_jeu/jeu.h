@@ -22,7 +22,7 @@ protected:
         //setters
         void set_indexe(bool variation);
 
-        string demarer(grille& grille1, grille& g, string& mode, string& nom_Dossier) {
+        string demarer(grille& grille1, grille& g, string& mode_depart, string& nom_Dossier) {
             string rep;
             cout << "Avez-vous un fichier ? (o/n) " << endl;
             cin >> rep;
@@ -38,7 +38,7 @@ protected:
             else if (rep == "n") {
                 nom_Dossier = "None";
                 int retour = _mkdir(nom_Dossier.c_str());
-                string ale;
+                string pattern_depart;
                 cout << "Voici une liste de blinkers disponible : " << endl;
                 cout << "1." << "Glidres" << endl;
                 cout << "2." << "vide" << endl;
@@ -46,67 +46,55 @@ protected:
                 cout << "4." << "expetchaos ( teste du mode exp et chaos ) " << endl;
                 cout << "5." << "Motrep ( teste du mode Motifs repetion ) " << endl;
                 cout << "Soutaitez-vous un grille alleatoire ou une grilles avec des blikers ? (a/1)" << endl;
-                cin >> ale;
-                if (ale == "a") {
+                cin >> pattern_depart;
+                if (pattern_depart == "a") {
                     string obs;
                     cout << "Soutaitez-vous des obstacles dans la grille ? (o/n) " << endl;
                     cin >> obs;
+                    cout << "Voici une liste de mode disponible : " << endl;
+                    cout << "1." << "normal" << endl;
+                    cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
+                    cout << "3." << "Day and light" << endl;
+                    cout << "4." << "Labyrinthiques" << endl;
+                    cout << "5." << "Explosions And Chaos" << endl;
+                    cout << "6." << "Motifs Repliquants" << endl;
+                    cout << "7." << "HighLife" << endl;
+                    cout << "8." << "Corail" << endl;
+                    cout << "Quel mode de jeu souhaitez-vous ?" << endl;
+                    cin >> mode_depart;
+                    if (mode_depart != "1" && mode_depart != "2" && mode_depart != "3" && mode_depart != "4" && mode_depart != "5" && mode_depart != "6" && mode_depart != "7" && mode_depart != "8") { cout << "Erreur : mauvaise reponse" << endl; }
                     if (obs == "o") {
-                        cout << "Voici une liste de mode disponible : " << endl;
-                        cout << "1." << "normal" << endl;
-                        cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
-                        cout << "3." << "Day and light" << endl;
-                        cout << "4." << "Labyrinthiques" << endl;
-                        cout << "5." << "Explosions And Chaos" << endl;
-                        cout << "6." << "Motifs Repliquants" << endl;
-                        cout << "7." << "HighLife" << endl;
-                        cout << "8." << "Corail" << endl;
-                        cout << "Quel mode de jeu souhaitez-vous ?" << endl;
-                        cin >> mode;
                         grille1.random_init_obs();
                         g.random_init_obs();
-                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7" && mode != "8") { cout << "Erreur : mauvaise reponse" << endl; }
                     }
                     else if (obs == "n") {
-                        cout << "Voici une liste de mode disponible : " << endl;
-                        cout << "1." << "normal" << endl;
-                        cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
-                        cout << "3." << "Day and light" << endl;
-                        cout << "4." << "Labyrinthiques" << endl;
-                        cout << "5." << "Explosions And Chaos" << endl;
-                        cout << "6." << "Motifs Repliquants" << endl;
-                        cout << "7." << "HighLife" << endl;
-                        cout << "8." << "Corail" << endl;
-                        cout << "Quel mode de jeu souhaitez-vous ?" << endl;
-                        cin >> mode;
                         grille1.random_init();
                         g.random_init();
-                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7" && mode != "8") { cout << "Erreur : mauvaise reponse" << endl; }
                     }
                     else {
                         cout << "Erreur : mauvaise reponse" << endl;
                     }
                 }
-                else if (ale == "1") {
+                else if (pattern_depart == "1") {
                     grille1.fichier_init("Gliders.txt");
                     g.fichier_init("Gliders.txt");
                 }
-                else if (ale == "2") {
+                else if (pattern_depart == "2") {
                     grille1.fichier_init("vide.txt");
                     g.fichier_init("vide.txt");
                 }
-                else if (ale == "3") {
-                    mode = "4";
+                else if (pattern_depart == "3") {
+                    mode_depart = "4";
                     grille1.fichier_init("lab.txt");
                     g.fichier_init("lab.txt");
                 }
-                else if (ale == "4") {
-                    mode = "5";
+                else if (pattern_depart == "4") {
+                    mode_depart = "5";
                     grille1.fichier_init("expetchaos.txt");
                     g.fichier_init("expetchaos.txt");
                 }
-                else if (ale == "5") {
-                    mode = "6";
+                else if (pattern_depart == "5") {
+                    mode_depart = "6";
                     grille1.fichier_init("Motrep.txt");
                     g.fichier_init("Motrep.txt");
                 }
@@ -117,7 +105,7 @@ protected:
             else {
                 cout << "Erreur : mauvaise reponse" << endl;
             }
-            return mode;
+            return mode_depart;
         };
 
         void touche() {
