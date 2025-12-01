@@ -1,16 +1,17 @@
+//commentaire
 #include <ctime>
 #include <iostream>
+#include <fstream>
 #include <fontsub.h>
 #include "cellule.h"
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
-#include <direct.h>
-#include <fstream>
+
 
 int main()
 {
-    //srand(time(0));
+    srand(time(0));
 
     ModeNormal jeu2;
     ModeLifeIsShort jeu3;
@@ -24,7 +25,9 @@ int main()
     grille g;
     grille grille1;
 
-    pattern pattern;
+    pattern* pat;
+    pat = new point;
+
     sf::Vector2i pixelPos;
 
     string mode = "1";
@@ -33,13 +36,13 @@ int main()
     string nomFichier = "";
 
     jeu2.demarer(g, grille1, mode, nom_Dossier);
-  
 
-    
+
+
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    
+
     /*for (int i = 0; i < 5; i++) {
 
         nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
@@ -48,6 +51,10 @@ int main()
         for (int dx = 0; dx < g.get_width(); dx++) {
             for (int dy = 0; dy < g.get_height(); dy++) {
                 cellule* d = g.get_grille(dx, dy);
+                if (d && d->is_alive() == 2) {
+                    cout << "O";
+                    fichier << 2 << " ";
+                }
                 if (d && d->is_alive() == 1) {
                     cout << "#";
                     fichier << 1 << " ";
@@ -65,12 +72,11 @@ int main()
         fichier.close();
         sleep(milliseconds(1000));
 
-        
+
     }*/
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    jeu2.touche();
     // Chargement de la police à partir d'un fichier
     /*Font MyFont;
     string s = "Hello";
@@ -82,7 +88,7 @@ int main()
     Text.SetFont(MyFont);
     Text.SetSize(50);*/
 
-    RenderWindow window(VideoMode(grille1.get_width() * 10, grille1.get_height() * 10), "Jeu de la vie");
+    RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0, 0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
     bool etat = false;
     while (window.isOpen()) {
@@ -95,31 +101,57 @@ int main()
                 if (event.key.code == Keyboard::Space)
                     etat = !etat;
 
-                if (event.key.code == Keyboard::Num1)
-                    pattern.set_numero(1);
+                if (event.key.code == Keyboard::Num1) {
+                    delete pat;
+                    pat = new point(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num2)
-                    pattern.set_numero(2);
+                if (event.key.code == Keyboard::Num2) {
+                    delete pat;
+                    pat = new stable1(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num3)
-                    pattern.set_numero(3);
+                if (event.key.code == Keyboard::Num3) {
+                    delete pat;
+                    pat = new stable2(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num4)
-                    pattern.set_numero(4);
+                if (event.key.code == Keyboard::Num4) {
+                    delete pat;
+                    pat = new glider(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num5)
-                    pattern.set_numero(5);
+                if (event.key.code == Keyboard::Num5) {
+                    delete pat;
+                    pat = new oscilateur1(0, 0, g.get_grille(0, 0));
+                }
 
-                if (event.key.code == Keyboard::Num6)
-                    pattern.set_numero(6);
+                if (event.key.code == Keyboard::Num6) {
+                    delete pat;
+                    pat = new oscilateur2(0, 0, g.get_grille(0, 0));
+                }
+
+                if (event.key.code == Keyboard::Num7) {
+                    delete pat;
+                    pat = new canon_glider(0, 0, g.get_grille(0, 0));
+                }
+
+                if (event.key.code == Keyboard::Num0) {
+                    delete pat;
+                    pat = new obstacle(0, 0, g.get_grille(0, 0));
+                }
 
 
                 if (event.key.code == Keyboard::A) {
-                    pattern.random(grille1, g, window);
+                    pat->random(grille1, g, window);
+                }
+
+                if (event.key.code == Keyboard::O) {
+                    pat->random_obs(grille1, g, window);
                 }
 
                 if (event.key.code == Keyboard::R) {
-                    pattern.reset(grille1, g, window);
+                    pat->reset(grille1, g, window);
                 }
 
                 if (event.key.code == Keyboard::N) {
@@ -159,14 +191,11 @@ int main()
             {
                 if (event.mouseButton.button == Mouse::Left)
                 {
-                    cout << "appuis" << endl;
                     pixelPos = sf::Mouse::getPosition(window);
-                    cout << pixelPos.x << "   " << pixelPos.y << endl;
-                    pattern.poser_pattern(pixelPos.x, pixelPos.y, g, grille1, window);
+                    pat->set_x2(pixelPos.x / grille1.get_grille(0, 0)->get_cellsize());
+                    pat->set_y2(pixelPos.y / grille1.get_grille(0, 0)->get_cellsize());
+                    pat->poser(pixelPos.x, pixelPos.y, g, grille1, window);
                     g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);
-                    cout << g.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
-                    cout << grille1.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
-                    
                 }
             }
         }

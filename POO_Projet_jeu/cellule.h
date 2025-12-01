@@ -1,4 +1,4 @@
-
+//commentaire
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -57,7 +57,7 @@ public:
 	//methodes
 	int is_alive() override { return 0; }
 
-	
+
 };
 
 
@@ -71,7 +71,7 @@ public:
 	//methodes
 	int is_alive() override { return 1; }
 
-	
+
 };
 
 class cellule_obstacle : public cellule {
@@ -85,5 +85,5 @@ public:
 	//methodes
 	int is_alive() override { return 2; }
 
-	
+
 };

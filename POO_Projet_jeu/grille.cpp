@@ -1,3 +1,4 @@
+//commentaire
 #include "grille.h"
 #include <cstdlib>  // pour std::rand
 #include <fstream>
@@ -49,16 +50,7 @@ grille::grille(grille& g) {
         }
     }
 }
-//grille::grille(grille& g) {
-//    this->width = g.width;
-//    this->height = g.height;
-//    grid.resize(width, std::vector<cellule*>(height, nullptr)); // initialise les pointeurs à nullptr
-//    for (int dx = 0; dx < width; dx++) {
-//        for (int dy = 0; dy < height; dy++) {
-//            grid[dx][dy] = g.get_grille(dx, dy);
-//        }
-//    }
-//}
+
 // Destructeur
 grille::~grille() {
     for (int dx = 0; dx < width; dx++) {
@@ -78,23 +70,22 @@ cellule* grille::get_grille(int x, int y) { return this->grid[x][y]; }
 void grille::set_width(int width) { this->width = width; }
 void grille::set_height(int height) { this->height = height; }
 void grille::set_grille(int x, int y, int state) {
-    if (x >= 0 && x < this->width && y >= 0 && y < this->height) {
-        // Supprimer l'ancienne cellule si elle existe
-        if (grid[x][y] != nullptr) {
-            delete grid[x][y];
-            grid[x][y] = nullptr;
-        }
+    x = x % this->width;
+    y = y % this->height;
+    if (grid[x][y] != nullptr) {
+        delete grid[x][y];
+        grid[x][y] = nullptr;
+    }
 
-        // Créer la nouvelle cellule selon l'état
-        if (state == 1) {
-            grid[x][y] = new cellule_vivante();
-        }
-        else if (state == 0) {
-            grid[x][y] = new cellule_morte();
-        }
-        else {
-            grid[x][y] = new cellule_obstacle();
-        }
+    // Créer la nouvelle cellule selon l'état
+    if (state == 1) {
+        grid[x][y] = new cellule_vivante();
+    }
+    else if (state == 0) {
+        grid[x][y] = new cellule_morte();
+    }
+    else {
+        grid[x][y] = new cellule_obstacle();
     }
 }
 //void grille::set_grille(int x, int y, int state) {
@@ -118,8 +109,8 @@ void grille::random_init() {
     for (int dx = 0; dx < this->width; dx++) {
         for (int dy = 0; dy < this->height; dy++) {
             int random = rand() % 100;
-            if (random  >= 50) {
-                if (grid[dx][dy]) delete grid[dx][dy]; 
+            if (random >= 50) {
+                if (grid[dx][dy]) delete grid[dx][dy];
                 grid[dx][dy] = new cellule_vivante();
             }
             else if (random < 50) {
@@ -214,7 +205,7 @@ int grille::compt_voisin_thorique(int x, int y) {
 
             if (grid[nx][ny]->is_alive() == 1) {
                 count++;
-            }   
+            }
         }
     }
     return count;
