@@ -69,8 +69,8 @@ cellule* grille::get_grille(int x, int y) { return this->grid[x][y]; }
 void grille::set_width(int width) { this->width = width; }
 void grille::set_height(int height) { this->height = height; }
 void grille::set_grille(int x, int y, int state) {
-    if (x >= 0 && x < this->width && y >= 0 && y < this->height) {
-        // Supprimer l'ancienne cellule si elle existe
+        x = x % this->width;
+        y = y % this->height;
         if (grid[x][y] != nullptr) {
             delete grid[x][y];
             grid[x][y] = nullptr;
@@ -86,7 +86,6 @@ void grille::set_grille(int x, int y, int state) {
         else {
             grid[x][y] = new cellule_obstacle();
         }
-    }
 }
 //void grille::set_grille(int x, int y, int state) {
 //    if (x >= 0 && x < this->width && y >= 0 && y < this->height) {

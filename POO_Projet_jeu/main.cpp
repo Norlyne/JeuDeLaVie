@@ -1,5 +1,6 @@
 #include <ctime>
 #include <iostream>
+#include <fstream>
 #include <fontsub.h>
 #include "cellule.h"
 #include "grille.h"
@@ -47,6 +48,10 @@ int main()
         for (int dx = 0; dx < g.get_width(); dx++) {
             for (int dy = 0; dy < g.get_height(); dy++) {
                 cellule* d = g.get_grille(dx, dy);
+                if (d && d->is_alive() == 2) {
+                    cout << "O";
+                    fichier << 2 << " ";
+                }
                 if (d && d->is_alive() == 1) {
                     cout << "#";
                     fichier << 1 << " ";

@@ -48,18 +48,6 @@ void pattern::set_y(int y) { this->y = y; }
 void pattern::set_x2(int x2) { this->x2 = x2; }
 void pattern::set_y2(int y2) { this->y2 = y2; }
 
-//void pattern::poser_pattern(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) {
-//	if (this->numero == 1) { poser_point(x, y, grid, grid2, window); }
-//	if (this->numero == 2) { poser_stable1(x, y, grid, grid2, window); }
-//	if (this->numero == 3) { poser_stable2(x, y, grid, grid2, window); }
-//	if (this->numero == 4) { poser_glider(x, y, grid, grid2, window); }
-//	if (this->numero == 5) { poser_oscillateur1(x, y, grid, grid2, window); }
-//	if (this->numero == 6) { poser_oscillateur2(x, y, grid, grid2, window); }
-//	if (this->numero == 7) { poser_canon_glider(x, y, grid, grid2, window); }
-//	if (this->numero == 0) { poser_obstacle(x, y, grid, grid2, window); }
-//
-//}
-
 void pattern::random(grille& grid, grille& grid2, sf::RenderWindow& window) {
 		grid.random_init();
 		grid2.random_init();
