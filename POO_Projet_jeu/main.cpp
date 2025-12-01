@@ -109,6 +109,12 @@ int main()
                 if (event.key.code == Keyboard::Num6)
                     pattern.set_numero(6);
 
+                if (event.key.code == Keyboard::Num6)
+                    pattern.set_numero(7);
+
+                if (event.key.code == Keyboard::Num0)
+                    pattern.set_numero(0);
+
 
                 if (event.key.code == Keyboard::A) {
                     pattern.random(grille1, g, window);
@@ -159,14 +165,9 @@ int main()
             {
                 if (event.mouseButton.button == Mouse::Left)
                 {
-                    cout << "appuis" << endl;
                     pixelPos = sf::Mouse::getPosition(window);
-                    cout << pixelPos.x << "   " << pixelPos.y << endl;
                     pattern.poser_pattern(pixelPos.x, pixelPos.y, g, grille1, window);
-                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);
-                    cout << g.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
-                    cout << grille1.get_grille(pixelPos.x / 10, pixelPos.y / 10)->is_alive() << endl;
-                    
+                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);                    
                 }
             }
         }
