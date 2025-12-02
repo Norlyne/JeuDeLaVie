@@ -1,10 +1,10 @@
-//commentaire
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <ctime>
 #include <cstdlib>
 
+#pragma region initialisationclasses
 class grille;
 class ModeNormal;
 class ModeLifeIsShort;
@@ -14,12 +14,12 @@ class ExplosionsAndChaos;
 class MotifsRepliquants;
 class HighLife;
 class Corail;
-
+#pragma endregion
 
 using namespace std;
 using namespace sf;
 
-
+#pragma region cellule
 class cellule
 {
 protected:
@@ -43,7 +43,7 @@ public:
 };
 
 
-
+#pragma region cellulemorte
 class cellule_morte : public cellule {
 public:
 	//Constructor
@@ -57,8 +57,9 @@ public:
 
 
 };
+#pragma endregion
 
-
+#pragma region cellulevivante
 class cellule_vivante : public cellule {
 public:
 	//Constructor
@@ -71,7 +72,9 @@ public:
 
 
 };
+#pragma endregion
 
+#pragma region celluleobstacle
 class cellule_obstacle : public cellule {
 public:
 	//Constructor
@@ -85,3 +88,6 @@ public:
 
 
 };
+#pragma endregion
+
+#pragma endregion
