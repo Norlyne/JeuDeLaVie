@@ -14,11 +14,13 @@ protected:
     static string mode_depart;
     static grille current_grid;
     static grille next_grid;
-    public:
-        
+
+public:
+
         //Constructeurs
         jeu();
         jeu(grille current_grid, grille next_grid, int ind);
+        virtual ~jeu() {}
 
         //getters
         int get_attente();
@@ -37,7 +39,6 @@ protected:
         void touche();
 
 	    virtual void regle_base() = 0;
-	    //void dessin_rectangle(RenderWindow& window);
 };
 
 #pragma endregion
@@ -50,6 +51,7 @@ class ModeNormal : public jeu {
 public:
     ModeNormal();
     ModeNormal( int ind);
+    ~ModeNormal() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {
@@ -100,6 +102,7 @@ class ModeLifeIsShort : public jeu {
 public:
     ModeLifeIsShort();
     ModeLifeIsShort( int ind);
+    ~ModeLifeIsShort() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {
@@ -145,6 +148,7 @@ class ModeDayAndLight : public jeu {
 public:
     ModeDayAndLight();
     ModeDayAndLight( int ind);
+    ~ModeDayAndLight() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {
@@ -195,6 +199,7 @@ class labyrinthiques : public jeu {
 public:
     labyrinthiques();
     labyrinthiques( int ind);
+    ~labyrinthiques() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {
@@ -245,6 +250,7 @@ class ExplosionsAndChaos : public jeu {
 public:
     ExplosionsAndChaos();
     ExplosionsAndChaos( int ind);
+    ~ExplosionsAndChaos() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {
@@ -290,6 +296,7 @@ class MotifsRepliquants : public jeu {
 public:
     MotifsRepliquants();
     MotifsRepliquants( int ind);
+    ~MotifsRepliquants() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {
@@ -340,6 +347,7 @@ class HighLife : public jeu {
 public:
     HighLife();
     HighLife( int ind);
+    ~HighLife() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {
@@ -390,6 +398,7 @@ class Corail : public jeu {
 public:
     Corail();
     Corail( int ind);
+    ~Corail() override {}
 
     void regle_base() override {
         for (int x = 0; x < this->current_grid.get_width(); ++x) {

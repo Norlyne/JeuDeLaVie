@@ -1,19 +1,18 @@
-//commentaire
 #include "grille.h"
-#include <cstdlib>  // pour std::rand
+#include <cstdlib>  
 #include <fstream>
 using namespace std;
 
 
-//Constructors
+#pragma region Constructeurs
 grille::grille() {
     this->width = 100;
     this->height = 100;
-    grid.resize(width, std::vector<cellule*>(height, nullptr)); // initialise les pointeurs à nullptr
+    grid.resize(width, std::vector<cellule*>(height, nullptr));
 
     for (int dx = 0; dx < this->width; dx++) {
         for (int dy = 0; dy < this->height; dy++) {
-            grid[dx][dy] = new cellule_morte(); // parenthèses obligatoires
+            grid[dx][dy] = new cellule_morte();
         }
     }
 }
@@ -51,7 +50,7 @@ grille::grille(const grille& g) {
     }
 }
 
-// Destructeur
+
 grille::~grille() {
     for (int dx = 0; dx < width; dx++) {
         for (int dy = 0; dy < height; dy++) {
@@ -60,13 +59,15 @@ grille::~grille() {
         }
     }
 }
+#pragma endregion
 
-//getters
+#pragma region getters
 int grille::get_width() { return this->width; }
 int grille::get_height() { return this->height; }
 cellule* grille::get_grille(int x, int y) { return this->grid[x][y]; }
+#pragma endregion
 
-//Setters
+#pragma region setters
 void grille::set_width(int width) { this->width = width; }
 void grille::set_height(int height) { this->height = height; }
 void grille::set_grille(int x, int y, int state) {
@@ -76,8 +77,6 @@ void grille::set_grille(int x, int y, int state) {
             delete grid[x][y];
             grid[x][y] = nullptr;
         }
-
-        // Créer la nouvelle cellule selon l'état
         if (state == 1) {
             grid[x][y] = new cellule_vivante();
         }
@@ -88,9 +87,9 @@ void grille::set_grille(int x, int y, int state) {
             grid[x][y] = new cellule_obstacle();
         }
 }
+#pragma endregion
 
-
-//Methodes
+#pragma region methodes
 void grille::random_init() {
     for (int dx = 0; dx < this->width; dx++) {
         for (int dy = 0; dy < this->height; dy++) {
@@ -196,3 +195,4 @@ int grille::compt_voisin_thorique(int x, int y) {
     }
     return count;
 }
+#pragma endregion

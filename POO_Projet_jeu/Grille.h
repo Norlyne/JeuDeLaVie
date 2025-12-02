@@ -1,9 +1,9 @@
-//commentaire
 #pragma once
 #include <vector>
 #include <iostream>
 #include "cellule.h"
 
+#pragma region grille
 class grille
 {
 private:
@@ -35,3 +35,4 @@ public:
     int compt_voisin(int x, int y);
     int compt_voisin_thorique(int x, int y);
 };
+#pragma endregion

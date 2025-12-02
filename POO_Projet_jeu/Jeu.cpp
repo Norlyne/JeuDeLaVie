@@ -1,9 +1,8 @@
-//commentaire
 #include "jeu.h"
 
-//Constructeurs
+#pragma region Constructeur
 jeu::jeu() {
-    this->indexe = 1;
+    this->indexe = 4;
     this->mode_depart = "1";
 }
 
@@ -31,16 +30,17 @@ ExplosionsAndChaos::ExplosionsAndChaos( int ind) { this->indexe = ind; }
 MotifsRepliquants::MotifsRepliquants( int ind) { this->indexe = ind; }
 HighLife::HighLife( int ind) { this->indexe = ind; }
 Corail::Corail( int ind) { this->indexe = ind; }
+#pragma endregion
 
-//getters
+#pragma region getters
 int jeu::get_attente() { return this->attente[this->indexe]; }
 int jeu::get_indexe() { return this->indexe; }
 grille& jeu::get_current_grid() { return this->current_grid; }
 grille& jeu::get_next_grid() { return this->next_grid; }
 int jeu::get_mode_depart() { return std::stoi(this->mode_depart); }
+#pragma endregion
 
-
-//setters
+#pragma region setters
 void jeu::set_indexe(bool variation) {
     if (variation) {
         if (this->indexe == (sizeof(attente) / sizeof(attente[0]))) {}
@@ -56,9 +56,9 @@ void jeu::set_indexe(bool variation) {
 void jeu::set_current_grid(grille current_grid) { this->current_grid = current_grid; }
 void jeu::set_next_grid(grille next_grid) { this->next_grid = next_grid; }
 void jeu::set_mode_depart(string mode_depart) { this->mode_depart = mode_depart; }
+#pragma endregion
 
-//methodes
-
+#pragma region demarrage
 void jeu::demarer(string& nom_Dossier) {
     string rep;
     cout << "Avez-vous un fichier ? (o/n) " << endl;
@@ -112,7 +112,7 @@ void jeu::demarer(string& nom_Dossier) {
                 cout << "Erreur : mauvaise reponse" << endl;
             }
         }
-        else if (pattern_depart == "1") {//////////////////////////////////////////////////////////////////////////////////////////
+        else if (pattern_depart == "1") {
             this->current_grid.fichier_init("Gliders.txt");
             this->next_grid.fichier_init("Gliders.txt");
         }
@@ -143,7 +143,9 @@ void jeu::demarer(string& nom_Dossier) {
         cout << "Erreur : mauvaise reponse" << endl;
     }
 };
+#pragma endregion
 
+#pragma region affichagetouche
 void jeu::touche() {
     cout << "-----------------------------------------------" << endl;
     cout << "                Options & Mode                    " << endl;
@@ -175,3 +177,4 @@ void jeu::touche() {
     cout << " 6+Click gauche : un ocsillateur 2" << endl;
     cout << " 7+Click gauche : un canon un gliders" << endl;
 }
+#pragma endregion

@@ -102,6 +102,7 @@ string test3()
             }
         }
     }
+    delete jeu;
 };
 
 int test() {

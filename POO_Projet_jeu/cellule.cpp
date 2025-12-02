@@ -1,9 +1,8 @@
-//commentaire
 #include "cellule.h"
 #include "jeu.h"
 #include "string"
 
-//Constructors
+#pragma region Constructeurs
 cellule::cellule() { this->cellsize = 10; }
 cellule::cellule(int cellsize) { this->cellsize = cellsize; }
 
@@ -19,16 +18,17 @@ cellule_obstacle::cellule_obstacle(int cellsize) { this->cellsize = cellsize; }
 cellule_morte::~cellule_morte() {}
 cellule_vivante::~cellule_vivante() {}
 cellule_obstacle::~cellule_obstacle() {}
+#pragma endregion
 
-
-//getters
+#pragma region getters
 int cellule::get_cellsize() { return this->cellsize; }
+#pragma endregion
 
-//setters
+#pragma region setters
 void cellule::set_cellsize(int cellsize) { this->cellsize = cellsize; }
+#pragma endregion
 
-//methodes
-
+#pragma region méthodes
 void cellule::dessin_rectangle(RenderWindow& window, grille current_grid) {
     int x, y;
 
@@ -54,3 +54,4 @@ void cellule::dessin_rectangle(RenderWindow& window, grille current_grid) {
     }
     window.display();
 }
+#pragma endregion

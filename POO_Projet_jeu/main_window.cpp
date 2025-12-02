@@ -1,4 +1,3 @@
-//commentaire
 #include <ctime>
 #include <iostream>
 #include <fstream>
@@ -180,5 +179,7 @@ int window()
             sleep(milliseconds(jeu->get_attente()));
         }
     }
+    delete jeu;
+    delete pat;
     return 0;
 }
