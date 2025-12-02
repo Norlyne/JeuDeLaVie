@@ -26,6 +26,8 @@ int window()
 
     jeu->demarer(nom_Dossier);
 
+    jeu->touche();
+
     if (jeu->get_mode_depart() == 1) { delete jeu; jeu = new ModeNormal; }
     else if (jeu->get_mode_depart() == 2) { delete jeu; jeu = new ModeLifeIsShort; }
     else if (jeu->get_mode_depart() == 3) { delete jeu; jeu = new ModeDayAndLight; }
