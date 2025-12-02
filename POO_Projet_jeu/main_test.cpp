@@ -1,5 +1,5 @@
 //commentaire
-/*
+
 #include <ctime>
 #include <iostream>
 #include <fstream>
@@ -107,7 +107,7 @@ string test3()
     }
 };
 
-int main() {
+int main_test() {
     string rep1;
     string rep2;
     string rep3;
@@ -121,4 +121,3 @@ int main() {
     cout << rep3 << endl;
     return 0;
 }
-*/
