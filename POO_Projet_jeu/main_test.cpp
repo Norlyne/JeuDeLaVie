@@ -8,14 +8,15 @@
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
+#include "source.h"
 
 using namespace std;
 using namespace sf;
 
-int jeu::indexe = 0;
-string jeu::mode_depart = "1";
-grille jeu::current_grid = grille();
-grille jeu::next_grid = grille();
+//int jeu::indexe = 0;
+//string jeu::mode_depart = "1";
+//grille jeu::current_grid = grille();
+//grille jeu::next_grid = grille();
 
 ////////////////////////////////////////////////////////////////////////////////////////
 //                                  Test unitaire                                     //
@@ -107,7 +108,7 @@ string test3()
     }
 };
 
-int main_test() {
+int test() {
     string rep1;
     string rep2;
     string rep3;
