@@ -33,9 +33,6 @@
     <ClCompile Include="patternes.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="main_console.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="main_test.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
