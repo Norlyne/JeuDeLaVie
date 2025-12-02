@@ -15,11 +15,6 @@ int console()
     jeu* jeu;
     jeu = new ModeNormal();
 
-    pattern* pat;
-    pat = new point;
-
-    sf::Vector2i pixelPos;
-
     string nom_Dossier = "";
     string nomFichier = "";
 
@@ -67,5 +62,6 @@ int console()
 
 
     }
+    delete jeu;
     return 0;
 }

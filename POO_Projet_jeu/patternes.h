@@ -1,7 +1,7 @@
-//commentaire
 #pragma once
 #include "grille.h"
 
+#pragma region pattern
 class pattern {
 protected:
     int x;
@@ -32,8 +32,9 @@ public:
     void random_obs(grille& current_grid);
     void reset(grille& current_grid);
 };
+#pragma endregion
 
-
+#pragma region point
 class point : public pattern {
 public:
     point();
@@ -43,8 +44,9 @@ public:
         current_grid.set_grille(x2, y2, 1);
     }
 };
+#pragma endregion
 
-
+#pragma region stable1
 class stable1 : public pattern {
 public:
     stable1();
@@ -62,7 +64,9 @@ public:
         }
     }
 };
+#pragma endregion
 
+#pragma region stable2
 class stable2 : public pattern {
 public:
     stable2();
@@ -82,7 +86,9 @@ public:
         }
     }
 };
+#pragma endregion
 
+#pragma region glider
 class glider : public pattern {
 public:
     glider();
@@ -101,7 +107,9 @@ public:
         }
     }
 };
+#pragma endregion
 
+#pragma region oscillateur1
 class oscilateur1 : public pattern {
 public:
     oscilateur1();
@@ -120,7 +128,9 @@ public:
         }
     }
 };
+#pragma endregion
 
+#pragma region oscillateur2
 class oscilateur2 : public pattern {
 public:
     oscilateur2();
@@ -140,7 +150,9 @@ public:
         }
     }
 };
+#pragma endregion
 
+#pragma region canonglider
 class canon_glider : public pattern {
 public:
     canon_glider();
@@ -177,3 +189,4 @@ public:
         current_grid.set_grille(x2, y2, 2);
     }
 };
+#pragma endregion

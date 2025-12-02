@@ -1,4 +1,3 @@
-//commentaire
 #include <ctime>
 #include <iostream>
 #include <fstream>
@@ -9,7 +8,7 @@
 #include "patternes.h"
 #include "source.h"
 
-int jeu::indexe = 0;
+int jeu::indexe = 4;
 string jeu::mode_depart = "1";
 grille jeu::current_grid = grille();
 grille jeu::next_grid = grille();
