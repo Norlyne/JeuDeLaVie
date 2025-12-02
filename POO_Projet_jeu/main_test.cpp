@@ -1,4 +1,5 @@
 //commentaire
+/*
 #include <ctime>
 #include <iostream>
 #include <fstream>
@@ -120,3 +121,4 @@ int main() {
     cout << rep3 << endl;
     return 0;
 }
+*/
