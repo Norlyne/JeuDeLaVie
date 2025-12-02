@@ -51,10 +51,15 @@ public:
     stable1(int x, int y, cellule* cell);
 
     void poser(int x, int y, grille& current_grid) override {
-        current_grid.set_grille(x2, y2, 1);
-        current_grid.set_grille(x2, y2 + 1, 1);
-        current_grid.set_grille(x2 + 1, y2, 1);
-        current_grid.set_grille(x2 + 1, y2 + 1, 1);
+        std::vector<std::string> grid = {
+            "##",
+            "##", 
+        };
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                if (grid[i][j] == '#') current_grid.set_grille(this->x2 + j , this->y2 + i, 1);
+            }
+        }
     }
 };
 
@@ -64,12 +69,17 @@ public:
     stable2(int x, int y, cellule* cell);
 
     void poser(int x, int y, grille& current_grid) override {
-        current_grid.set_grille(x2, y2 + 1, 1);
-        current_grid.set_grille(x2 + 1, y2 + 1, 1);
-        current_grid.set_grille(x2, y2 - 1, 1);
-        current_grid.set_grille(x2 + 1, y2 - 1, 1);
-        current_grid.set_grille(x2 - 1, y2, 1);
-        current_grid.set_grille(x2 + 2, y2, 1);
+        std::vector<std::string> grid = {
+            ".##.",
+            "#..#",
+            ".##.",
+            "....",
+        };
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                if (grid[i][j] == '#') current_grid.set_grille(this->x2 + j, this->y2 + i, 1);
+            }
+        }
     }
 };
 
@@ -79,11 +89,16 @@ public:
     glider(int x, int y, cellule* cell);
 
     void poser(int x, int y, grille& current_grid) override {
-        current_grid.set_grille(x2, y2 + 1, 1);
-        current_grid.set_grille(x2 + 1, y2, 1);
-        current_grid.set_grille(x2, y2 - 1, 1);
-        current_grid.set_grille(x2 - 1, y2 - 1, 1);
-        current_grid.set_grille(x2 + 1, y2 - 1, 1);
+        std::vector<std::string> grid = {
+            ".#.",
+            "..#",
+            "###",
+        };
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                if (grid[i][j] == '#') current_grid.set_grille(this->x2 + j, this->y2 + i, 1);
+            }
+        }
     }
 };
 
@@ -93,9 +108,16 @@ public:
     oscilateur1(int x, int y, cellule* cell);
 
     void poser(int x, int y, grille& current_grid) override {
-        current_grid.set_grille(x2, y2, 1);
-        current_grid.set_grille(x2 + 1, y2, 1);
-        current_grid.set_grille(x2 - 1, y2, 1);
+        std::vector<std::string> grid = {
+            "...",
+            "###",
+            "...",
+        };
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                if (grid[i][j] == '#') current_grid.set_grille(this->x2 + j, this->y2 + i, 1);
+            }
+        }
     }
 };
 
@@ -105,12 +127,17 @@ public:
     oscilateur2(int x, int y, cellule* cell);
 
     void poser(int x, int y, grille& current_grid) override {
-        current_grid.set_grille(x2, y2, 1);
-        current_grid.set_grille(x2, y2 + 1, 1);
-        current_grid.set_grille(x2 + 1, y2, 1);
-        current_grid.set_grille(x2 + 1, y2 + 1, 1);
-        current_grid.set_grille(x2 - 1, y2, 1);
-        current_grid.set_grille(x2 + 2, y2 + 1, 1);
+        std::vector<std::string> grid = {
+            "....",
+            "###.",
+            ".###",
+            "....",
+        };
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                if (grid[i][j] == '#') current_grid.set_grille(this->x2 + j, this->y2 + i, 1);
+            }
+        }
     }
 };
 
@@ -120,42 +147,25 @@ public:
     canon_glider(int x, int y, cellule* cell);
 
     void poser(int x, int y, grille& current_grid) override {
-        current_grid.set_grille(x2 + 1, y2 + 5, 1);
-        current_grid.set_grille(x2 + 1, y2 + 6, 1);
-        current_grid.set_grille(x2 + 2, y2 + 5, 1);
-        current_grid.set_grille(x2 + 2, y2 + 6, 1);
-        current_grid.set_grille(x2 + 11, y2 + 5, 1);
-        current_grid.set_grille(x2 + 11, y2 + 6, 1);
-        current_grid.set_grille(x2 + 11, y2 + 7, 1);
-        current_grid.set_grille(x2 + 12, y2 + 4, 1);
-        current_grid.set_grille(x2 + 12, y2 + 8, 1);
-        current_grid.set_grille(x2 + 13, y2 + 3, 1);
-        current_grid.set_grille(x2 + 13, y2 + 9, 1);
-        current_grid.set_grille(x2 + 14, y2 + 3, 1);
-        current_grid.set_grille(x2 + 14, y2 + 9, 1);
-        current_grid.set_grille(x2 + 15, y2 + 6, 1);
-        current_grid.set_grille(x2 + 16, y2 + 4, 1);
-        current_grid.set_grille(x2 + 16, y2 + 8, 1);
-        current_grid.set_grille(x2 + 17, y2 + 5, 1);
-        current_grid.set_grille(x2 + 17, y2 + 6, 1);
-        current_grid.set_grille(x2 + 17, y2 + 7, 1);
-        current_grid.set_grille(x2 + 18, y2 + 6, 1);
-        current_grid.set_grille(x2 + 21, y2 + 3, 1);
-        current_grid.set_grille(x2 + 21, y2 + 4, 1);
-        current_grid.set_grille(x2 + 21, y2 + 5, 1);
-        current_grid.set_grille(x2 + 22, y2 + 3, 1);
-        current_grid.set_grille(x2 + 22, y2 + 4, 1);
-        current_grid.set_grille(x2 + 22, y2 + 5, 1);
-        current_grid.set_grille(x2 + 23, y2 + 2, 1);
-        current_grid.set_grille(x2 + 23, y2 + 6, 1);
-        current_grid.set_grille(x2 + 25, y2 + 1, 1);
-        current_grid.set_grille(x2 + 25, y2 + 2, 1);
-        current_grid.set_grille(x2 + 25, y2 + 6, 1);
-        current_grid.set_grille(x2 + 25, y2 + 7, 1);
-        current_grid.set_grille(x2 + 35, y2 + 3, 1);
-        current_grid.set_grille(x2 + 35, y2 + 4, 1);
-        current_grid.set_grille(x2 + 36, y2 + 3, 1);
-        current_grid.set_grille(x2 + 36, y2 + 4, 1);
+        std::vector<std::string> grid = {
+        "........................#...............",
+        "......................#.#...............",
+        "............##......##............##....",
+        "...........#...#....##............##....",
+        "##........#.....#...##..................",
+        "##........#...#.##....#.#...............",
+        "..........#.....#.......#...............",
+        "...........#...#........................",
+        "............##.........................."
+        };
+
+        for (int i = 0; i < grid.size(); i++) {
+            for (int j = 0; j < grid[0].size(); j++) {
+                cout << "x: " << this->x2 + j - grid.size() / 2 << "y: " << this->y2 + i - grid[0].size() / 2 << endl;
+                if (grid[i][j] == '#') current_grid.set_grille(this->x2 + j, this->y2 + i, 1);
+            }
+        }
+        
     }
 };
 

@@ -88,21 +88,7 @@ void grille::set_grille(int x, int y, int state) {
             grid[x][y] = new cellule_obstacle();
         }
 }
-//void grille::set_grille(int x, int y, int state) {
-//    if (x >= 0 && x < this->width && y >= 0 && y < this->height) {
-//        grid[x][y] = nullptr; // supprime l'ancienne cellule
-//        if (state == 1) {
-//            grid[x][y] = new cellule_vivante();
-//        }
-//        else if (state == 0) {
-//            grid[x][y] = new cellule_morte();
-//        }
-//        else {
-//            grid[x][y] = new cellule_obstacle();
-//        }
-//    }
-//    
-//}
+
 
 //Methodes
 void grille::random_init() {
