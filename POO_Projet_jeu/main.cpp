@@ -7,34 +7,44 @@
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
+
 int jeu::indexe = 0;
+string jeu::mode_depart = "1";
+grille jeu::current_grid = grille();
+grille jeu::next_grid = grille();
+
 int main()
 {
     srand(time(0));
 
-    ModeNormal jeu2;
-    ModeLifeIsShort jeu3;
-    ModeDayAndLight jeu4;
-    labyrinthiques jeu5;
-    ExplosionsAndChaos jeu6;
-    MotifsRepliquants jeu7;
-    HighLife jeu8;
-    Corail jeu9;
-
-    grille g;
-    grille grille1;
+    jeu* jeu;
+    jeu = new ModeNormal();
 
     pattern* pat;
     pat = new point;
     
     sf::Vector2i pixelPos;
 
-    string mode = "1";
-
     string nom_Dossier = "";
     string nomFichier = "";
 
-    jeu2.demarer(g, grille1, mode, nom_Dossier);
+    jeu->demarer(nom_Dossier);
+
+    cout << jeu->get_mode_depart() << endl;
+    if (jeu->get_mode_depart() == 1) { delete jeu; jeu = new ModeNormal; }
+    else if (jeu->get_mode_depart() == 2) { delete jeu; jeu = new ModeLifeIsShort; }
+    else if (jeu->get_mode_depart() == 3) { delete jeu; jeu = new ModeDayAndLight; }
+    else if (jeu->get_mode_depart() == 4) { delete jeu; jeu = new labyrinthiques; }
+    else if (jeu->get_mode_depart() == 5) { delete jeu; jeu = new ExplosionsAndChaos; }
+    else if (jeu->get_mode_depart() == 6) { delete jeu; jeu = new MotifsRepliquants; }
+    else if (jeu->get_mode_depart() == 7) { delete jeu; jeu = new HighLife; }
+    else if (jeu->get_mode_depart() == 8) { delete jeu; jeu = new Corail; }
+    else { return 1; }
+
+
+
+    
+    
   
 
     
@@ -42,52 +52,43 @@ int main()
     //                                              CONSOLE                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    /*for (int i = 0; i < 5; i++) {
+    //for (int i = 0; i < 5; i++) {
 
-        nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
-        std::ofstream fichier(nomFichier, ios::out);
+    //    nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
+    //    std::ofstream fichier(nomFichier, ios::out);
 
-        for (int dx = 0; dx < g.get_width(); dx++) {
-            for (int dy = 0; dy < g.get_height(); dy++) {
-                cellule* d = g.get_grille(dx, dy);
-                if (d && d->is_alive() == 2) {
-                    cout << "O";
-                    fichier << 2 << " ";
-                }
-                if (d && d->is_alive() == 1) {
-                    cout << "#";
-                    fichier << 1 << " ";
-                }
-                else {
-                    cout << ".";
-                    fichier << 0 << " ";
-                }
-            }
-            cout << "\n";
-            fichier << endl;
-        }
-        jeu2.regle_base(grille1, g);
-        cout << "---------------------------------------------------------------------------------------" << endl;
-        fichier.close();
-        sleep(milliseconds(1000));
+    //    for (int dx = 0; dx < jeu->get_current_grid().get_width(); dx++) {
+    //        for (int dy = 0; dy < jeu->get_current_grid().get_height(); dy++) {
+    //            cellule* d = jeu->get_current_grid().get_grille(dx, dy);//////////////////
+    //            if (d && d->is_alive() == 2) {
+    //                cout << "O";
+    //                fichier << 2 << " ";
+    //            }
+    //            if (d && d->is_alive() == 1) {
+    //                cout << "#";
+    //                fichier << 1 << " ";
+    //            }
+    //            else {
+    //                cout << ".";
+    //                fichier << 0 << " ";
+    //            }
+    //        }
+    //        cout << "\n";
+    //        fichier << endl;
+    //    }
+    //    jeu->regle_base();
+    //    cout << "---------------------------------------------------------------------------------------" << endl;
+    //    fichier.close();
+    //    sleep(milliseconds(1000));
 
-        
-    }*/
+    //    
+    //}
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Chargement de la police à partir d'un fichier
-    /*Font MyFont;
-    string s = "Hello";
-    String Text( s, MyFont, 50);*/
+    
 
-    // Ou, si vous souhaitez le faire après la construction :
-    /*sf::String Text;
-    Text.SetText("Hello");
-    Text.SetFont(MyFont);
-    Text.SetSize(50);*/
-
-    RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0, 0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
+    RenderWindow window(VideoMode(jeu->get_current_grid().get_width() * jeu->get_current_grid().get_grille(0, 0)->get_cellsize(), jeu->get_current_grid().get_height() * jeu->get_current_grid().get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
     bool etat = false;
 
@@ -107,94 +108,102 @@ int main()
 
                 if (event.key.code == Keyboard::Num1) {
                     delete pat;
-                    pat = new point(0, 0, g.get_grille(0, 0));
+                    pat = new point(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num2) {
                     delete pat;
-                    pat = new stable1(0, 0, g.get_grille(0, 0));
+                    pat = new stable1(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num3) {
                     delete pat;
-                    pat = new stable2(0, 0, g.get_grille(0, 0));
+                    pat = new stable2(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num4) {
                     delete pat;
-                    pat = new glider(0, 0, g.get_grille(0, 0));
+                    pat = new glider(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num5) {
                     delete pat;
-                    pat = new oscilateur1(0, 0, g.get_grille(0, 0));
+                    pat = new oscilateur1(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num6) {
                     delete pat;
-                    pat = new oscilateur2(0, 0, g.get_grille(0, 0));
+                    pat = new oscilateur2(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num7) {
                     delete pat;
-                    pat = new canon_glider(0, 0, g.get_grille(0, 0));
+                    pat = new canon_glider(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::Num0) {
                     delete pat;
-                    pat = new obstacle(0, 0, g.get_grille(0, 0));
+                    pat = new obstacle(0, 0, jeu->get_current_grid().get_grille(0, 0));
                 }
 
                 if (event.key.code == Keyboard::A) {
-                    pat->random(grille1, g, window);
+                    pat->random(jeu->get_current_grid(), jeu->get_next_grid(), window);
                 }
 
                 if (event.key.code == Keyboard::O) {
-                    pat->random_obs(grille1, g, window);
+                    pat->random_obs(jeu->get_current_grid(), jeu->get_next_grid(), window);
                 }
 
                 if (event.key.code == Keyboard::R) {
-                    pat->reset(grille1, g, window);
+                    pat->reset(jeu->get_current_grid(), jeu->get_next_grid(), window);
                 }
 
                 if (event.key.code == Keyboard::N) {
-                    mode = "1";
+                    delete jeu;
+                    jeu = new ModeNormal(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::S) {
-                    mode = "2";
+                    delete jeu;
+                    jeu = new ModeLifeIsShort(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::D) {
-                    mode = "3";
+                    delete jeu;
+                    jeu = new ModeDayAndLight(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::L) {
-                    mode = "4";
+                    delete jeu;
+                    jeu = new labyrinthiques(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::E) {
-                    mode = "5";
+                    delete jeu;
+                    jeu = new ExplosionsAndChaos(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::M) {
-                    mode = "6";
+                    delete jeu;
+                    jeu = new MotifsRepliquants(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::H) {
-                    mode = "7";
+                    delete jeu;
+                    jeu = new HighLife(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::C) {
-                    mode = "8";
+                    delete jeu;
+                    jeu = new Corail(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
                 }
 
                 if (event.key.code == sf::Keyboard::Left) {
-                    jeu2.set_indexe(false);
+                    jeu->set_indexe(false);
                 }
 
                 if (event.key.code == sf::Keyboard::Right) {
-                    jeu2.set_indexe(true);
+                    jeu->set_indexe(true);
                 }
             }
 
@@ -203,58 +212,32 @@ int main()
                 if (event.mouseButton.button == Mouse::Left)
                 {
                     pixelPos = sf::Mouse::getPosition(window);
-                    pat->set_x2(pixelPos.x / grille1.get_grille(0, 0)->get_cellsize());
-                    pat->set_y2(pixelPos.y / grille1.get_grille(0, 0)->get_cellsize());
-                    pat->poser(pixelPos.x, pixelPos.y, g, grille1, window);
-                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1,
-                        jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);
+                    pat->set_x2(pixelPos.x / jeu->get_current_grid().get_grille(0,0)->get_cellsize());
+                    pat->set_y2(pixelPos.y / jeu->get_current_grid().get_grille(0, 0)->get_cellsize());
+                    pat->poser(pixelPos.x, pixelPos.y, jeu->get_current_grid(), jeu->get_next_grid(), window);
+                    jeu->get_current_grid().get_grille(0, 0)->dessin_rectangle(window, jeu->get_current_grid());
                 }
             }
 
         }
 
         if (!etat) {
-            if (mode == "1") {
-                jeu2.regle_base(grille1, g);
-                jeu2.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu2.get_attente()));
-            }
-            else if (mode == "2") {
-                jeu3.regle_base(grille1, g);
-                jeu3.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu3.get_attente()));
-            }
-            else if (mode == "3") {
-                jeu4.regle_base(grille1, g);
-                jeu4.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu4.get_attente()));
-            }
-            else if (mode == "4") {
-                jeu5.regle_base(grille1, g);
-                jeu5.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu5.get_attente()));
-            }
-            else if (mode == "5") {
-                jeu6.regle_base(grille1, g);
-                jeu6.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu6.get_attente()));
-            }
-            else if (mode == "6") {
-                jeu7.regle_base(grille1, g);
-                jeu7.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu7.get_attente()));
-            }
-            else if (mode == "7") {
-                jeu8.regle_base(grille1, g);
-                jeu8.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu8.get_attente()));
-            }
-            else if (mode == "8") {
-                jeu9.regle_base(grille1, g);
-                jeu9.dessin_rectangle(window, g);
-                sleep(milliseconds(jeu9.get_attente()));
-            }
+            jeu->regle_base();
+            jeu->get_current_grid().get_grille(0, 0)->dessin_rectangle(window, jeu->get_current_grid());
+            sleep(milliseconds(jeu->get_attente()));
         }
     }
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+

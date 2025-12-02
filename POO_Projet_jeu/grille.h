@@ -15,7 +15,7 @@ public:
     //Constructors
     grille();
     grille(int width, int height);
-    grille(grille& g);
+    grille(const grille& g);
     ~grille();  // destructeur pour delete les cellules
 
     //getters

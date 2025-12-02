@@ -39,7 +39,7 @@ public:
 	void random_obs(grille& grid, grille& grid2, sf::RenderWindow& window);
 	void reset(grille& grid, grille& grid2, sf::RenderWindow& window);
 
-};
+};	
 
 
 class point : public pattern {
@@ -48,7 +48,8 @@ public:
 	point(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2, y2, 1);
+		cout << "x2 = " << x2 << ", y2 = " << y2 << endl;
+		grid.set_grille(x2, y2, 1);
 	}
 };
 
@@ -59,10 +60,10 @@ public:
 	stable1(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2, y2, 1);
-		grid2.set_grille(x2, y2 + 1, 1);
-		grid2.set_grille(x2 + 1, y2, 1);
-		grid2.set_grille(x2 + 1, y2 + 1, 1);
+		grid.set_grille(x2, y2, 1);
+		grid.set_grille(x2, y2 + 1, 1);
+		grid.set_grille(x2 + 1, y2, 1);
+		grid.set_grille(x2 + 1, y2 + 1, 1);
 	}
 };
 
@@ -72,12 +73,12 @@ public:
 	stable2(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2, y2 + 1, 1);
-		grid2.set_grille(x2 + 1, y2 + 1, 1);
-		grid2.set_grille(x2, y2 - 1, 1);
-		grid2.set_grille(x2 + 1, y2 - 1, 1);
-		grid2.set_grille(x2 - 1, y2, 1);
-		grid2.set_grille(x2 + 2, y2, 1);
+		grid.set_grille(x2, y2 + 1, 1);
+		grid.set_grille(x2 + 1, y2 + 1, 1);
+		grid.set_grille(x2, y2 - 1, 1);
+		grid.set_grille(x2 + 1, y2 - 1, 1);
+		grid.set_grille(x2 - 1, y2, 1);
+		grid.set_grille(x2 + 2, y2, 1);
 	}
 };
 
@@ -87,11 +88,11 @@ public:
 	glider(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2, y2 + 1, 1);
-		grid2.set_grille(x2 + 1, y2, 1);
-		grid2.set_grille(x2, y2 - 1, 1);
-		grid2.set_grille(x2 - 1, y2 - 1, 1);
-		grid2.set_grille(x2 + 1, y2 - 1, 1);
+		grid.set_grille(x2, y2 + 1, 1);
+		grid.set_grille(x2 + 1, y2, 1);
+		grid.set_grille(x2, y2 - 1, 1);
+		grid.set_grille(x2 - 1, y2 - 1, 1);
+		grid.set_grille(x2 + 1, y2 - 1, 1);
 	}
 };
 
@@ -101,9 +102,9 @@ public:
 	oscilateur1(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2, y2, 1);
-		grid2.set_grille(x2 + 1, y2, 1);
-		grid2.set_grille(x2 - 1, y2, 1);
+		grid.set_grille(x2, y2, 1);
+		grid.set_grille(x2 + 1, y2, 1);
+		grid.set_grille(x2 - 1, y2, 1);
 	}
 };
 
@@ -113,12 +114,12 @@ public:
 	oscilateur2(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2, y2, 1);
-		grid2.set_grille(x2, y2 + 1, 1);
-		grid2.set_grille(x2 + 1, y2, 1);
-		grid2.set_grille(x2 + 1, y2 + 1, 1);
-		grid2.set_grille(x2 - 1, y2, 1);
-		grid2.set_grille(x2 + 2, y2 + 1, 1);
+		grid.set_grille(x2, y2, 1);
+		grid.set_grille(x2, y2 + 1, 1);
+		grid.set_grille(x2 + 1, y2, 1);
+		grid.set_grille(x2 + 1, y2 + 1, 1);
+		grid.set_grille(x2 - 1, y2, 1);
+		grid.set_grille(x2 + 2, y2 + 1, 1);
 	}
 };
 
@@ -128,42 +129,42 @@ public:
 	canon_glider(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2 + 1, y2 + 5, 1);
-		grid2.set_grille(x2 + 1, y2 + 6, 1);
-		grid2.set_grille(x2 + 2, y2 + 5, 1);
-		grid2.set_grille(x2 + 2, y2 + 6, 1);
-		grid2.set_grille(x2 + 11, y2 + 5, 1);
-		grid2.set_grille(x2 + 11, y2 + 6, 1);
-		grid2.set_grille(x2 + 11, y2 + 7, 1);
-		grid2.set_grille(x2 + 12, y2 + 4, 1);
-		grid2.set_grille(x2 + 12, y2 + 8, 1);
-		grid2.set_grille(x2 + 13, y2 + 3, 1);
-		grid2.set_grille(x2 + 13, y2 + 9, 1);
-		grid2.set_grille(x2 + 14, y2 + 3, 1);
-		grid2.set_grille(x2 + 14, y2 + 9, 1);
-		grid2.set_grille(x2 + 15, y2 + 6, 1);
-		grid2.set_grille(x2 + 16, y2 + 4, 1);
-		grid2.set_grille(x2 + 16, y2 + 8, 1);
-		grid2.set_grille(x2 + 17, y2 + 5, 1);
-		grid2.set_grille(x2 + 17, y2 + 6, 1);
-		grid2.set_grille(x2 + 17, y2 + 7, 1);
-		grid2.set_grille(x2 + 18, y2 + 6, 1);
-		grid2.set_grille(x2 + 21, y2 + 3, 1);
-		grid2.set_grille(x2 + 21, y2 + 4, 1);
-		grid2.set_grille(x2 + 21, y2 + 5, 1);
-		grid2.set_grille(x2 + 22, y2 + 3, 1);
-		grid2.set_grille(x2 + 22, y2 + 4, 1);
-		grid2.set_grille(x2 + 22, y2 + 5, 1);
-		grid2.set_grille(x2 + 23, y2 + 2, 1);
-		grid2.set_grille(x2 + 23, y2 + 6, 1);
-		grid2.set_grille(x2 + 25, y2 + 1, 1);
-		grid2.set_grille(x2 + 25, y2 + 2, 1);
-		grid2.set_grille(x2 + 25, y2 + 6, 1);
-		grid2.set_grille(x2 + 25, y2 + 7, 1);
-		grid2.set_grille(x2 + 35, y2 + 3, 1);
-		grid2.set_grille(x2 + 35, y2 + 4, 1);
-		grid2.set_grille(x2 + 36, y2 + 3, 1);
-		grid2.set_grille(x2 + 36, y2 + 4, 1);
+		grid.set_grille(x2 + 1, y2 + 5, 1);
+		grid.set_grille(x2 + 1, y2 + 6, 1);
+		grid.set_grille(x2 + 2, y2 + 5, 1);
+		grid.set_grille(x2 + 2, y2 + 6, 1);
+		grid.set_grille(x2 + 11, y2 + 5, 1);
+		grid.set_grille(x2 + 11, y2 + 6, 1);
+		grid.set_grille(x2 + 11, y2 + 7, 1);
+		grid.set_grille(x2 + 12, y2 + 4, 1);
+		grid.set_grille(x2 + 12, y2 + 8, 1);
+		grid.set_grille(x2 + 13, y2 + 3, 1);
+		grid.set_grille(x2 + 13, y2 + 9, 1);
+		grid.set_grille(x2 + 14, y2 + 3, 1);
+		grid.set_grille(x2 + 14, y2 + 9, 1);
+		grid.set_grille(x2 + 15, y2 + 6, 1);
+		grid.set_grille(x2 + 16, y2 + 4, 1);
+		grid.set_grille(x2 + 16, y2 + 8, 1);
+		grid.set_grille(x2 + 17, y2 + 5, 1);
+		grid.set_grille(x2 + 17, y2 + 6, 1);
+		grid.set_grille(x2 + 17, y2 + 7, 1);
+		grid.set_grille(x2 + 18, y2 + 6, 1);
+		grid.set_grille(x2 + 21, y2 + 3, 1);
+		grid.set_grille(x2 + 21, y2 + 4, 1);
+		grid.set_grille(x2 + 21, y2 + 5, 1);
+		grid.set_grille(x2 + 22, y2 + 3, 1);
+		grid.set_grille(x2 + 22, y2 + 4, 1);
+		grid.set_grille(x2 + 22, y2 + 5, 1);
+		grid.set_grille(x2 + 23, y2 + 2, 1);
+		grid.set_grille(x2 + 23, y2 + 6, 1);
+		grid.set_grille(x2 + 25, y2 + 1, 1);
+		grid.set_grille(x2 + 25, y2 + 2, 1);
+		grid.set_grille(x2 + 25, y2 + 6, 1);
+		grid.set_grille(x2 + 25, y2 + 7, 1);
+		grid.set_grille(x2 + 35, y2 + 3, 1);
+		grid.set_grille(x2 + 35, y2 + 4, 1);
+		grid.set_grille(x2 + 36, y2 + 3, 1);
+		grid.set_grille(x2 + 36, y2 + 4, 1);
 	}
 };
 
@@ -173,7 +174,7 @@ public:
 	obstacle(int x, int y, cellule* cell);
 
 	void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) override {
-		grid2.set_grille(x2, y2, 2);
+		grid.set_grille(x2, y2, 2);
 	}
 };
 

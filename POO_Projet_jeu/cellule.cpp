@@ -35,15 +35,30 @@ void cellule::set_cellsize(int cellsize) { this->cellsize = cellsize; }
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
-void cellule::dessin_instantané(string mode, RenderWindow& window, grille grid, ModeNormal ModeNormal, ModeLifeIsShort ModeLifeIsShort, ModeDayAndLight ModeDayAndLight, labyrinthiques labyrinthiques, ExplosionsAndChaos ExplosionsAndChaos, MotifsRepliquants MotifsRepliquants, HighLife HighLife, Corail Corail) {
-	if (mode == "1") { ModeNormal.dessin_rectangle(window, grid); }
-	if (mode == "2") { ModeLifeIsShort.dessin_rectangle(window, grid); }
-	if (mode == "3") { ModeDayAndLight.dessin_rectangle(window, grid); }
-	if (mode == "4") { labyrinthiques.dessin_rectangle(window, grid); }
-	if (mode == "5") { ExplosionsAndChaos.dessin_rectangle(window, grid); }
-	if (mode == "6") { MotifsRepliquants.dessin_rectangle(window, grid); }
-	if (mode == "7") { HighLife.dessin_rectangle(window, grid); }
-	if (mode == "8") { Corail.dessin_rectangle(window, grid); }
+void cellule::dessin_rectangle(RenderWindow& window, grille current_grid) {
+    int x, y;
+
+    window.clear();
+    RectangleShape cell(Vector2f(current_grid.get_grille(0, 0)->get_cellsize() - 1.0f, current_grid.get_grille(0, 0)->get_cellsize() - 1.0f));
+    for (x = 0; x < current_grid.get_width(); ++x) {
+        for (y = 0; y < current_grid.get_height(); ++y) {
+            if (current_grid.get_grille(x, y)->is_alive() == 1) {
+                cell.setPosition((float)x * current_grid.get_grille(0, 0)->get_cellsize(), (float)y * current_grid.get_grille(0, 0)->get_cellsize());
+                int R = x * (255 / current_grid.get_width());
+                int Vx = 127 - (x * (127 / current_grid.get_width()));
+                int Vy = 127 - (y * (127 / current_grid.get_width()));
+                int B = y * (255 / current_grid.get_width());
+                cell.setFillColor(Color(R, Vx + Vy, B));
+                window.draw(cell);
+            }
+            else if (current_grid.get_grille(x, y)->is_alive() == 2) {
+                cell.setPosition((float)x * current_grid.get_grille(0, 0)->get_cellsize(), (float)y * current_grid.get_grille(0, 0)->get_cellsize());
+                cell.setFillColor(sf::Color(255, 0, 0));
+                window.draw(cell);
+            }
+        }
+    }
+    window.display();
 }
 ////////////////////////////////////////////////////
 ////////////////////////////////////////////////////
