@@ -20,7 +20,7 @@ pattern::pattern(int x, int y, cellule* cell) {
 }
 
 point::point() {}
-stable1::stable1() {}
+stable1::stable1(){}
 stable2::stable2() {}
 glider::glider() {}
 oscilateur1::oscilateur1() {}
@@ -50,8 +50,8 @@ void pattern::set_x2(int x2) { this->x2 = x2; }
 void pattern::set_y2(int y2) { this->y2 = y2; }
 
 void pattern::random(grille& grid, grille& grid2, sf::RenderWindow& window) {
-	grid.random_init();
-	grid2.random_init();
+		grid.random_init();
+		grid2.random_init();
 }
 
 void pattern::random_obs(grille& grid, grille& grid2, sf::RenderWindow& window) {
@@ -63,3 +63,15 @@ void pattern::reset(grille& grid, grille& grid2, sf::RenderWindow& window) {
 	grid.fichier_init("vide.txt");
 	grid2.fichier_init("vide.txt");
 }
+
+
+
+
+
+
+
+
+
+
+
+

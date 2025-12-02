@@ -6,7 +6,7 @@
 class pattern
 {
 private:
-
+	
 
 
 protected:
@@ -19,7 +19,7 @@ protected:
 public:
 	//contructor
 	pattern();
-	pattern(int x, int y, cellule* cell);
+	pattern(int x, int y, cellule *cell);
 
 	//getters
 	int get_x();
@@ -39,7 +39,7 @@ public:
 	virtual void poser(int x, int y, grille& grid, grille& grid2, sf::RenderWindow& window) = 0;
 
 	//void poser_pattern(int x, int y, grille &grid, grille &grid2, RenderWindow &window);
-
+	
 	void random(grille& grid, grille& grid2, sf::RenderWindow& window);
 	void random_obs(grille& grid, grille& grid2, sf::RenderWindow& window);
 	void reset(grille& grid, grille& grid2, sf::RenderWindow& window);
@@ -181,3 +181,6 @@ public:
 		grid2.set_grille(x2, y2, 2);
 	}
 };
+
+
+

@@ -7,8 +7,6 @@
 #include "grille.h"
 #include "jeu.h"
 #include "patternes.h"
-
-
 int main()
 {
     srand(time(0));
@@ -27,7 +25,7 @@ int main()
 
     pattern* pat;
     pat = new point;
-
+    
     sf::Vector2i pixelPos;
 
     string mode = "1";
@@ -36,13 +34,13 @@ int main()
     string nomFichier = "";
 
     jeu2.demarer(g, grille1, mode, nom_Dossier);
+  
 
-
-
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    
     /*for (int i = 0; i < 5; i++) {
 
         nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
@@ -72,7 +70,7 @@ int main()
         fichier.close();
         sleep(milliseconds(1000));
 
-
+        
     }*/
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
@@ -88,9 +86,7 @@ int main()
     Text.SetFont(MyFont);
     Text.SetSize(50);*/
 
-    jeu2.touche();
-
-    RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0, 0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
+    RenderWindow window(VideoMode(grille1.get_width() * grille1.get_grille(0,0)->get_cellsize(), grille1.get_height() * grille1.get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
     bool etat = false;
     while (window.isOpen()) {
@@ -105,7 +101,7 @@ int main()
 
                 if (event.key.code == Keyboard::Num1) {
                     delete pat;
-                    pat = new point(0, 0, g.get_grille(0, 0));
+                    pat = new point(0, 0, g.get_grille(0,0));
                 }
 
                 if (event.key.code == Keyboard::Num2) {
@@ -197,7 +193,7 @@ int main()
                     pat->set_x2(pixelPos.x / grille1.get_grille(0, 0)->get_cellsize());
                     pat->set_y2(pixelPos.y / grille1.get_grille(0, 0)->get_cellsize());
                     pat->poser(pixelPos.x, pixelPos.y, g, grille1, window);
-                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);
+                    g.get_grille(0, 0)->dessin_instantané(mode, window, grille1, jeu2, jeu3, jeu4, jeu5, jeu6, jeu7, jeu8, jeu9);                    
                 }
             }
         }
