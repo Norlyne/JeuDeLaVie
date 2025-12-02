@@ -1,4 +1,3 @@
-//commentaire
 #pragma once
 #include "cellule.h"
 #include "grille.h"

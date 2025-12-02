@@ -8,11 +8,6 @@
 #include "patternes.h"
 #include "source.h"
 
-//int jeu::indexe = 0;
-//string jeu::mode_depart = "1";
-//grille jeu::current_grid = grille();
-//grille jeu::next_grid = grille();
-
 int console()
 {
     srand(time(0));

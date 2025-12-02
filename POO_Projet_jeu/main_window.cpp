@@ -9,11 +9,6 @@
 #include "patternes.h"
 #include "source.h"
 
-//int jeu::indexe = 0;
-//string jeu::mode_depart = "1";
-//grille jeu::current_grid = grille();
-//grille jeu::next_grid = grille();
-
 int window()
 {
     srand(time(0));
@@ -101,14 +96,17 @@ int window()
 
                 if (event.key.code == Keyboard::A) {
                     pat->random(jeu->get_current_grid());
+                    jeu->get_current_grid().get_grille(0, 0)->dessin_rectangle(window, jeu->get_current_grid());
                 }
 
                 if (event.key.code == Keyboard::O) {
                     pat->random_obs(jeu->get_current_grid());
+                    jeu->get_current_grid().get_grille(0, 0)->dessin_rectangle(window, jeu->get_current_grid());
                 }
 
                 if (event.key.code == Keyboard::R) {
                     pat->reset(jeu->get_current_grid());
+                    jeu->get_current_grid().get_grille(0, 0)->dessin_rectangle(window, jeu->get_current_grid());
                 }
 
                 if (event.key.code == Keyboard::N) {

@@ -161,7 +161,6 @@ public:
 
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid[0].size(); j++) {
-                cout << "x: " << this->x2 + j - grid.size() / 2 << "y: " << this->y2 + i - grid[0].size() / 2 << endl;
                 if (grid[i][j] == '#') current_grid.set_grille(this->x2 + j, this->y2 + i, 1);
             }
         }

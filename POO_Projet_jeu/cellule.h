@@ -5,8 +5,6 @@
 #include <ctime>
 #include <cstdlib>
 
-//#include "jeu.h"
-
 class grille;
 class ModeNormal;
 class ModeLifeIsShort;
