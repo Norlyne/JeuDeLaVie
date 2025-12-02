@@ -23,14 +23,14 @@ MotifsRepliquants::MotifsRepliquants() {}
 HighLife::HighLife() {}
 Corail::Corail() {}
 
-ModeNormal::ModeNormal(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
-ModeLifeIsShort::ModeLifeIsShort(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
-ModeDayAndLight::ModeDayAndLight(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
-labyrinthiques::labyrinthiques(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
-ExplosionsAndChaos::ExplosionsAndChaos(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
-MotifsRepliquants::MotifsRepliquants(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
-HighLife::HighLife(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
-Corail::Corail(grille current_grid, grille next_grid, int ind) { this->indexe = ind; }
+ModeNormal::ModeNormal( int ind) { this->indexe = ind; }
+ModeLifeIsShort::ModeLifeIsShort( int ind) { this->indexe = ind; }
+ModeDayAndLight::ModeDayAndLight( int ind) { this->indexe = ind; }
+labyrinthiques::labyrinthiques( int ind) { this->indexe = ind; }
+ExplosionsAndChaos::ExplosionsAndChaos( int ind) { this->indexe = ind; }
+MotifsRepliquants::MotifsRepliquants( int ind) { this->indexe = ind; }
+HighLife::HighLife( int ind) { this->indexe = ind; }
+Corail::Corail( int ind) { this->indexe = ind; }
 
 //getters
 int jeu::get_attente() { return this->attente[this->indexe]; }
