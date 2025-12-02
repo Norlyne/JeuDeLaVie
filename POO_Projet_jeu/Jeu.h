@@ -34,7 +34,6 @@ protected:
         void set_next_grid(grille next_grid);
         void set_mode_depart(string mode_depart);
 
-
         void demarer(string& nom_Dossier);
         void touche();
 	    virtual void regle_base() = 0;
