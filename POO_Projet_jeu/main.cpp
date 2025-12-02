@@ -32,7 +32,7 @@ int main()
         window();
     }
     else {
-        cout << "C mode de demarrage n'existe pas" << endl;
+        cout << "Ce mode de demarrage n'existe pas" << endl;
     }
 
     return 0;
