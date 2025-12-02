@@ -41,7 +41,7 @@ public:
 
 	//methodes
 	virtual int is_alive() = 0;
-	void dessin_instantané(string mode, RenderWindow& window, grille grid, ModeNormal ModeNormal, ModeLifeIsShort ModeLifeIsShort, ModeDayAndLight ModeDayAndLight, labyrinthiques labyrinthiques, ExplosionsAndChaos ExplosionsAndChaos, MotifsRepliquants MotifsRepliquants, HighLife HighLife, Corail Corail);
+	void dessin_rectangle(RenderWindow& window, grille current_grid);
 };
 
 

@@ -8,9 +8,34 @@
 #pragma region Jeu
 
 class jeu {
-    private:
+private:
+protected:
+    const int attente[6] = { 2000, 1000, 500, 200, 100, 50 };
+    static int indexe;
+    static string mode_depart;
+    static grille current_grid;
+    static grille next_grid;
     public:
-        string demarer(grille& grille1, grille& g, string& mode, string& nom_Dossier) {
+        
+        //Constructeurs
+        jeu();
+        jeu(grille current_grid, grille next_grid, int ind);
+
+        //getters
+        int get_attente();
+        int get_indexe();
+        grille& get_current_grid();
+        grille& get_next_grid();
+        int get_mode_depart();
+
+        //setters
+        void set_indexe(bool variation);
+        void set_current_grid(grille current_grid);
+        void set_next_grid(grille next_grid);
+        void set_mode_depart(string mode_depart);
+
+
+        void demarer(string& nom_Dossier) {
             string rep;
             cout << "Avez-vous un fichier ? (o/n) " << endl;
             cin >> rep;
@@ -20,13 +45,13 @@ class jeu {
                 cin >> fic; 
                 nom_Dossier = fic.substr(0, fic.length() - 4) + "_out";
                 int retour = _mkdir(nom_Dossier.c_str());
-                grille1.fichier_init(fic);
-                g.fichier_init(fic);
+                this->current_grid.fichier_init(fic);
+                this->next_grid.fichier_init(fic);
             }
             else if (rep == "n") {
                 nom_Dossier = "None";
                 int retour = _mkdir(nom_Dossier.c_str());
-                string ale;
+                string pattern_depart;
                 cout << "Voici une liste de blinkers disponible : " << endl;
                 cout << "1." << "Glidres" << endl;
                 cout << "2." << "vide" << endl;
@@ -34,69 +59,57 @@ class jeu {
                 cout << "4." << "expetchaos ( teste du mode exp et chaos ) " << endl;
                 cout << "5." << "Motrep ( teste du mode Motifs repetion ) " << endl;
                 cout << "Soutaitez-vous un grille alleatoire ou une grilles avec des blikers ? (a/1)" << endl;
-                cin >> ale;
-                if (ale == "a") {
+                cin >> pattern_depart;
+                if (pattern_depart == "a") {
                     string obs;
                     cout << "Soutaitez-vous des obstacles dans la grille ? (o/n) " << endl;
                     cin >> obs;
+                    cout << "Voici une liste de mode disponible : " << endl;
+                    cout << "1." << "normal" << endl;
+                    cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
+                    cout << "3." << "Day and light" << endl;
+                    cout << "4." << "Labyrinthiques" << endl;
+                    cout << "5." << "Explosions And Chaos" << endl;
+                    cout << "6." << "Motifs Repliquants" << endl;
+                    cout << "7." << "HighLife" << endl;
+                    cout << "8." << "Corail" << endl;
+                    cout << "Quel mode de jeu souhaitez-vous ?" << endl;
+                    cin >> this->mode_depart;
+                    if (mode_depart != "1" && mode_depart != "2" && mode_depart != "3" && mode_depart != "4" && mode_depart != "5" && mode_depart != "6" && mode_depart != "7" && mode_depart != "8") { cout << "Erreur : mauvaise reponse" << endl; }
                     if (obs == "o") {
-                        cout << "Voici une liste de mode disponible : " << endl;
-                        cout << "1." << "normal" << endl;
-                        cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
-                        cout << "3." << "Day and light" << endl;
-                        cout << "4." << "Labyrinthiques" << endl;
-                        cout << "5." << "Explosions And Chaos" << endl;
-                        cout << "6." << "Motifs Repliquants" << endl;
-                        cout << "7." << "HighLife" << endl;
-                        cout << "8." << "Corail" << endl;
-                        cout << "Quel mode de jeu souhaitez-vous ?" << endl;
-                        cin >> mode;
-                        grille1.random_init_obs();
-                        g.random_init_obs();
-                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7" && mode != "8") { cout << "Erreur : mauvaise reponse" << endl; }
+                        this->current_grid.random_init_obs();
+                        this->next_grid.random_init_obs();
                     }
                     else if (obs == "n") {
-                        cout << "Voici une liste de mode disponible : " << endl;
-                        cout << "1." << "normal" << endl;
-                        cout << "2." << "Life is short ( attention pour les epileptiques)" << endl;
-                        cout << "3." << "Day and light" << endl;
-                        cout << "4." << "Labyrinthiques" << endl;
-                        cout << "5." << "Explosions And Chaos" << endl;
-                        cout << "6." << "Motifs Repliquants" << endl;
-                        cout << "7." << "HighLife" << endl;
-                        cout << "8." << "Corail" << endl;
-                        cout << "Quel mode de jeu souhaitez-vous ?" << endl;
-                        cin >> mode;
-                        grille1.random_init();
-                        g.random_init();
-                        if (mode != "1" && mode != "2" && mode != "3" && mode != "4" && mode != "5" && mode != "6" && mode != "7" && mode != "8") { cout << "Erreur : mauvaise reponse" << endl; }
+                        this->current_grid.random_init();
+                        this->next_grid.random_init();
                     }
                     else {
                         cout << "Erreur : mauvaise reponse" << endl;
                     }
                 }
-                else if (ale == "1") {
-                    grille1.fichier_init("Gliders.txt");
-                    g.fichier_init("Gliders.txt");
+                else if (pattern_depart == "1") {//////////////////////////////////////////////////////////////////////////////////////////
+                    this->current_grid.fichier_init("Gliders.txt");
+                    this->next_grid.fichier_init("Gliders.txt");
                 }
-                else if (ale == "2") {
-                    grille1.fichier_init("vide.txt");
-                    g.fichier_init("vide.txt");
+                else if (pattern_depart == "2") {
+                    this->current_grid.fichier_init("vide.txt");
+                    this->next_grid.fichier_init("vide.txt");
                 }
-                else if (ale == "3") {
-                    mode = "4";
-                    grille1.fichier_init("lab.txt");
-                    g.fichier_init("lab.txt");
+                else if (pattern_depart == "3") {
+                    this->mode_depart = "4";
+                    this->current_grid.fichier_init("lab.txt");
+                    this->next_grid.fichier_init("lab.txt");
                 }
-                else if (ale == "4") {
-                    mode = "5";
-                    grille1.fichier_init("expetchaos.txt");
-                    g.fichier_init("expetchaos.txt");
+                else if (pattern_depart == "4") {
+                    this->mode_depart = "5";
+                    this->current_grid.fichier_init("expetchaos.txt");
+                    this->next_grid.fichier_init("expetchaos.txt");
                 }
-                else if (ale == "5") {
-                    mode = "6";
-                    grille1.fichier_init("Motrep.txt");
-                    g.fichier_init("Motrep.txt");
+                else if (pattern_depart == "5") {
+                    this->mode_depart = "6";
+                    this->current_grid.fichier_init("Motrep.txt");
+                    this->next_grid.fichier_init("Motrep.txt");
                 }
                 else {
                     cout << "Erreur : mauvaise reponse" << endl;
@@ -105,7 +118,6 @@ class jeu {
             else {
                 cout << "Erreur : mauvaise reponse" << endl;
             }
-            return mode;
         };
 
         void touche() {
@@ -134,56 +146,56 @@ class jeu {
             cout << " 5+Click gauche : un ocsillateur 2" << endl;
         }
 
-	    virtual void regle_base(grille& grid, grille &next) = 0;
-	    void dessin_rectangle(RenderWindow& window, grille grid);
+	    virtual void regle_base() = 0;
+	    //void dessin_rectangle(RenderWindow& window);
 };
 
 #pragma endregion
 
 #pragma region Mode
 
-     #pragma region ModeNormal
+#pragma region ModeNormal
 
 class ModeNormal : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    // cellule vivante
+    ModeNormal();
+    ModeNormal(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
                     if (n < 2 || n > 3) {
-                        next.set_grille(x, y, 0); // meurt
+                        this->next_grid.set_grille(x, y, 0);
                     }
                     else {
-                        next.set_grille(x, y, 1); // survit
+                        this->next_grid.set_grille(x, y, 1);
                     }
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0){
-                    // cellule morte
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
                     if (n == 3) {
-                        next.set_grille(x, y, 1); // naissance
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
             }
         }
@@ -192,94 +204,94 @@ public:
 
 #pragma endregion
 
-     #pragma region ModeLifeIsShort
+#pragma region ModeLifeIsShort
 
 class ModeLifeIsShort : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    next.set_grille(x, y, 0); // meurt
+    ModeLifeIsShort();
+    ModeLifeIsShort(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
+                    this->next_grid.set_grille(x, y, 0);
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    // cellule morte
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
                     if (n == 2) {
-                        next.set_grille(x, y, 1); // naissance
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
             }
         }
     }
 };
-	
+
 #pragma endregion
 
-     #pragma region ModeDayAndLight
+#pragma region ModeDayAndLight
 
 class ModeDayAndLight : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    //une cellule vivante survit à l'étape suivante si elle est entourée de 3, 4, 6, 7 ou 8 cellules vivantes.
+    ModeDayAndLight();
+    ModeDayAndLight(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
                     if (n == 3 || n == 4 || n == 6 || n == 7 || n == 8) {
-                        next.set_grille(x, y, 1); // survit
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0); // meurt
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    //une cellule morte naît à l'étape suivante si elle est entourée de 3, 6, 7 ou 8 voisines,
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
                     if (n == 3 || n == 6 || n == 7 || n == 8) {
-                        next.set_grille(x, y, 1); // naissance
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
-
             }
         }
     }
@@ -287,48 +299,48 @@ public:
 
 #pragma endregion
 
-     #pragma region labyrinthiques
+#pragma region labyrinthiques
 
 class labyrinthiques : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    // cellule vivante
+    labyrinthiques();
+    labyrinthiques(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
                     if (n == 2 || n == 3 || n == 4 || n == 5) {
-                        next.set_grille(x, y, 1); // survit
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0); // meurt
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    // cellule morte
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
                     if (n == 3) {
-                        next.set_grille(x, y, 1); // naissance
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
             }
         }
@@ -337,43 +349,43 @@ public:
 
 #pragma endregion
 
-     #pragma region ExplosionsAndChaos
+#pragma region ExplosionsAndChaos
 
 class ExplosionsAndChaos : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    // cellule vivante
-                    next.set_grille(x, y, 0); // meurt
+    ExplosionsAndChaos();
+    ExplosionsAndChaos(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
+                    this->next_grid.set_grille(x, y, 0);
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    // cellule morte
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
                     if (n == 2) {
-                        next.set_grille(x, y, 1); // naissance
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
             }
         }
@@ -382,98 +394,98 @@ public:
 
 #pragma endregion
 
-     #pragma region MotifsRepliquants
+#pragma region MotifsRepliquants
 
-// B1357/S1357
 class MotifsRepliquants : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    // cellule vivante
+    MotifsRepliquants();
+    MotifsRepliquants(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
                     if (n == 1 || n == 3 || n == 5 || n == 7) {
-                        next.set_grille(x, y, 1); // survit
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0); // meurt
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    // cellule morte
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
                     if (n == 1 || n == 3 || n == 5 || n == 7) {
-                        next.set_grille(x, y, 1); // naissance
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
             }
         }
     }
 };
+
 #pragma endregion
 
-     #pragma region HighLife
+#pragma region HighLife
 
 class HighLife : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    // cellule vivante
+    HighLife();
+    HighLife(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
                     if (n == 2 || n == 3) {
-                        next.set_grille(x, y, 1); // survit
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0); // meurt
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    // cellule morte
-                    if (n == 3 || n== 6) {
-                        next.set_grille(x, y, 1); // naissance
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
+                    if (n == 3 || n == 6) {
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
             }
         }
@@ -482,53 +494,54 @@ public:
 
 #pragma endregion
 
-     #pragma region Corail
+#pragma region Corail
 
 class Corail : public jeu {
 public:
-    void regle_base(grille& grid, grille& next) override {
-        for (int x = 0; x < grid.get_width(); ++x) {
-            for (int y = 0; y < grid.get_height(); ++y) {
-                int n = grid.compt_voisin_thorique(x, y);
-                if (grid.get_grille(x, y)->is_alive() == 1) {
-                    // cellule vivante
+    Corail();
+    Corail(grille current_grid, grille next_grid, int ind);
+
+    void regle_base() override {
+        for (int x = 0; x < this->current_grid.get_width(); ++x) {
+            for (int y = 0; y < this->current_grid.get_height(); ++y) {
+                int n = this->current_grid.compt_voisin_thorique(x, y);
+                if (this->current_grid.get_grille(x, y)->is_alive() == 1) {
                     if (n >= 4 || n <= 8) {
-                        next.set_grille(x, y, 1); // survit
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0); // meurt
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
-                else if (grid.get_grille(x, y)->is_alive() == 0) {
-                    // cellule morte
+                else if (this->current_grid.get_grille(x, y)->is_alive() == 0) {
                     if (n == 3) {
-                        next.set_grille(x, y, 1); // naissance
+                        this->next_grid.set_grille(x, y, 1);
                     }
                     else {
-                        next.set_grille(x, y, 0);
+                        this->next_grid.set_grille(x, y, 0);
                     }
                 }
                 else {
-                    next.set_grille(x, y, 2);
+                    this->next_grid.set_grille(x, y, 2);
                 }
             }
         }
-        /// swap 
-        for (int dx = 0; dx < next.get_width(); dx++) {
-            for (int dy = 0; dy < next.get_height(); dy++) {
-                if (next.get_grille(dx, dy)->is_alive() == 1) {
-                    grid.set_grille(dx, dy, 1);
+        for (int dx = 0; dx < this->next_grid.get_width(); dx++) {
+            for (int dy = 0; dy < this->next_grid.get_height(); dy++) {
+                if (this->next_grid.get_grille(dx, dy)->is_alive() == 1) {
+                    this->current_grid.set_grille(dx, dy, 1);
                 }
-                else if (next.get_grille(dx, dy)->is_alive() == 0) {
-                    grid.set_grille(dx, dy, 0);
+                else if (this->next_grid.get_grille(dx, dy)->is_alive() == 0) {
+                    this->current_grid.set_grille(dx, dy, 0);
                 }
                 else {
-                    grid.set_grille(dx, dy, 2);
+                    this->current_grid.set_grille(dx, dy, 2);
                 }
             }
         }
     }
 };
+
 #pragma endregion
 
 #pragma endregion
