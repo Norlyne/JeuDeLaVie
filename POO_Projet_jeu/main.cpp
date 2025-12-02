@@ -1,4 +1,5 @@
 //commentaire
+/*
 #include <ctime>
 #include <iostream>
 #include <fstream>
@@ -8,13 +9,15 @@
 #include "jeu.h"
 #include "patternes.h"
 
+using namespace std;
+using namespace sf;
+
 int jeu::indexe = 0;
 string jeu::mode_depart = "1";
 grille jeu::current_grid = grille();
 grille jeu::next_grid = grille();
 
-int main()
-{
+int main(){
     srand(time(0));
 
     jeu* jeu;
@@ -40,54 +43,47 @@ int main()
     else if (jeu->get_mode_depart() == 7) { delete jeu; jeu = new HighLife; }
     else if (jeu->get_mode_depart() == 8) { delete jeu; jeu = new Corail; }
     else { return 1; }
-
-
-
-    
-    
-  
-
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              CONSOLE                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    for (int i = 0; i < 5; i++) {
     
-    //for (int i = 0; i < 5; i++) {
-
-    //    nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
-    //    std::ofstream fichier(nomFichier, ios::out);
-
-    //    for (int dx = 0; dx < jeu->get_current_grid().get_width(); dx++) {
-    //        for (int dy = 0; dy < jeu->get_current_grid().get_height(); dy++) {
-    //            cellule* d = jeu->get_current_grid().get_grille(dx, dy);//////////////////
-    //            if (d && d->is_alive() == 2) {
-    //                cout << "O";
-    //                fichier << 2 << " ";
-    //            }
-    //            if (d && d->is_alive() == 1) {
-    //                cout << "#";
-    //                fichier << 1 << " ";
-    //            }
-    //            else {
-    //                cout << ".";
-    //                fichier << 0 << " ";
-    //            }
-    //        }
-    //        cout << "\n";
-    //        fichier << endl;
-    //    }
-    //    jeu->regle_base();
-    //    cout << "---------------------------------------------------------------------------------------" << endl;
-    //    fichier.close();
-    //    sleep(milliseconds(1000));
-
-    //    
-    //}
+        nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
+        std::ofstream fichier(nomFichier, ios::out);
+    
+        for (int dx = 0; dx < jeu->get_current_grid().get_width(); dx++) {
+            for (int dy = 0; dy < jeu->get_current_grid().get_height(); dy++) {
+                cellule* d = jeu->get_current_grid().get_grille(dx, dy);//////////////////
+                if (d && d->is_alive() == 2) {
+                    cout << "O";
+                    fichier << 2 << " ";
+                }
+                if (d && d->is_alive() == 1) {
+                    cout << "#";
+                    fichier << 1 << " ";
+                }
+                else {
+                    cout << ".";
+                    fichier << 0 << " ";
+                }
+            }
+            cout << "\n";
+            fichier << endl;
+        }
+        jeu->regle_base();
+        cout << "---------------------------------------------------------------------------------------" << endl;
+        fichier.close();
+        sleep(milliseconds(1000));
+    
+        
+    }
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     
-
+    /*
     RenderWindow window(VideoMode(jeu->get_current_grid().get_width() * jeu->get_current_grid().get_grille(0, 0)->get_cellsize(), jeu->get_current_grid().get_height() * jeu->get_current_grid().get_grille(0, 0)->get_cellsize()), "Jeu de la vie");
     window.clear(Color(214, 214, 214));
     bool etat = false;
@@ -227,9 +223,8 @@ int main()
             sleep(milliseconds(jeu->get_attente()));
         }
     }
-    return 0;
-}
-
+    return 0;*//*
+}*/
 
 
 
