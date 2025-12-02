@@ -49,19 +49,21 @@ void pattern::set_y(int y) { this->y = y; }
 void pattern::set_x2(int x2) { this->x2 = x2; }
 void pattern::set_y2(int y2) { this->y2 = y2; }
 
-void pattern::random(grille& grid, grille& grid2, sf::RenderWindow& window) {
-		grid.random_init();
-		grid2.random_init();
+void pattern::random(grille& current_grid) {
+	current_grid.random_init();
 }
 
-void pattern::random_obs(grille& grid, grille& grid2, sf::RenderWindow& window) {
-	grid.random_init_obs();
-	grid2.random_init_obs();
+void pattern::random_obs(grille& current_grid) {
+	current_grid.random_init_obs();
 }
 
-void pattern::reset(grille& grid, grille& grid2, sf::RenderWindow& window) {
-	grid.fichier_init("vide.txt");
-	grid2.fichier_init("vide.txt");
+void pattern::reset(grille &current_grid) {
+	for (int dx = 0; dx < current_grid.get_width(); dx++) {
+		for (int dy = 0; dy < current_grid.get_height(); dy++) {
+			current_grid.set_grille(dx, dy, 0);
+			//next_grid.set_grille(dx, dy, 0);
+		}
+	}
 }
 
 

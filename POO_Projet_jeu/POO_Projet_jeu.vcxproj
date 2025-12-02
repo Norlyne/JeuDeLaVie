@@ -130,6 +130,8 @@
     <ClCompile Include="grille.cpp" />
     <ClCompile Include="jeu.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="main_console.cpp" />
+    <ClCompile Include="main_test.cpp" />
     <ClCompile Include="patternes.cpp" />
     <ClCompile Include="POO_Projet_jeu.cpp" />
   </ItemGroup>

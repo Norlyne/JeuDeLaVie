@@ -30,7 +30,6 @@ int main()
 
     jeu->demarer(nom_Dossier);
 
-    cout << jeu->get_mode_depart() << endl;
     if (jeu->get_mode_depart() == 1) { delete jeu; jeu = new ModeNormal; }
     else if (jeu->get_mode_depart() == 2) { delete jeu; jeu = new ModeLifeIsShort; }
     else if (jeu->get_mode_depart() == 3) { delete jeu; jeu = new ModeDayAndLight; }
@@ -43,46 +42,6 @@ int main()
 
 
 
-    
-    
-  
-
-    
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    //                                              CONSOLE                                              //
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    //for (int i = 0; i < 5; i++) {
-
-    //    nomFichier = nom_Dossier + "/iteration" + to_string(i) + ".txt";
-    //    std::ofstream fichier(nomFichier, ios::out);
-
-    //    for (int dx = 0; dx < jeu->get_current_grid().get_width(); dx++) {
-    //        for (int dy = 0; dy < jeu->get_current_grid().get_height(); dy++) {
-    //            cellule* d = jeu->get_current_grid().get_grille(dx, dy);//////////////////
-    //            if (d && d->is_alive() == 2) {
-    //                cout << "O";
-    //                fichier << 2 << " ";
-    //            }
-    //            if (d && d->is_alive() == 1) {
-    //                cout << "#";
-    //                fichier << 1 << " ";
-    //            }
-    //            else {
-    //                cout << ".";
-    //                fichier << 0 << " ";
-    //            }
-    //        }
-    //        cout << "\n";
-    //        fichier << endl;
-    //    }
-    //    jeu->regle_base();
-    //    cout << "---------------------------------------------------------------------------------------" << endl;
-    //    fichier.close();
-    //    sleep(milliseconds(1000));
-
-    //    
-    //}
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
     //                                              WINDOWS                                              //
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,55 +106,55 @@ int main()
                 }
 
                 if (event.key.code == Keyboard::A) {
-                    pat->random(jeu->get_current_grid(), jeu->get_next_grid(), window);
+                    pat->random(jeu->get_current_grid());
                 }
 
                 if (event.key.code == Keyboard::O) {
-                    pat->random_obs(jeu->get_current_grid(), jeu->get_next_grid(), window);
+                    pat->random_obs(jeu->get_current_grid());
                 }
 
                 if (event.key.code == Keyboard::R) {
-                    pat->reset(jeu->get_current_grid(), jeu->get_next_grid(), window);
+                    pat->reset(jeu->get_current_grid());
                 }
 
                 if (event.key.code == Keyboard::N) {
                     delete jeu;
-                    jeu = new ModeNormal(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new ModeNormal(jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::S) {
                     delete jeu;
-                    jeu = new ModeLifeIsShort(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new ModeLifeIsShort(jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::D) {
                     delete jeu;
-                    jeu = new ModeDayAndLight(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new ModeDayAndLight(jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::L) {
                     delete jeu;
-                    jeu = new labyrinthiques(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new labyrinthiques( jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::E) {
                     delete jeu;
-                    jeu = new ExplosionsAndChaos(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new ExplosionsAndChaos(jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::M) {
                     delete jeu;
-                    jeu = new MotifsRepliquants(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new MotifsRepliquants( jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::H) {
                     delete jeu;
-                    jeu = new HighLife(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new HighLife(jeu->get_indexe());
                 }
 
                 if (event.key.code == Keyboard::C) {
                     delete jeu;
-                    jeu = new Corail(jeu->get_current_grid(), jeu->get_next_grid(), jeu->get_indexe());
+                    jeu = new Corail(jeu->get_indexe());
                 }
 
                 if (event.key.code == sf::Keyboard::Left) {
@@ -214,7 +173,7 @@ int main()
                     pixelPos = sf::Mouse::getPosition(window);
                     pat->set_x2(pixelPos.x / jeu->get_current_grid().get_grille(0,0)->get_cellsize());
                     pat->set_y2(pixelPos.y / jeu->get_current_grid().get_grille(0, 0)->get_cellsize());
-                    pat->poser(pixelPos.x, pixelPos.y, jeu->get_current_grid(), jeu->get_next_grid(), window);
+                    pat->poser(pixelPos.x, pixelPos.y, jeu->get_current_grid());
                     jeu->get_current_grid().get_grille(0, 0)->dessin_rectangle(window, jeu->get_current_grid());
                 }
             }
