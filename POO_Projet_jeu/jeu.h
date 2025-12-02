@@ -36,6 +36,7 @@ protected:
 
         void demarer(string& nom_Dossier);
         void touche();
+
 	    virtual void regle_base() = 0;
 	    //void dessin_rectangle(RenderWindow& window);
 };

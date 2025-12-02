@@ -132,6 +132,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="main_console.cpp" />
     <ClCompile Include="main_test.cpp" />
+    <ClCompile Include="main_window.cpp" />
     <ClCompile Include="patternes.cpp" />
     <ClCompile Include="POO_Projet_jeu.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="grille.h" />
     <ClInclude Include="jeu.h" />
     <ClInclude Include="patternes.h" />
+    <ClInclude Include="source.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
