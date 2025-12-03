@@ -154,8 +154,8 @@ void jeu::touche() {
     cout << " A : Grille aleatoire" << endl;
     cout << " O : Grille aleatoire avec obstacle" << endl;
     cout << " R : Reset" << endl;
-    cout << " <- : reduis la vitesse d'itération " << endl;
-    cout << " -> : augmente la vitesse d'itération " << endl;
+    cout << " <- : reduis la vitesse d'iteration " << endl;
+    cout << " -> : augmente la vitesse d'iteration " << endl;
     cout << "-----------------------------------------------" << endl;
     cout << " N : Mode Normal" << endl;
     cout << " S : Mode Life is short" << endl;

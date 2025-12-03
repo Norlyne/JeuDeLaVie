@@ -62,6 +62,7 @@ int console()
 
 
     }
+
     delete jeu;
     return 0;
 }

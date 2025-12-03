@@ -16,7 +16,7 @@ grille jeu::next_grid = grille();
 int main()
 {
     string demarage;
-    while (demarage != "1" || demarage != "2" || demarage != "13") {
+    while (demarage != "1" || demarage != "2" || demarage != "3") {
         cout << "Quel mode de demarrage ?" << endl;
         cout << "1." << "Console" << endl;
         cout << "2." << "Test unitaire" << endl;
@@ -24,12 +24,15 @@ int main()
         cin >> demarage;
         if (demarage == "1") {
             console();
+            break;
         }
         else if (demarage == "2") {
             test();
+            break;
         }
         else if (demarage == "3") {
             window();
+            break;
         }
         else {
             cout << "Ce mode de demarrage n'existe pas" << endl;
