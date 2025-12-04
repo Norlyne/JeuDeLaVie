@@ -35,10 +35,10 @@ string test1()
             cellule* d = jeu->get_current_grid().get_grille(dx, dy);
             cellule* c = test.get_grille(dx, dy);
             if (d->is_alive() == c->is_alive()) {
-                return "le test a marche";
+                return "le test est concluant";
             }
             else {
-                return "Erreur :  le test n'est pas fluctuant";
+                return "Erreur :  le test n'est pas concluant";
             }
         }
     }
